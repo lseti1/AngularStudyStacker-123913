@@ -1,8 +1,8 @@
 <div class="flex flex-col h-full w-full text-xl gap-0.5 overflow-auto">
     @for (item of [].constructor(20); track item) {
-        <div class="w-full bg-black p-4 flex justify-between">
+        <div class="w-full bg-black p-4 flex justify-between hover:bg-gray-800 cursor-pointer select-none duration-300">
             <p>Deck Example</p>
-            <p>+</p>
+            <button class="hover:text-white/50 duration-300">+</button>
         </div>
     }
 </div>
