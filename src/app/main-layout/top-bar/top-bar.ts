@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SelectedDeck } from '../../services/selected-deck';
 
 @Component({
@@ -8,5 +8,7 @@ import { SelectedDeck } from '../../services/selected-deck';
   styles: ``
 })
 export class TopBar {
+  @Input() deckTitle: string = '';
+  @Input() deckSize: number = 0;
   constructor(public selectedDeckService: SelectedDeck) {}
 }

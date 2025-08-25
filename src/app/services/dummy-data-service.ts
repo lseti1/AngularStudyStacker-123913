@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
 
+export interface Flashcard {
+  id: number;
+  front: string;
+  back: string;
+}
+
+
 @Injectable({ providedIn: 'root' })
 export class DummyDataService {
   private data = {
