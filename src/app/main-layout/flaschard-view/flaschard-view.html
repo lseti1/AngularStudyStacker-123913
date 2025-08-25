@@ -1,5 +1,5 @@
 @if (selectedDeckService.isDeckSelected()) {
-<div class="grid grid-cols-3 p-4 gap-4 h-full w-full overflow-auto">
+<div class="grid grid-cols-3 auto-rows-min items-start p-4 gap-4 h-full w-full overflow-auto">
     @for (flashcard of flashcardsData; track flashcard.id) {
     <div class="flex flex-col h-72 justify-center items-center bg-gray-200 rounded border border-gray-400 p-2 text-2xl shadow-full hover:bg-gray-100 cursor-pointer select-none duration-300">
         <p class="flex justify-center items-center border-b border-gray-400 h-1/2 w-full">{{ flashcard.front }}</p>

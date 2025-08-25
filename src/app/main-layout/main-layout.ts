@@ -23,4 +23,8 @@ export class MainLayout {
   get selectedDeckFlashcardCount(): number {
     return this.selectedDeck?.flashcards.length || 0;
   }
+
+  get selectedDeckProficiency(): number {
+    return this.selectedDeck?.proficiency || 0;
+  }
 }
