@@ -12,6 +12,8 @@ import { DummyDataService } from '../services/dummy-data-service';
   styles: ``
 })
 export class MainLayout {
+  isEditingDeck: boolean = false;
+
   constructor(public selectedDeckService: SelectedDeck, public dummyData: DummyDataService) {}
   
   get selectedDeck() {
@@ -26,5 +28,9 @@ export class MainLayout {
 
   get selectedDeckProficiency(): number {
     return this.selectedDeck?.proficiency || 0;
+  }
+
+  setIsEditingDeck(value: boolean) {
+    this.isEditingDeck = value;
   }
 }

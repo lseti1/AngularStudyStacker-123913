@@ -10,5 +10,6 @@ import { DummyDataService, Flashcard } from '../../services/dummy-data-service';
 })
 export class FlaschardView {
   @Input() flashcardsData: Flashcard[] = [];
+  @Input() isEditingDeck: boolean = false;
   constructor(public selectedDeckService: SelectedDeck) {}
 }
