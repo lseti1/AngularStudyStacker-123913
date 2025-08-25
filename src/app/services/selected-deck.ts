@@ -3,10 +3,13 @@ import { signal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class SelectedDeck {
-  selectedDeck = signal<boolean>(false);
+  isDeckSelected = signal<boolean>(false);
+  selectedDeckID = signal<number | null>(null);
 
-  setSelectedDeck(selected: boolean) {
-    this.selectedDeck.set(selected);
-    console.log("Selected Deck:", this.selectedDeck());
+  setSelectedDeck(selected: boolean, deckID: number) {
+    this.isDeckSelected.set(selected);
+    this.selectedDeckID.set(deckID);
+    console.log("Selected Deck:", this.isDeckSelected());
+    console.log("Selected Deck ID:", this.selectedDeckID());
   }
 }
