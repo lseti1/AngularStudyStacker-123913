@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SelectedDeck } from '../../services/selected-deck';
-import { DummyDataService } from '../../services/dummy-data-service';
+import { DummyDataService, Flashcard } from '../../services/dummy-data-service';
 
 @Component({
   selector: 'app-flaschard-view',
@@ -9,10 +9,7 @@ import { DummyDataService } from '../../services/dummy-data-service';
   styles: ``
 })
 export class FlaschardView {
-  constructor(public selectedDeckService: SelectedDeck, public dummyData: DummyDataService) {}
-
-  get selectedDeck() {
-    const id = this.selectedDeckService.selectedDeckID();
-    return this.dummyData.getDecks().find(deck => deck.id === id);
-  }
+  @Input() flashcardsData: Flashcard[] = [];
+  @Input() isEditingDeck: boolean = false;
+  constructor(public selectedDeckService: SelectedDeck) {}
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { SelectedDeck } from '../../services/selected-deck';
 
 @Component({
@@ -8,5 +8,14 @@ import { SelectedDeck } from '../../services/selected-deck';
   styles: ``
 })
 export class BottomActionBar {
+  editButtonText: string = 'Edit Deck';
+  @Output() EditingDeck = new EventEmitter<boolean>();
+  isEditingDeck: boolean = false;
   constructor (public selectedDeckService: SelectedDeck) {}
+
+  selectEditDeck() {
+    this.isEditingDeck = !this.isEditingDeck;
+    this.EditingDeck.emit(this.isEditingDeck);
+    this.editButtonText = this.isEditingDeck ? 'Finish Editing' : 'Edit Deck';
+  }
 }
