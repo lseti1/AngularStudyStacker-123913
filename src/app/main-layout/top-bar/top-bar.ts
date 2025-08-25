@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SelectedDeck } from '../../services/selected-deck';
 
 @Component({
   selector: 'app-top-bar',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styles: ``
 })
 export class TopBar {
-
+  constructor(public selectedDeckService: SelectedDeck) {}
 }
