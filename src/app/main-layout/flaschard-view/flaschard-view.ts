@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SelectedDeck } from '../../services/selected-deck';
 
 @Component({
   selector: 'app-flaschard-view',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styles: ``
 })
 export class FlaschardView {
-
+  constructor(public selectedDeckService: SelectedDeck) {}
 }

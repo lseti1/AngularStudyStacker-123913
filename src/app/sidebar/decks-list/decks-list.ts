@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SelectedDeck } from '../../services/selected-deck';  
 
 @Component({
   selector: 'app-decks-list',
@@ -8,4 +9,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DecksList  {
   @Input() deckTitles: string[] = [];
+
+  constructor(public selectedDeckService: SelectedDeck) {}
 }
