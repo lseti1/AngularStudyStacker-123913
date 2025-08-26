@@ -30,6 +30,10 @@ export class MainLayout {
     return this.selectedDeck?.proficiency || 0;
   }
 
+  get totalNumberOfDecks(): number {
+    return this.dummyData.getDecks().length;
+  }
+
   setIsEditingDeck(value: boolean) {
     this.isEditingDeck = value;
   }

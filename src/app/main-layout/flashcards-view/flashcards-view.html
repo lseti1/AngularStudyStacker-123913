@@ -14,7 +14,7 @@
     }
 </div>
 } 
-@if (flashcardsViewService.currentView() === 'add') {
+@if (flashcardsViewService.currentView() === 'add' && selectedDeckService.isDeckSelected()) {
     <app-add-card-view/>
 } @else if (selectedDeckService.isAddingDeck()) {
     <app-add-deck-view/>

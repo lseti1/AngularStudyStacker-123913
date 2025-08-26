@@ -1,6 +1,6 @@
 <div class="flex flex-col h-full w-full text-xl gap-0.5 overflow-auto">
     @for (title of deckTitles; track title) {
-        <div (click)="selectedDeckService.setSelectedDeck(true, $index + 1)" class="w-full bg-black p-4 flex justify-between hover:bg-gray-800 cursor-pointer select-none duration-300">
+        <div (click)="onSelectDeckClick($index)" class="w-full bg-black p-4 flex justify-between hover:bg-gray-800 cursor-pointer select-none duration-300">
             <p>{{ title }}</p>
             <fa-icon [icon]="faGear" class="flex justify-center items-center hover:text-white/70 duration-300 cursor-pointer text-base"></fa-icon>
         </div>
