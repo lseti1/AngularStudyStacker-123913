@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { TopBar } from './top-bar/top-bar';
-import { FlaschardView } from './flaschard-view/flaschard-view';
+import { FlashcardsView } from './flashcards-view/flashcards-view';
 import { BottomActionBar } from './bottom-action-bar/bottom-action-bar';
 import { SelectedDeck } from '../services/selected-deck';
 import { DummyDataService } from '../services/dummy-data-service';
 
 @Component({
   selector: 'app-main-layout',
-  imports: [TopBar, FlaschardView, BottomActionBar],
+  imports: [TopBar, FlashcardsView, BottomActionBar],
   templateUrl: './main-layout.html',
   styles: ``
 })

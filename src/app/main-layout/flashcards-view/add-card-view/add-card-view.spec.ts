@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FlaschardView } from './flaschard-view';
+import { AddCardView } from './add-card-view';
 
-describe('FlaschardView', () => {
-  let component: FlaschardView;
-  let fixture: ComponentFixture<FlaschardView>;
+describe('AddCardView', () => {
+  let component: AddCardView;
+  let fixture: ComponentFixture<AddCardView>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FlaschardView]
+      imports: [AddCardView]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FlaschardView);
+    fixture = TestBed.createComponent(AddCardView);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
