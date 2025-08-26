@@ -1,5 +1,5 @@
 <div class="h-screen w-full grid grid-rows-[7%_86%_7%]">
     <app-top-bar [deckTitle]="selectedDeck?.title || ''" [deckSize]="selectedDeckFlashcardCount" [deckProficiency]="selectedDeckProficiency"/>
-    <app-flaschard-view [flashcardsData]="selectedDeck?.flashcards || []" [isEditingDeck]="isEditingDeck"/>
-    <app-bottom-action-bar (EditingDeck)="setIsEditingDeck($event)"/>
+    <app-flashcards-view [flashcardsData]="selectedDeck?.flashcards || []"/>
+    <app-bottom-action-bar />
 </div>
