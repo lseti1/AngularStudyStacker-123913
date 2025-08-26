@@ -8,4 +8,8 @@ import { FlashcardsViewService } from '../../../services/flashcards-view-service
 })
 export class AddCardView {
   constructor(public flashcardsViewService: FlashcardsViewService) {}
+
+  onSubmit() {
+    this.flashcardsViewService.toggleView('flashcards');
+  }
 }
