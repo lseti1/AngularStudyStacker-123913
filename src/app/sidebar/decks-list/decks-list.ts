@@ -14,5 +14,8 @@ export class DecksList  {
   faGear = faGear;
   @Input() deckTitles: string[] = [];
 
-  
+  onSelectDeckClick(index: number) {
+    this.selectedDeckService.setSelectedDeck(true, index + 1);
+    this.selectedDeckService.setAddingDeck(false);
+  }
 }
