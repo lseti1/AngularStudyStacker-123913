@@ -2,7 +2,7 @@
     @for (title of deckTitles; track title) {
         <div (click)="selectedDeckService.setSelectedDeck(true, $index + 1)" class="w-full bg-black p-4 flex justify-between hover:bg-gray-800 cursor-pointer select-none duration-300">
             <p>{{ title }}</p>
-            <button class="hover:text-white/50 duration-300">+</button>
+            <fa-icon [icon]="faGear" class="flex justify-center items-center hover:text-white/70 duration-300 cursor-pointer text-base"></fa-icon>
         </div>
     }
 </div>
