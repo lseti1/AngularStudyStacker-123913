@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, computed, EventEmitter, Output } from '@angular/core';
 import { SelectedDeck } from '../../services/selected-deck';
 import { FlashcardsViewService } from '../../services/flashcards-view-service';
 
@@ -11,5 +11,7 @@ import { FlashcardsViewService } from '../../services/flashcards-view-service';
 export class BottomActionBar {
   constructor (public selectedDeckService: SelectedDeck, public flashcardsViewService: FlashcardsViewService) {}
 
-  editButtonText: string = 'Edit Deck';
+  editButtonText = computed(() => {
+    return this.flashcardsViewService.currentView() === 'edit' ? 'Finish Editing' : 'Edit Flashcards';
+  })
 }
