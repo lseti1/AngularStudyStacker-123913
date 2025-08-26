@@ -11,11 +11,13 @@ import { faGear } from '@fortawesome/free-solid-svg-icons';
   styles: ``
 })
 export class TopBar {
+  constructor(public selectedDeckService: SelectedDeck) {}
+
   faUser = faUser;
   faGear = faGear;
 
   @Input() deckTitle: string = '';
   @Input() deckSize: number = 0;
   @Input() deckProficiency: number = 0;
-  constructor(public selectedDeckService: SelectedDeck) {}
+  @Input() totalDecks: number = 0;
 }
