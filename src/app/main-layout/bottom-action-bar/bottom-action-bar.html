@@ -10,5 +10,7 @@
     <button (click)="flashcardsViewService.toggleView('add')" class="black-btn">{{ addButtonText() }}</button>
     <button (click)="flashcardsViewService.toggleView('edit')" class="black-btn">{{ editButtonText() }}</button>
     <button class="black-btn">Start Learning</button>
+    } @else if (selectedDeckService.isAddingDeck()) {
+    <button (click)="selectedDeckService.setAddingDeck(false)" class="black-btn">Finish Adding Deck</button>
     }
 </div>

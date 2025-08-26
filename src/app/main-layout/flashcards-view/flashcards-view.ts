@@ -5,10 +5,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { FlashcardsViewService } from '../../services/flashcards-view-service';
 import { AddCardView } from './add-card-view/add-card-view';
+import { AddDeckView } from './add-deck-view/add-deck-view';
 
 @Component({
   selector: 'app-flashcards-view',
-  imports: [FontAwesomeModule, AddCardView],
+  imports: [FontAwesomeModule, AddCardView, AddDeckView],
   templateUrl: './flashcards-view.html',
   styleUrl: './flashcards-view.css'
 })
