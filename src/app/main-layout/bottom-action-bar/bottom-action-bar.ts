@@ -14,4 +14,8 @@ export class BottomActionBar {
   editButtonText = computed(() => {
     return this.flashcardsViewService.currentView() === 'edit' ? 'Finish Editing' : 'Edit Flashcards';
   })
+
+  addButtonText = computed(() => {
+    return this.flashcardsViewService.currentView() === 'add' ? 'Close' : 'Add Card';
+  })
 }
