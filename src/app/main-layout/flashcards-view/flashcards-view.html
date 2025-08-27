@@ -20,6 +20,8 @@
     <app-edit-card-view [flashcardData]="flashcardData"/>
 } @else if (selectedDeckService.isAddingDeck()) {
     <app-add-deck-view/>
+} @else if (selectedDeckService.isEditingDeck()) {
+    <app-edit-deck-view [deckData]="deckData"/>
 } @else if (selectedDeckService.isDeckSelected() && flashcardsViewService.currentView() === 'view') {
     <app-view-card-view [flashcardData]="flashcardData"/>
 } @else if (selectedDeckService.isDeckSelected() && flashcardsViewService.currentView() === 'delete') {

@@ -6,6 +6,13 @@ export interface Flashcard {
   back: string;
 }
 
+export interface Deck {
+  id: number;
+  title: string;
+  proficiency: number;
+  description: string;
+  flashcards: Flashcard[];
+}
 
 @Injectable({ providedIn: 'root' })
 export class DummyDataService {

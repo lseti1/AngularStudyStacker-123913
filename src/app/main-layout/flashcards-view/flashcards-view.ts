@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SelectedDeck } from '../../services/selected-deck';
-import { Flashcard } from '../../services/dummy-data-service';
+import { Deck, Flashcard } from '../../services/dummy-data-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { FlashcardsViewService } from '../../services/flashcards-view-service';
@@ -10,10 +10,11 @@ import { EditCardView } from './edit-card-view/edit-card-view';
 import { SelectedCard } from '../../services/selected-card';
 import { ViewCardView } from './view-card-view/view-card-view';
 import { DeleteCardView } from './delete-card-view/delete-card-view';
+import { EditDeckView } from './edit-deck-view/edit-deck-view';
 
 @Component({
   selector: 'app-flashcards-view',
-  imports: [FontAwesomeModule, AddCardView, AddDeckView, EditCardView, ViewCardView, DeleteCardView],
+  imports: [FontAwesomeModule, AddCardView, AddDeckView, EditCardView, ViewCardView, DeleteCardView, EditDeckView],
   templateUrl: './flashcards-view.html',
   styleUrl: './flashcards-view.css'
 })
@@ -27,6 +28,7 @@ export class FlashcardsView {
   faGear = faGear;
 
   @Input() flashcardsData: Flashcard[] = [];
+  @Input() deckData: Deck | null = null;
   flashcardData: Flashcard | null = null;
 
   onSelectCardClick(id: number) {
