@@ -8,9 +8,12 @@ import { AddCardView } from './add-card-view/add-card-view';
 import { AddDeckView } from './add-deck-view/add-deck-view';
 import { EditCardView } from './edit-card-view/edit-card-view';
 import { SelectedCard } from '../../services/selected-card';
+import { ViewCardView } from './view-card-view/view-card-view';
+import { DeleteCardView } from './delete-card-view/delete-card-view';
+
 @Component({
   selector: 'app-flashcards-view',
-  imports: [FontAwesomeModule, AddCardView, AddDeckView, EditCardView],
+  imports: [FontAwesomeModule, AddCardView, AddDeckView, EditCardView, ViewCardView, DeleteCardView],
   templateUrl: './flashcards-view.html',
   styleUrl: './flashcards-view.css'
 })
@@ -32,8 +35,20 @@ export class FlashcardsView {
     console.log(this.flashcardData);
   }
 
-  onEditAllCardClick(id: number) {
+  onEditAllCardClick(id: number, event: MouseEvent) {
+    event.stopPropagation();
     this.flashcardsViewService.toggleView('edit');
+    this.onSelectCardClick(id + 1);
+  }
+
+  onViewCardClick(id: number) {
+    this.flashcardsViewService.toggleView('view');
+    this.onSelectCardClick(id + 1);
+  }
+
+  onDeleteCardClick(id: number, event: MouseEvent) {
+    event.stopPropagation();
+    this.flashcardsViewService.toggleView('delete');
     this.onSelectCardClick(id + 1);
   }
 }
