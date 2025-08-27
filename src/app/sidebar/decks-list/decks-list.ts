@@ -18,4 +18,10 @@ export class DecksList  {
     this.selectedDeckService.setSelectedDeck(true, index + 1);
     this.selectedDeckService.setAddingDeck(false);
   }
+
+  onEditDeckClick(index: number, event: MouseEvent ) {
+    event.stopPropagation();
+    this.selectedDeckService.setSelectedDeck(false, index + 1);
+    this.selectedDeckService.setEditingDeck(true);
+  }
 }
