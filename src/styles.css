@@ -17,6 +17,10 @@
   }
 
   .green-btn {
-    @apply bg-green-600 min-w-[10rem] rounded hover:bg-green-500 px-2 py-3 duration-300 text-xl font-semibold text-white shadow-full;
+    @apply bg-green-600 min-w-[10rem] rounded hover:bg-green-700 px-2 py-3 duration-300 text-xl font-semibold text-white shadow-full;
+  } 
+
+  .red-btn {
+    @apply bg-red-700 min-w-[10rem] rounded hover:bg-red-800 px-2 py-3 duration-300 text-xl font-semibold text-white shadow-full;
   }
 }

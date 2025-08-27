@@ -12,5 +12,7 @@
     <button (click)="flashcardsViewService.toggleView('flashcards')" class="black-btn">Back</button>
     } @else if (selectedDeckService.isDeckSelected() && flashcardsViewService.currentView() === 'view') {
     <button (click)="flashcardsViewService.toggleView('flashcards')" class="black-btn">Back</button>
+    } @else if (selectedDeckService.isDeckSelected() && flashcardsViewService.currentView() === 'delete') {
+    <button (click)="flashcardsViewService.toggleView('flashcards')" class="black-btn">Back</button>
     }
 </div>
