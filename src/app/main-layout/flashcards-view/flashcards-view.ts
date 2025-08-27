@@ -8,9 +8,11 @@ import { AddCardView } from './add-card-view/add-card-view';
 import { AddDeckView } from './add-deck-view/add-deck-view';
 import { EditCardView } from './edit-card-view/edit-card-view';
 import { SelectedCard } from '../../services/selected-card';
+import { ViewCardView } from './view-card-view/view-card-view';
+
 @Component({
   selector: 'app-flashcards-view',
-  imports: [FontAwesomeModule, AddCardView, AddDeckView, EditCardView],
+  imports: [FontAwesomeModule, AddCardView, AddDeckView, EditCardView, ViewCardView],
   templateUrl: './flashcards-view.html',
   styleUrl: './flashcards-view.css'
 })
@@ -34,6 +36,11 @@ export class FlashcardsView {
 
   onEditAllCardClick(id: number) {
     this.flashcardsViewService.toggleView('edit');
+    this.onSelectCardClick(id + 1);
+  }
+
+  onViewCardClick(id: number) {
+    this.flashcardsViewService.toggleView('view');
     this.onSelectCardClick(id + 1);
   }
 }

@@ -1,0 +1,11 @@
+<div class="flex justify-center items-center flex-col absolute top-0 left-0 w-full h-full backdrop-blur-sm gap-4">
+    <div class="flex justify-center items-center flex-col bg-white w-1/2 h-[60%] shadow rounded border border-gray-400 p-8 gap-4 ">
+        <h1 class="text-3xl font-bold">Viewing Flashcard</h1>
+        <div class="relative flex flex-col h-full w-full justify-center items-center p-2 text-2xl bg-gray-200 shadow-full rounded">
+            <p class="flex bg-white/0 justify-center items-center text-center border-b border-gray-400 h-1/2 w-full">{{ flashcardData?.front }}</p>
+            <p class="flex bg-white/0 justify-center items-center text-center border-t border-gray-400 h-1/2 w-full"> {{ flashcardData?.back }}</p>
+        </div>
+    </div>
+    <button class="green-btn" type="submit" (click)="onSubmit()">Edit Flashcard</button>
+</div>
+

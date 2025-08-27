@@ -2,7 +2,7 @@ import { Injectable, signal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class FlashcardsViewService {
-  private flashcardsViewState = signal<'flashcards' | 'edit' | 'learning' | 'add'>('flashcards');
+  private flashcardsViewState = signal<'flashcards' | 'edit' | 'learning' | 'add' | 'view'>('flashcards');
   private editAllState = signal<boolean>(false);
   
   get currentView() {
@@ -13,7 +13,7 @@ export class FlashcardsViewService {
     return this.editAllState.asReadonly();
   }
 
-  toggleView(view: 'flashcards' | 'edit' | 'learning' | 'add') {
+  toggleView(view: 'flashcards' | 'edit' | 'learning' | 'add' | 'view') {
     this.flashcardsViewState.set(
       this.flashcardsViewState() === view ? 'flashcards' : view
     );
