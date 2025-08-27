@@ -6,6 +6,9 @@
             <p class="flex bg-white/0 justify-center items-center text-center border-t border-gray-400 h-1/2 w-full"> {{ flashcardData?.back }}</p>
         </div>
     </div>
-    <button class="green-btn" type="submit" (click)="onSubmit()">Edit Flashcard</button>
+    <div class="flex gap-4">
+        <button class="green-btn" type="submit" (click)="flashcardsViewService.toggleView('edit')">Edit Flashcard</button>
+        <button class="red-btn" type="submit" (click)="flashcardsViewService.toggleView('delete')">Delete Flashcard</button>
+    </div>
 </div>
 

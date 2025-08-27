@@ -11,8 +11,4 @@ import { FlashcardsViewService } from '../../../services/flashcards-view-service
 export class ViewCardView {
   constructor(public flashcardsViewService: FlashcardsViewService) {}
   @Input() flashcardData: Flashcard | null = null;
-
-  onSubmit() {
-    this.flashcardsViewService.toggleView('edit');
-  }
 }
