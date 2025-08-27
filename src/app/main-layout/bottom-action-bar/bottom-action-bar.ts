@@ -12,7 +12,7 @@ export class BottomActionBar {
   constructor (public selectedDeckService: SelectedDeck, public flashcardsViewService: FlashcardsViewService) {}
 
   editButtonText = computed(() => {
-    return this.flashcardsViewService.currentView() === 'edit' ? 'Stop Editing' : 'Edit Flashcards';
+    return this.flashcardsViewService.isEditAll() === true ? 'Stop Editing' : 'Edit Flashcards';
   })
 
   addButtonText = computed(() => {

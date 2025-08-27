@@ -1,12 +1,12 @@
 @if (selectedDeckService.isDeckSelected()) {
 <div class="grid grid-cols-3 auto-rows-min items-start p-4 gap-4 h-full w-full overflow-auto">
     @for (flashcard of flashcardsData; track flashcard.id) {
-    <div class="relative flex flex-col h-72 justify-center items-center bg-gray-200 rounded border border-gray-400 p-2 text-2xl shadow-full hover:bg-gray-100 cursor-pointer select-none duration-300">
+    <div  class="relative flex flex-col h-72 justify-center items-center bg-gray-200 rounded border border-gray-400 p-2 text-2xl shadow-full hover:bg-gray-100 cursor-pointer select-none duration-300">
         <p class="flex justify-center items-center border-b border-gray-400 h-1/2 w-full">{{ flashcard.front }}</p>
         <p class="flex justify-center items-center border-t border-gray-400 h-1/2 w-full">{{ flashcard.back }}</p>
-        @if (flashcardsViewService.currentView() === 'edit') { 
+        @if (flashcardsViewService.isEditAll()) { 
         <div class="absolute flex flex-row justify-end top-2 right-5 gap-4 h-10 w-10 select-none text-base font-bold">
-            <fa-icon [icon]="faGear" class="flex justify-center items-center text-gray-400 hover:text-gray-600 duration-300"></fa-icon>
+            <fa-icon (click)="onEditAllCardClick($index)" [icon]="faGear" class="flex justify-center items-center text-gray-400 hover:text-gray-600 duration-300"></fa-icon>
             <button class="flex justify-center items-center text-gray-400 hover:text-gray-600 duration-300 text-xl">X</button>
         </div>
         }
@@ -14,8 +14,10 @@
     }
 </div>
 } 
-@if (flashcardsViewService.currentView() === 'add' && selectedDeckService.isDeckSelected()) {
+@if (selectedDeckService.isDeckSelected() && flashcardsViewService.currentView() === 'add') {
     <app-add-card-view/>
+} @else if (selectedDeckService.isDeckSelected() && flashcardsViewService.currentView() === 'edit') {
+    <app-edit-card-view [flashcardData]="flashcardData"/>
 } @else if (selectedDeckService.isAddingDeck()) {
     <app-add-deck-view/>
-}
+} 

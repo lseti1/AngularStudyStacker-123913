@@ -12,7 +12,7 @@
         <h1 class="text-3xl">No Deck Selected</h1>
         <div>
             <p>Number of Decks: {{ totalDecks }} </p>
-            <p>Last Log-in: 26/08/2025</p>
+            <p>Last Log-in: {{ currentDate | date:'fullDate'}}</p>
         </div>
     </div>
     }
