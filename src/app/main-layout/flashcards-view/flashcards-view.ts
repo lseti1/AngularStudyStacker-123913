@@ -31,4 +31,9 @@ export class FlashcardsView {
     this.flashcardData = this.flashcardsData.find(card => card.id === id) || null;
     console.log(this.flashcardData);
   }
+
+  onEditAllCardClick(id: number) {
+    this.flashcardsViewService.toggleView('edit');
+    this.onSelectCardClick(id + 1);
+  }
 }
