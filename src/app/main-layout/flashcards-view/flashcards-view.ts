@@ -34,7 +34,8 @@ export class FlashcardsView {
     console.log(this.flashcardData);
   }
 
-  onEditAllCardClick(id: number) {
+  onEditAllCardClick(id: number, event: MouseEvent) {
+    event.stopPropagation();
     this.flashcardsViewService.toggleView('edit');
     this.onSelectCardClick(id + 1);
   }
