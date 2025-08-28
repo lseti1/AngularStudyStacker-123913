@@ -1,6 +1,7 @@
 import { Component, computed, EventEmitter, Output } from '@angular/core';
 import { SelectedDeck } from '../../services/selected-deck';
 import { FlashcardsViewService } from '../../services/flashcards-view-service';
+import { UIStates } from '../../services/ui-states';
 
 @Component({
   selector: 'app-bottom-action-bar',
@@ -9,7 +10,11 @@ import { FlashcardsViewService } from '../../services/flashcards-view-service';
   styles: ``
 })
 export class BottomActionBar {
-  constructor (public selectedDeckService: SelectedDeck, public flashcardsViewService: FlashcardsViewService) {}
+  constructor (
+    public selectedDeckService: SelectedDeck, 
+    public flashcardsViewService: FlashcardsViewService,
+    public uiStates: UIStates
+  ) {}
 
   editButtonText = computed(() => {
     return this.flashcardsViewService.isEditAll() === true ? 'Stop Editing' : 'Edit Flashcards';
