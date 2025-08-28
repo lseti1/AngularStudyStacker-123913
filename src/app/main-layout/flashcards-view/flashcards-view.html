@@ -18,12 +18,14 @@
     <app-add-card-view/>
 } @else if (selectedDeckService.isDeckSelected() && flashcardsViewService.currentView() === 'edit') {
     <app-edit-card-view [flashcardData]="flashcardData"/>
-} @else if (selectedDeckService.isAddingDeck()) {
-    <app-add-deck-view/>
-} @else if (selectedDeckService.isEditingDeck()) {
-    <app-edit-deck-view [deckData]="deckData"/>
 } @else if (selectedDeckService.isDeckSelected() && flashcardsViewService.currentView() === 'view') {
     <app-view-card-view [flashcardData]="flashcardData"/>
 } @else if (selectedDeckService.isDeckSelected() && flashcardsViewService.currentView() === 'delete') {
     <app-delete-card-view [flashcardData]="flashcardData"/>
+} 
+
+@if (selectedDeckService.isEditingDeck()) {
+    <app-edit-deck-view [deckData]="deckData"/>
+} @else if (selectedDeckService.isAddingDeck()) {
+    <app-add-deck-view/>
 } 
