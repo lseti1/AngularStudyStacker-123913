@@ -33,4 +33,6 @@
     <app-add-deck-view/>
 } @else if (uiStates.isChangingSettings()) {
     <app-settings-view/>
+} @else if (uiStates.isLoggingIn()) {
+    <app-user-view />
 }
