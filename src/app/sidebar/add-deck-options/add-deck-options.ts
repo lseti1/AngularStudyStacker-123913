@@ -17,7 +17,5 @@ export class AddDeckOptions {
 
   onAddDeckClick() {
     this.selectedDeckService.setAddingDeck(true);
-    this.selectedDeckService.setSelectedDeck(false, 0);
-    this.flashcardsViewService.toggleView('flashcards');
   }
 }
