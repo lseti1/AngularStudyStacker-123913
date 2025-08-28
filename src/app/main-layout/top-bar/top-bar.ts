@@ -4,10 +4,11 @@ import { SelectedDeck } from '../../services/selected-deck';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
+import { TruncatePipe } from '../../pipes/truncate-pipe';
 
 @Component({
   selector: 'app-top-bar',
-  imports: [FontAwesomeModule, CommonModule],
+  imports: [FontAwesomeModule, CommonModule, TruncatePipe],
   templateUrl: './top-bar.html',
   styles: ``
 })

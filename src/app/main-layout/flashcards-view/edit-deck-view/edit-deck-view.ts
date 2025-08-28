@@ -2,10 +2,11 @@ import { Component, Input } from '@angular/core';
 import { Deck } from '../../../services/dummy-data-service';
 import { SelectedDeck } from '../../../services/selected-deck';
 import { FormsModule } from '@angular/forms';
+import { TruncatePipe } from '../../../pipes/truncate-pipe';
 
 @Component({
   selector: 'app-edit-deck-view',
-  imports: [FormsModule],
+  imports: [FormsModule, TruncatePipe],
   templateUrl: './edit-deck-view.html',
   styleUrl: './edit-deck-view.css'
 })

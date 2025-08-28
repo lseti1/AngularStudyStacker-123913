@@ -20,7 +20,7 @@ export class DummyDataService {
     decks: [
       {
         id: 1,
-        title: 'Indonesian Language',
+        title: 'Indonesian Language Indonesian Language Indonesian Language',
         proficiency: 50,
         description: 'Flashcards to help you learn Indonesian',
         flashcards: [
@@ -42,7 +42,7 @@ export class DummyDataService {
           {
             id: 4,
             front: 'Ada apa?',
-            back: 'What iss going on?',
+            back: 'What is going on?',
           },
         ],
       },
