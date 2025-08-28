@@ -5,6 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { TruncatePipe } from '../../pipes/truncate-pipe';
+import { UIStates } from '../../services/ui-states';
 
 @Component({
   selector: 'app-top-bar',
@@ -13,7 +14,10 @@ import { TruncatePipe } from '../../pipes/truncate-pipe';
   styles: ``
 })
 export class TopBar {
-  constructor(public selectedDeckService: SelectedDeck) {}
+  constructor(
+    public selectedDeckService: SelectedDeck,
+    public uiStates: UIStates
+  ) {}
 
   faUser = faUser;
   faGear = faGear;
