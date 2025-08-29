@@ -17,7 +17,7 @@
     </div>
     }
     <div class="flex flex-row items-center justify-center gap-4 text-2xl">
-        <fa-icon [icon]="faGear" class="hover:text-black/70 duration-300 cursor-pointer"></fa-icon>
-        <fa-icon [icon]="faUser" class="hover:text-black/70 duration-300 cursor-pointer"></fa-icon>
+        <fa-icon (click)="uiStates.setChangingSettings(true)" [icon]="faGear" class="hover:text-black/70 duration-300 cursor-pointer"></fa-icon>
+        <fa-icon (click)="uiStates.setLoggingIn(true)" [icon]="faUser" class="hover:text-black/70 duration-300 cursor-pointer"></fa-icon>
     </div>
 </div>

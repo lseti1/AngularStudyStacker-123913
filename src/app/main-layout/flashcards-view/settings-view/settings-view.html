@@ -1,0 +1,39 @@
+<div class="flex justify-center items-center flex-col absolute top-0 left-0 w-full h-full backdrop-blur-sm gap-4">
+    <div class="relative flex flex-col min-w-[30%] justify-start items-center p-8 text-2xl shadow-full rounded bg-white gap-4">
+        <h1 class="text-3xl font-bold">Settings</h1>
+        <div class="w-full flex flex-col gap-4 bg-gray-100 p-4 rounded">
+            <div class="flex flex-row justify-between w-full gap-2">
+                <label for="name" class="text-right">Language</label>
+                <select class="bg-white/0 tracking-tighter text-center text-xl cursor-pointer">
+                    <option>English</option>
+                    <option>Indonesian</option>
+                    <option>Japanese</option>
+                    <option>Korean</option>
+                </select>
+            </div>
+            <div class="flex flex-row justify-between w-full gap-2">
+                <label for="name" class="text-right">Cards Per Sessions</label>
+                <select class="bg-white/0 tracking-tighter text-center text-xl cursor-pointer">
+                    <option>10</option>
+                    <option>25</option>
+                    <option>50</option>
+                    <option>100</option>
+                </select>
+            </div>
+            <div class="flex flex-row justify-between w-full gap-2">
+                <label for="name" class="text-right">Autoflip</label>
+                <label class="inline-flex items-center cursor-pointer relative select-none">
+                    <input type="checkbox" class="hidden peer">
+                    <span
+                        class="absolute top-2 left-1 w-4 h-4 bg-white rounded-full duration-300 peer-checked:translate-x-6"></span>
+                    <div class="w-12 h-6 bg-gray-300 rounded-full peer-checked:bg-green-600"></div>
+                </label>
+            </div>
+            <div class="flex flex-row justify-between w-full gap-2 ">
+                <label for="name" class="text-right">Autoflip Timer (s)</label>
+                <input type="number" value="1" min="1" max="10" class="w-20 text-center text-xl bg-gray-100">
+            </div>
+        </div>
+        <button class="green-btn col-span-2" type="submit" (click)="onSubmit()">Save Settings</button>
+    </div>
+</div>

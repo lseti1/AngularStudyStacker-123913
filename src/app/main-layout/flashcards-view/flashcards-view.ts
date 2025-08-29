@@ -11,10 +11,13 @@ import { SelectedCard } from '../../services/selected-card';
 import { ViewCardView } from './view-card-view/view-card-view';
 import { DeleteCardView } from './delete-card-view/delete-card-view';
 import { EditDeckView } from './edit-deck-view/edit-deck-view';
+import { UIStates } from '../../services/ui-states';
+import { SettingsView } from './settings-view/settings-view';
+import { UserView } from './user-view/user-view';
 
 @Component({
   selector: 'app-flashcards-view',
-  imports: [FontAwesomeModule, AddCardView, AddDeckView, EditCardView, ViewCardView, DeleteCardView, EditDeckView],
+  imports: [FontAwesomeModule, AddCardView, AddDeckView, EditCardView, ViewCardView, DeleteCardView, EditDeckView, SettingsView, UserView],
   templateUrl: './flashcards-view.html',
   styleUrl: './flashcards-view.css'
 })
@@ -22,7 +25,8 @@ export class FlashcardsView {
   constructor(
     public selectedDeckService: SelectedDeck, 
     public flashcardsViewService: FlashcardsViewService,
-    public selectedCardService: SelectedCard
+    public selectedCardService: SelectedCard,
+    public uiStates: UIStates
   ) {}
 
   faGear = faGear;
