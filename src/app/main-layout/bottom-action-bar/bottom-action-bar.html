@@ -9,14 +9,14 @@
         } @else if (flashcardsViewService.currentView() === 'edit' || flashcardsViewService.currentView() === 'view' ||
             flashcardsViewService.currentView() === 'delete') { <button (click)="flashcardsViewService.toggleView('flashcards')" class="blue-btn">Back</button>
         } @else if (selectedDeckService.isEditingDeck()) {
-            <button (click)="selectedDeckService.setEditingDeck(false)" class="blue-btn">Back</button>
+            <button (click)="selectedDeckService.setEditingDeck(false)" class="blue-btn">Close</button>
         } @else if (selectedDeckService.isAddingDeck()) {
-            <button (click)="selectedDeckService.setAddingDeck(false)" class="blue-btn">Back</button>
+            <button (click)="selectedDeckService.setAddingDeck(false)" class="blue-btn">Close</button>
         } @else if (uiStates.isInAccountArea() || uiStates.isChangingSettings()) {
-            <button (click)="uiStates.setChangingSettings(false); uiStates.setIsInAccountArea(false, null)" class="blue-btn">Back</button>
+            <button (click)="uiStates.setChangingSettings(false); uiStates.setIsInAccountArea(false, null)" class="blue-btn">Close</button>
         }
     } @else if (selectedDeckService.isAddingDeck()) {
-    <button (click)="selectedDeckService.setAddingDeck(false)" class="blue-btn">Back</button>
+    <button (click)="selectedDeckService.setAddingDeck(false)" class="blue-btn">Close</button>
     } @else {
         @if (uiStates.isInAccountArea() || uiStates.isChangingSettings()) {
             <button (click)="uiStates.setChangingSettings(false); uiStates.setIsInAccountArea(false, null)" class="blue-btn">Close</button>
