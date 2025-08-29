@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { signal } from '@angular/core';
 
-type AccountArea = 'login' | 'signup' | 'user' | null;
+type AccountArea = 'login' | 'signup' | 'user' | 'forgotPassword' | null;
 
 @Injectable({ providedIn: 'root' })
 export class UIStates {

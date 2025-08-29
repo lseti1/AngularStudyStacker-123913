@@ -13,10 +13,14 @@ export class Login {
 
   onSubmit() {
     // this.uiStates.setIsInAccountArea(false, null); // Older One
-    this.uiStates.setIsInAccountArea(true, 'user')
+    this.uiStates.setIsInAccountArea(true, 'user');
   }
 
   onSignUp() {
     this.uiStates.setIsInAccountArea(true, 'signup');
+  }
+
+  onForgotPassword() {
+    this.uiStates.setIsInAccountArea(true, 'forgotPassword');
   }
 }
