@@ -1,5 +1,5 @@
-<div class="bg-gray-600 h-screen w-full text-white grid grid-rows-[7%_86%_7%]">
-    <h1 (click)="selectedDeckService.setSelectedDeck(false, 0)" class="flex justify-center items-center text-4xl font-bold text-shadow cursor-pointer">Study Stacker</h1>
+<div class="bg-white h-screen w-full text-white grid grid-rows-[7%_86%_7%] border-r border-gray-200">
+    <h1 (click)="selectedDeckService.setSelectedDeck(false, 0)" class="flex justify-center items-center text-4xl text-black cursor-pointer bg-gray-100">Study Stacker</h1>
     <app-decks-list [deckTitles]="deckTitles"/>
     <app-add-deck-options />
 </div>
