@@ -8,9 +8,15 @@ export class UIStates {
 
   setLoggingIn(value: boolean) {
     this.isLoggingIn.set(value);
+    if (this.isChangingSettings()) {
+      this.isChangingSettings.set(false);
+    }
   }
 
   setChangingSettings(value: boolean) {
     this.isChangingSettings.set(value);
+    if (this.isLoggingIn()) {
+      this.isLoggingIn.set(false);
+    }
   }
 }
