@@ -1,17 +1,16 @@
 <div class="flex justify-center items-center flex-col absolute top-0 left-0 w-full h-full backdrop-blur-sm gap-4">
-    <form (ngSubmit)="onSubmit()" class="relative flex flex-col justify-start items-center p-8 text-2xl rounded shadow-half border border-gray-300 bg-white gap-4">
-        <h1 class="text-3xl" title="{{ deckData?.title }}">Editing {{ deckData?.title | truncate:20 }}</h1>S
-        <div class="grid grid-cols-3 w-full gap-2">
-            <label for="name" class="text-right">Deck Name: </label>
-            <input id="name" name="name" type="text" [placeholder]="deckData?.title" class="flex overflow-auto bg-gray-100 border border-gray-400 justify-center items-center text-center col-span-2">
+    <form (ngSubmit)="onSubmit()" class="relative flex flex-col min-w-[30%] justify-start items-center p-8 text-2xl rounded shadow-half border border-gray-300 bg-white gap-4">
+        <h1 class="text-3xl" title="{{ deckData?.title }}">Editing Deck</h1>
+        <div class="w-full flex flex-col gap-4 p-4 rounded">
+            <div class="flex flex-col w-full gap-2">
+                <label for="name" class="select-none">Deck Name</label>
+                <input id="name" name="name" type="text" [placeholder]="deckData?.title" class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl">
+            </div>
+            <div class="flex flex-col w-full gap-2">
+                <label for="description" class="select-none">Deck Description</label>
+                <textarea id="description" name="description" type="text" [placeholder]="deckData?.description" class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl"></textarea>
+            </div>
         </div>
-        <div class="grid grid-cols-3 w-full gap-2">
-            <label for="description" class="text-right">Deck Description:</label>
-            <textarea id="description" name="description" type="text" [placeholder]="deckData?.description" class="flex bg-gray-100 border border-gray-400 justify-center items-center text-center col-span-2"></textarea>
-        </div>
-        <div class="grid grid-cols-3 w-full gap-2">
-            <div class="col-span-1"></div>
-            <button class="green-btn col-span-2" type="submit">Update Deck</button>
-        </div>
+        <button class="green-btn col-span-2" type="submit">Update Deck</button>
     </form>
 </div>
