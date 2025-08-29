@@ -12,7 +12,8 @@ export class Login {
   constructor(public uiStates: UIStates) {}
 
   onSubmit() {
-    this.uiStates.setIsInAccountArea(false, null);
+    // this.uiStates.setIsInAccountArea(false, null); // Older One
+    this.uiStates.setIsInAccountArea(true, 'user')
   }
 
   onSignUp() {

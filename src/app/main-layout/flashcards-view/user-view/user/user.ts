@@ -1,11 +1,20 @@
 import { Component } from '@angular/core';
-
+import { UIStates } from '../../../../services/ui-states';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-user',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './user.html',
   styleUrl: './user.css'
 })
 export class User {
-
+  constructor(public uiStates: UIStates) {}
+  
+  onSignOut() {
+    this.uiStates.setIsInAccountArea(true, 'login');
+  }
+  
+  onClose() {
+    this.uiStates.setIsInAccountArea(false, null);
+  }
 }
