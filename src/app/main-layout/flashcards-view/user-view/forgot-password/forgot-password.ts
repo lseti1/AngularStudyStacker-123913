@@ -19,5 +19,9 @@ export class ForgotPassword {
       this.uiStates.setIsInAccountArea(true, 'login');
     }, 3000); 
   }
+
+  onReturn() {
+    this.uiStates.setIsInAccountArea(true, 'login');
+  }
 }
 
