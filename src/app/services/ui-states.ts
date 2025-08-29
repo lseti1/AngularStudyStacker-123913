@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 import { signal } from '@angular/core';
 
+type AccountArea = 'login' | 'signup' | 'user' | null;
+
 @Injectable({ providedIn: 'root' })
 export class UIStates {
-  isLoggingIn = signal<boolean>(false);
+  isInAccountArea = signal<boolean>(false);
+  AccountAreaView = signal<AccountArea>(null);
+
   isChangingSettings = signal<boolean>(false);
 
-  setLoggingIn(value: boolean) {
-    this.isLoggingIn.set(value);
+
+  setIsInAccountArea(value: boolean, area: AccountArea) {
+    this.isInAccountArea.set(value);
+    this.AccountAreaView.set(area);
     if (this.isChangingSettings()) {
       this.isChangingSettings.set(false);
     }
@@ -15,8 +21,8 @@ export class UIStates {
 
   setChangingSettings(value: boolean) {
     this.isChangingSettings.set(value);
-    if (this.isLoggingIn()) {
-      this.isLoggingIn.set(false);
+    if (this.isInAccountArea()) {
+      this.isInAccountArea.set(false);
     }
   }
 }

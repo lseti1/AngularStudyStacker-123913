@@ -1,1 +1,6 @@
-<app-login />
+@if (uiStates.AccountAreaView() == 'login') {
+    <app-login />
+} @else if (uiStates.AccountAreaView() == 'signup') {
+    <app-signup />
+}
+    

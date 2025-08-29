@@ -12,6 +12,10 @@ export class Login {
   constructor(public uiStates: UIStates) {}
 
   onSubmit() {
-    this.uiStates.setLoggingIn(false);
+    this.uiStates.setIsInAccountArea(false, null);
+  }
+
+  onSignUp() {
+    this.uiStates.setIsInAccountArea(true, 'signup');
   }
 }
