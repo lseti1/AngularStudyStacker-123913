@@ -12,6 +12,6 @@ export class AddDeckView {
   constructor(public selectedDeckService: SelectedDeck) {}
 
   onSubmit() {
-    this.selectedDeckService.setAddingDeck(false);
+    this.selectedDeckService.toggleView(null);
   }
 }

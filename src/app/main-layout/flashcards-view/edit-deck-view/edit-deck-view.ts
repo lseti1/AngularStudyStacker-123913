@@ -2,11 +2,10 @@ import { Component, Input } from '@angular/core';
 import { Deck } from '../../../services/dummy-data-service';
 import { SelectedDeck } from '../../../services/selected-deck';
 import { FormsModule } from '@angular/forms';
-import { TruncatePipe } from '../../../pipes/truncate-pipe';
 
 @Component({
   selector: 'app-edit-deck-view',
-  imports: [FormsModule, TruncatePipe],
+  imports: [FormsModule],
   templateUrl: './edit-deck-view.html',
   styleUrl: './edit-deck-view.css'
 })
@@ -15,6 +14,6 @@ export class EditDeckView {
   @Input() deckData: Deck | null = null;
 
   onSubmit() {
-    this.selectedDeckService.setEditingDeck(false);
+    this.selectedDeckService.toggleView(null);
   }
 }

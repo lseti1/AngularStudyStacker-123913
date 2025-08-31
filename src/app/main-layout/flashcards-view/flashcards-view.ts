@@ -14,10 +14,11 @@ import { EditDeckView } from './edit-deck-view/edit-deck-view';
 import { UIStates } from '../../services/ui-states';
 import { SettingsView } from './settings-view/settings-view';
 import { UserView } from './user-view/user-view';
+import { DeleteDeckView } from './delete-deck-view/delete-deck-view';
 
 @Component({
   selector: 'app-flashcards-view',
-  imports: [FontAwesomeModule, AddCardView, AddDeckView, EditCardView, ViewCardView, DeleteCardView, EditDeckView, SettingsView, UserView],
+  imports: [FontAwesomeModule, AddCardView, AddDeckView, EditCardView, ViewCardView, DeleteCardView, EditDeckView, SettingsView, UserView, DeleteDeckView],
   templateUrl: './flashcards-view.html',
   styleUrl: './flashcards-view.css'
 })

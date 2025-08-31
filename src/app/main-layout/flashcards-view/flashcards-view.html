@@ -27,10 +27,12 @@
     } 
 } 
 
-@if (selectedDeckService.isEditingDeck()) {
+@if (selectedDeckService.currentView() === 'edit') {
     <app-edit-deck-view [deckData]="deckData"/>
-} @else if (selectedDeckService.isAddingDeck()) {
+} @else if (selectedDeckService.currentView() === 'add') {
     <app-add-deck-view/>
+} @else if (selectedDeckService.currentView() === 'delete') {
+    <app-delete-deck-view/>
 } @else if (uiStates.isChangingSettings()) {
     <app-settings-view/>
 } @else if (uiStates.isInAccountArea()) {
