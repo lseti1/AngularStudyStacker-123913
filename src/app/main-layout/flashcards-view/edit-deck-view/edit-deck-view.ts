@@ -16,4 +16,8 @@ export class EditDeckView {
   onSubmit() {
     this.selectedDeckService.toggleView(null);
   }
+
+  onDelete() {
+    this.selectedDeckService.toggleView('delete');
+  }
 }

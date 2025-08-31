@@ -32,7 +32,7 @@
 } @else if (selectedDeckService.currentView() === 'add') {
     <app-add-deck-view/>
 } @else if (selectedDeckService.currentView() === 'delete') {
-    <app-delete-deck-view/>
+    <app-delete-deck-view [deckData]="deckData"/>
 } @else if (uiStates.isChangingSettings()) {
     <app-settings-view/>
 } @else if (uiStates.isInAccountArea()) {

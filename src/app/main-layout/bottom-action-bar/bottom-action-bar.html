@@ -1,6 +1,6 @@
 <div class="flex justify-end items-center bg-gray-100 w-full h-full border-y border-gray-200 p-4 text-white text-xl gap-4">
     @if (selectedDeckService.isDeckSelected()) {
-        @if (flashcardsViewService.currentView() === 'flashcards' && !(selectedDeckService.currentView() === 'add' || selectedDeckService.currentView() === 'edit') && !(uiStates.isInAccountArea() || uiStates.isChangingSettings())) {
+        @if (flashcardsViewService.currentView() === 'flashcards' && !(selectedDeckService.currentView() === 'add' || selectedDeckService.currentView() === 'edit' || selectedDeckService.currentView() === 'delete') && !(uiStates.isInAccountArea() || uiStates.isChangingSettings())) {
             <button (click)="flashcardsViewService.toggleView('add')" class="blue-btn">{{ addButtonText() }}</button>
             <button (click)="flashcardsViewService.toggleEditAll()" class="blue-btn">{{ editButtonText() }}</button>
             <button class="blue-btn">Start Learning</button>
@@ -11,6 +11,8 @@
         } @else if (selectedDeckService.currentView() === 'edit') {
             <button (click)="selectedDeckService.toggleView(null)" class="blue-btn">Close</button>
         } @else if (selectedDeckService.currentView() === 'add') {
+            <button (click)="selectedDeckService.toggleView(null)" class="blue-btn">Close</button>
+        } @else if (selectedDeckService.currentView() === 'delete') {
             <button (click)="selectedDeckService.toggleView(null)" class="blue-btn">Close</button>
         } @else if (uiStates.isInAccountArea() || uiStates.isChangingSettings()) {
             <button (click)="uiStates.setChangingSettings(false); uiStates.setIsInAccountArea(false, null)" class="blue-btn">Close</button>

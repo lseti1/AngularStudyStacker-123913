@@ -1,1 +1,18 @@
-<p>delete-deck-view works!</p>
+<div class="flex justify-center items-center flex-col absolute top-0 left-0 w-full h-full backdrop-blur-sm gap-4">
+    <form (ngSubmit)="onSubmit()" class="relative flex flex-col min-w-[30%] justify-start items-center p-8 text-2xl rounded shadow-half border border-gray-300 bg-white gap-4">
+        <h1 class="text-3xl" title="{{ deckData?.title }}">Delete Deck</h1>
+        <div class="w-full flex flex-col gap-4 p-4 rounded">
+            <div class="flex flex-col w-full gap-2">
+                <label for="name" class="select-none">Deck Name</label>
+                <p class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl select-none">{{ deckData?.title }}</p>
+            </div>
+            <div class="flex flex-col w-full gap-2">
+                <label for="description" class="select-none">Deck Description</label>
+                <p class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl select-none">{{ deckData?.description }}</p>
+            </div>
+        </div>
+        <div class="flex flex-row gap-4">
+            <button class="red-btn col-span-2" type="submit">Delete Deck</button>
+        </div>
+    </form>
+</div>

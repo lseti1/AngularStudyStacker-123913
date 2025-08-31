@@ -8,7 +8,7 @@ export class SelectedDeck {
   isDeckSelected = signal<boolean>(false);
   selectedDeckID = signal<number | null>(null);
 
-  private selectedDeckState = signal< 'add' | 'edit' | 'delete' | null>(null);
+  private selectedDeckState = signal< 'add' | 'edit' | 'delete' | null>('delete');
 
   get currentView() {
     return this.selectedDeckState.asReadonly();
