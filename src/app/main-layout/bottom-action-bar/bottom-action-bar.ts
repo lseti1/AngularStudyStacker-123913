@@ -2,6 +2,7 @@ import { Component, computed, EventEmitter, Output } from '@angular/core';
 import { SelectedDeck } from '../../services/selected-deck';
 import { FlashcardsViewService } from '../../services/flashcards-view-service';
 import { UIStates } from '../../services/ui-states';
+import { UiStatesUser } from '../../services/ui-states-user';
 
 @Component({
   selector: 'app-bottom-action-bar',
@@ -13,7 +14,8 @@ export class BottomActionBar {
   constructor (
     public selectedDeckService: SelectedDeck, 
     public flashcardsViewService: FlashcardsViewService,
-    public uiStates: UIStates
+    public uiStates: UIStates,
+    public uiStatesUser: UiStatesUser
   ) {}
 
   editButtonText = computed(() => {

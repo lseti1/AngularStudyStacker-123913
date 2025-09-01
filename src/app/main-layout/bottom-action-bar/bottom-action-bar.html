@@ -11,13 +11,13 @@
         } @else if (selectedDeckService.currentView() !== null) {
             <button (click)="selectedDeckService.toggleView(null)" class="blue-btn">Close</button>
         } @else if (uiStates.currentView() === 'user' || uiStates.currentView() === 'settings') {
-            <button (click)="uiStates.toggleView(null)" class="blue-btn">Close</button>
+            <button (click)="uiStates.toggleView(null); uiStatesUser.toggleView('login')" class="blue-btn">Close</button>
         }
     } @else if (selectedDeckService.currentView() === 'add') {
         <button (click)="selectedDeckService.toggleView(null)" class="blue-btn">Close</button>
     } @else {
         @if (uiStates.currentView() === 'user' || uiStates.currentView() === 'settings') {
-            <button (click)="uiStates.toggleView(null)" class="blue-btn">Close</button>
+            <button (click)="uiStates.toggleView(null); uiStatesUser.toggleView('login')" class="blue-btn">Close</button>
         }
     }
 </div>
