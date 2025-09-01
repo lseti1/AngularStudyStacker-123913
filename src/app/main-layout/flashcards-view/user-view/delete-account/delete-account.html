@@ -1,0 +1,15 @@
+<div class="flex justify-center items-center flex-col absolute top-0 left-0 w-full h-full backdrop-blur-sm gap-4 select-none">
+    <div class="relative flex flex-col min-w-[30%] max-w-[40%] justify-start items-center p-8 text-xl shadow-full rounded bg-white gap-4">
+        <h1 class="text-3xl">Deleting Account</h1>
+        <div class="w-full flex flex-col gap-4 bg-gray-100 p-4 rounded">
+            <p class="text-red-600 ">Deletion is permanent and <b>cannot be reversed</b>. It will erase all data associated with your account including decks, cards
+            and any other saved data. To proceed, type your password below:</p>
+            <input class="tracking-tighter p-2 border border-gray-300" placeholder="Enter Password To Delete Your Account" required>
+        </div>
+        <div class="flex flex-row gap-4">
+            <button class="black-btn col-span-2" type="button" (click)="onCancel()">Cancel</button>
+            <button class="red-btn col-span-2" type="button" (click)="onSubmit()">Delete Account</button>
+        </div>
+        
+    </div>
+</div>

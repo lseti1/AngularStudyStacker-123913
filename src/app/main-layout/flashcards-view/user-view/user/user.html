@@ -4,19 +4,19 @@
         <div class="w-full flex flex-col gap-4 bg-gray-100 p-4 rounded">
             <div class="flex flex-row justify-between w-full gap-2">
                 <label for="email" class="text-right">Email</label>
-                <p class="bg-white/0 tracking-tighter text-center font-light cursor-pointer">Email@Email.com</p>
+                <p class="bg-white/0 tracking-tighter text-center font-light">Email@Email.com</p>
             </div>
             <div class="flex flex-row justify-between w-full gap-2">
                 <label for="name" class="text-right">Name</label>
-                <p class="bg-white/0 tracking-tighter text-center font-light cursor-pointer">John Smith</p>
+                <p class="bg-white/0 tracking-tighter text-center font-light">John Smith</p>
             </div>
             <div class="flex flex-row justify-between w-full gap-2">
                 <label for="changePassword" class="text-right">Change Password</label>
-                <button class="text-gray-400 font-bold duration-300 hover:text-black">&gt;</button>
+                <button (click)="onChangePassword()" class="text-gray-400 font-bold duration-300 hover:text-black">&gt;</button>
             </div>
             <div class="flex flex-row justify-between w-full gap-2">
                 <label for="deleteAccount" class="text-right">Delete Account</label>
-                <button class="text-gray-400 font-bold duration-300 hover:text-black">&gt;</button>
+                <button (click)="onDeleteAccount()" class="text-gray-400 font-bold duration-300 hover:text-black">&gt;</button>
             </div>
         </div>
         <button class="black-btn col-span-2" type="submit" (click)="onSignOut()">Log Out</button>

@@ -19,4 +19,12 @@ export class User {
   onClose() {
     this.uiStates.toggleView(null);
   }
+
+  onDeleteAccount() {
+    this.uiStatesUser.toggleView('deleteAccount');
+  }
+
+  onChangePassword() {
+    this.uiStatesUser.toggleView('changePassword');
+  }
 }
