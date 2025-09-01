@@ -16,12 +16,12 @@ export class DecksList  {
 
   onSelectDeckClick(index: number) {
     this.selectedDeckService.setSelectedDeck(true, index + 1);
-    this.selectedDeckService.setAddingDeck(false);
+    this.selectedDeckService.toggleView(null);
   }
 
   onEditDeckClick(index: number, event: MouseEvent ) {
     event.stopPropagation();
     this.selectedDeckService.setSelectedDeck(true, index + 1);
-    this.selectedDeckService.setEditingDeck(true);
+    this.selectedDeckService.toggleView('edit');
   }
 }

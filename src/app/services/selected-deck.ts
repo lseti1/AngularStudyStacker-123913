@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
 import { signal } from '@angular/core';
 
+type selectedDeckArea = 'add' | 'edit' | 'delete' | null;
+
 @Injectable({ providedIn: 'root' })
 export class SelectedDeck {
-  isAddingDeck = signal<boolean>(false);
-  isEditingDeck = signal<boolean>(false);
   isDeckSelected = signal<boolean>(false);
   selectedDeckID = signal<number | null>(null);
 
-  setAddingDeck(value: boolean) {
-    this.isAddingDeck.set(value);
+  private selectedDeckState = signal<selectedDeckArea>(null);
+
+  get currentView() {
+    return this.selectedDeckState.asReadonly();
   }
 
-  setEditingDeck(value: boolean) {
-    this.isEditingDeck.set(value);
+  toggleView(view: selectedDeckArea) {
+    this.selectedDeckState.set(view);
   }
 
   setSelectedDeck(selected: boolean, deckID: number) {
     this.isDeckSelected.set(selected);
     this.selectedDeckID.set(deckID);
-    console.log("Selected Deck:", this.isDeckSelected());
-    console.log("Selected Deck ID:", this.selectedDeckID());
   }
 }

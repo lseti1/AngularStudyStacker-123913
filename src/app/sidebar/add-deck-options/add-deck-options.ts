@@ -16,6 +16,6 @@ export class AddDeckOptions {
   faBars = faBars;
 
   onAddDeckClick() {
-    this.selectedDeckService.setAddingDeck(true);
+    this.selectedDeckService.toggleView('add');
   }
 }

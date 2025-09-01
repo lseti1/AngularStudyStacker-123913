@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UIStates } from '../../../../services/ui-states';
 import { FormsModule } from '@angular/forms';
+import { UiStatesUser } from '../../../../services/ui-states-user';
 
 @Component({
   selector: 'app-signup',
@@ -9,13 +10,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './signup.css'
 })
 export class Signup {
-  constructor(public uiStates: UIStates) {}
+  constructor(public uiStates: UIStates, public uiStatesUser: UiStatesUser) {}
 
   onSubmit() {
-    this.uiStates.setIsInAccountArea(false, null);
+    this.uiStatesUser.toggleView('login');
   }
 
   onLogin() {
-    this.uiStates.setIsInAccountArea(true, 'login');
+    this.uiStatesUser.toggleView('login');
   }
 }

@@ -1,23 +1,19 @@
 import { Component, Input } from '@angular/core';
-import { Deck } from '../../../services/dummy-data-service';
 import { SelectedDeck } from '../../../services/selected-deck';
+import { Deck } from '../../../services/dummy-data-service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-edit-deck-view',
+  selector: 'app-delete-deck-view',
   imports: [FormsModule],
-  templateUrl: './edit-deck-view.html',
-  styleUrl: './edit-deck-view.css'
+  templateUrl: './delete-deck-view.html',
+  styleUrl: './delete-deck-view.css'
 })
-export class EditDeckView {
+export class DeleteDeckView {
   constructor(public selectedDeckService: SelectedDeck) {}
   @Input() deckData: Deck | null = null;
 
   onSubmit() {
     this.selectedDeckService.toggleView(null);
-  }
-
-  onDelete() {
-    this.selectedDeckService.toggleView('delete');
   }
 }

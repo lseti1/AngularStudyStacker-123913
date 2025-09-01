@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { UIStates } from '../../../../services/ui-states';
 import { FormsModule } from '@angular/forms';
+import { UiStatesUser } from '../../../../services/ui-states-user';
+
 @Component({
   selector: 'app-user',
   imports: [FormsModule],
@@ -8,13 +10,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './user.css'
 })
 export class User {
-  constructor(public uiStates: UIStates) {}
-  
+  constructor(public uiStates: UIStates, public uiStatesUser: UiStatesUser) {}
+
   onSignOut() {
-    this.uiStates.setIsInAccountArea(true, 'login');
+    this.uiStatesUser.toggleView('login');
   }
   
   onClose() {
-    this.uiStates.setIsInAccountArea(false, null);
+    this.uiStates.toggleView(null);
   }
 }

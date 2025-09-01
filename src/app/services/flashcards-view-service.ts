@@ -1,8 +1,10 @@
 import { Injectable, signal } from '@angular/core';
 
+type flashcardViewArea = 'flashcards' | 'edit' | 'learning' | 'add' | 'view' | 'delete';
+
 @Injectable({ providedIn: 'root' })
 export class FlashcardsViewService {
-  private flashcardsViewState = signal<'flashcards' | 'edit' | 'learning' | 'add' | 'view' | 'delete'>('flashcards');
+  private flashcardsViewState = signal<flashcardViewArea>('flashcards');
   private editAllState = signal<boolean>(false);
   
   get currentView() {
@@ -13,7 +15,7 @@ export class FlashcardsViewService {
     return this.editAllState.asReadonly();
   }
 
-  toggleView(view: 'flashcards' | 'edit' | 'learning' | 'add' | 'view' | 'delete') {
+  toggleView(view: flashcardViewArea) {
     this.flashcardsViewState.set(
       this.flashcardsViewState() === view ? 'flashcards' : view
     );
