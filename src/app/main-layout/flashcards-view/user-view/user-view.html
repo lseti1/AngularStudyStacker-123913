@@ -1,10 +1,10 @@
-@if (uiStates.AccountAreaView() === 'login') {
+@if (uiStatesUser.currentView() === 'login') {
     <app-login />
-} @else if (uiStates.AccountAreaView() === 'signup') {
+} @else if (uiStatesUser.currentView() === 'signup') {
     <app-signup />
-} @else if (uiStates.AccountAreaView() === 'user') {
+} @else if (uiStatesUser.currentView() === 'userAccount') {
     <app-user />
-} @else if (uiStates.AccountAreaView() === 'forgotPassword') {
+} @else if (uiStatesUser.currentView() === 'forgotPassword') {
     <app-forgot-password />
 }
     

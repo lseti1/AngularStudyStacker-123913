@@ -12,6 +12,6 @@ export class SettingsView {
   constructor(public uiStates: UIStates) {}
 
   onSubmit() {
-    this.uiStates.setChangingSettings(false);
+    this.uiStates.toggleView(null);
   }
 }
