@@ -17,7 +17,7 @@
   }
 
   .black-btn {
-    @apply bg-black min-w-[10rem] rounded-full hover:bg-gray-700 p-3 duration-300 text-xl text-white select-none;
+    @apply bg-black min-w-[10rem] rounded-full hover:bg-gray-700 p-3 duration-300 text-lg text-white select-none;
   }
 
   .blue-btn {

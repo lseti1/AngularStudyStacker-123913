@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 
-type userArea = 'signup' | 'login' | 'forgotPassword' | 'userAccount';
+type userArea = 'signup' | 'login' | 'forgotPassword' | 'userAccount' | 'changePassword' | 'deleteAccount';
 
 @Injectable({ providedIn: 'root' })
 export class UiStatesUser {
