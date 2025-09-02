@@ -4,11 +4,11 @@
         <div class="w-full flex flex-col gap-4 p-4 rounded">
             <div class="flex flex-col w-full gap-2">
                 <label for="name" class="select-none">Deck Name</label>
-                <input id="name" name="name" type="text" placeholder="Enter Deck Name" class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl">
+                <input [(ngModel)]="deckName" id="name" name="name" type="text" placeholder="Enter Deck Name" class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl">
             </div>
             <div class="flex flex-col w-full gap-2">
                 <label for="description" class="select-none">Deck Description</label>
-                <textarea id="description" name="description" type="text" placeholder="Enter Deck Description" class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl"></textarea>
+                <textarea [(ngModel)]="deckDescription" id="description" name="description" type="text" placeholder="Enter Deck Description" class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl"></textarea>
             </div>
         </div>
         <button class="green-btn col-span-2" type="submit">Add Deck</button>

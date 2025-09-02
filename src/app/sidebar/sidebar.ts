@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DecksList } from './decks-list/decks-list';
 import { AddDeckOptions } from './add-deck-options/add-deck-options';
-// import { DummyDataService } from '../services/dummy-data-service';
 import { SelectedDeck } from '../services/selected-deck';
 import { LocalStorageService } from '../services/local-storage-service';
+import { Deck } from '../services/dummy-data-service';
 
 
 @Component({
@@ -13,11 +13,11 @@ import { LocalStorageService } from '../services/local-storage-service';
   styles: ``
 })
 export class Sidebar implements OnInit {
-  deckTitles: string[] = [];
+  decks: Deck[] = [];
 
   constructor (public localStorageService: LocalStorageService, public selectedDeckService: SelectedDeck) {}
 
   ngOnInit() {
-    this.deckTitles = this.localStorageService.getDeckTitles();
+    this.decks = this.localStorageService.getDecks();
   }
 }

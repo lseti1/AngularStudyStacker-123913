@@ -23,6 +23,10 @@ export class LocalStorageService {
     return decks.map((deck) => deck.title);
   }
 
+  getDeckSize(): number {
+    return this.getDecks().length;
+  }
+
   private saveDecks(decks: Deck[]) {
     localStorage.setItem(this.storageKey, JSON.stringify(decks));
   }
@@ -72,6 +76,13 @@ export class LocalStorageService {
     card.front = flashcard.front ?? card.front;
     card.back = flashcard.back ?? card.back;
 
+    this.saveDecks(decks);
+  }
+
+  addDeck(deck: Deck) {
+    const decks = this.getDecks();
+
+    decks.push(deck);
     this.saveDecks(decks);
   }
 }
