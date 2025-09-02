@@ -17,7 +17,7 @@
 
 @if (selectedDeckService.isDeckSelected()) {
     @if (flashcardsViewService.currentView() === 'add') {
-        <app-add-card-view/>
+        <app-add-card-view [deckSize]="deckData?.flashcards?.length || 0"/>
     } @else if (flashcardsViewService.currentView() === 'edit') {
         <app-edit-card-view [flashcardData]="flashcardData"/>
     } @else if (flashcardsViewService.currentView() === 'view') {
