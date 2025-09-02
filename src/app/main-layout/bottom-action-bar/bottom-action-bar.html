@@ -2,8 +2,10 @@
     @if (selectedDeckService.isDeckSelected()) {
         @if (flashcardsViewService.currentView() === 'flashcards' && selectedDeckService.currentView() === null && !(uiStates.currentView() === 'user' || uiStates.currentView() === 'settings')) {
             <button (click)="flashcardsViewService.toggleView('add')" class="blue-btn">{{ addButtonText() }}</button>
-            <button (click)="flashcardsViewService.toggleEditAll()" class="blue-btn">{{ editButtonText() }}</button>
-            <button class="blue-btn">Start Learning</button>
+            @if (flashcardsData.length !== 0) {
+                <button (click)="flashcardsViewService.toggleEditAll()" class="blue-btn">{{ editButtonText() }}</button>
+                <button class="blue-btn">Start Learning</button>
+            }
         } @else if (flashcardsViewService.currentView() === 'add') {
             <button (click)="flashcardsViewService.toggleView('add')" class="blue-btn">{{ addButtonText() }}</button>
         } @else if (flashcardsViewService.currentView() === 'edit' || flashcardsViewService.currentView() === 'view' ||
