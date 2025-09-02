@@ -85,4 +85,17 @@ export class LocalStorageService {
     decks.push(deck);
     this.saveDecks(decks);
   }
+
+  deleteDeck(deckID: number) {
+    const decks = this.getDecks();
+    const deck = decks.find((deck) => deck.id === deckID);
+
+    if (!deck) {
+      console.error(`Deck with id ${deckID} not found`);
+      return;
+    }
+
+    const updatedDecks = decks.filter((deck) => deck.id !== deckID);
+    this.saveDecks(updatedDecks);
+  }
 }
