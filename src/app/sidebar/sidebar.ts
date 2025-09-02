@@ -12,12 +12,10 @@ import { Deck } from '../services/dummy-data-service';
   templateUrl: './sidebar.html',
   styles: ``
 })
-export class Sidebar implements OnInit {
-  decks: Deck[] = [];
-
+export class Sidebar {
   constructor (public localStorageService: LocalStorageService, public selectedDeckService: SelectedDeck) {}
 
-  ngOnInit() {
-    this.decks = this.localStorageService.getDecks();
+  get decks(): Deck[] {
+    return this.localStorageService.getDecks();
   }
 }

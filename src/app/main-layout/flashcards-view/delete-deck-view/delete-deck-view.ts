@@ -24,5 +24,6 @@ export class DeleteDeckView {
     }
 
     this.selectedDeckService.toggleView(null);
+    this.selectedDeckService.setSelectedDeck(false, 0);
   }
 }
