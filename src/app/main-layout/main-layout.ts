@@ -3,7 +3,6 @@ import { TopBar } from './top-bar/top-bar';
 import { FlashcardsView } from './flashcards-view/flashcards-view';
 import { BottomActionBar } from './bottom-action-bar/bottom-action-bar';
 import { SelectedDeck } from '../services/selected-deck';
-import { DummyDataService } from '../services/dummy-data-service';
 import { LocalStorageService } from '../services/local-storage-service';
 
 @Component({

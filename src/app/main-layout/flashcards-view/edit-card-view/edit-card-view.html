@@ -3,11 +3,11 @@
         <h1 class="text-3xl">Editing Flashcard</h1>
         <div class="flex flex-col h-full w-full justify-center items-center p-2 text-2xl bg-gray-100 rounded shadow-half border border-gray-300 select-none">
             <div class="relative h-1/2 bg-white/0 w-full flex flex-col justify-center items-center border-b border-gray-400 ">
-                <input class="flex bg-white border text-center w-full h-full" label="front" [value]="flashcardData?.front">
+                <input class="flex bg-white border text-center w-full h-full" label="front" [value]="flashcardData?.front" [(ngModel)]="frontText">
                 <p class="absolute bottom-2 text-sm text-gray-400">Front</p>
             </div>
             <div class="relative h-1/2 bg-white/0 w-full flex flex-col justify-center items-center border-t border-gray-400 ">
-                <input class="flex bg-white border text-center w-full h-full" label="Back" [value]="flashcardData?.back">
+                <input class="flex bg-white border text-center w-full h-full" label="Back" [value]="flashcardData?.back" [(ngModel)]="backText">
                 <p class="absolute bottom-2 text-sm text-gray-400">Back</p>
             </div>
         </div>

@@ -1,8 +1,10 @@
+@if (decksData.length === 0) {
+<p class="flex w-full h-full justify-center items-start text-xl text-gray-400 text-center p-4"> No decks have been created.<br />Get started using 'Add Deck' below.</p> }
+@for (deck of decksData; track deck.id) {
 <div class="flex flex-col h-full w-full text-xl overflow-auto">
-    @for (title of deckTitles; track title) {
-        <div (click)="onSelectDeckClick($index)" class="w-full text-black p-4 flex justify-between bg-gray-100/40 hover:bg-gray-100 cursor-pointer duration-300 border-y ">
-            <p class="line-clamp-1" title="{{ title }}">{{ title }}</p>
-            <fa-icon (click)="onEditDeckClick($index, $event)" [icon]="faGear" class="flex justify-center items-center text-black/20 hover:text-black duration-300 cursor-pointer text-base"></fa-icon>
-        </div>
-    }
+    <div (click)="onSelectDeckClick(deck.id)" class="w-full text-black p-4 flex justify-between bg-gray-100/40 hover:bg-gray-100 cursor-pointer duration-300 border-y ">
+        <p class="line-clamp-1" title="{{ deck.title }}">{{ deck.title }}</p>
+        <fa-icon (click)="onEditDeckClick(deck.id, $event)" [icon]="faGear" class="flex justify-center items-center text-black/20 hover:text-black duration-300 cursor-pointer text-base"></fa-icon>
+    </div>
 </div>
+}

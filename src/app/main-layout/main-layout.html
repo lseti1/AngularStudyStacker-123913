@@ -1,5 +1,5 @@
 <div class="h-screen w-full grid grid-rows-[7%_86%_7%] select-none">
     <app-top-bar [deckTitle]="selectedDeck?.title || ''" [deckSize]="selectedDeckFlashcardCount" [deckProficiency]="selectedDeckProficiency" [totalDecks]="totalNumberOfDecks"/>
     <app-flashcards-view class="relative" [flashcardsData]="selectedDeck?.flashcards || []" [deckData]="selectedDeck"/>
-    <app-bottom-action-bar />
+    <app-bottom-action-bar [flashcardsData]="selectedDeck?.flashcards || []"/>
 </div>
