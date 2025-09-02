@@ -45,17 +45,17 @@ export class FlashcardsView {
   onEditAllCardClick(id: number, event: MouseEvent) {
     event.stopPropagation();
     this.flashcardsViewService.toggleView('edit');
-    this.onSelectCardClick(id + 1);
+    this.onSelectCardClick(id);
   }
 
   onViewCardClick(id: number) {
     this.flashcardsViewService.toggleView('view');
-    this.onSelectCardClick(id + 1);
+    this.onSelectCardClick(id);
   }
 
   onDeleteCardClick(id: number, event: MouseEvent) {
     event.stopPropagation();
     this.flashcardsViewService.toggleView('delete');
-    this.onSelectCardClick(id + 1);
+    this.onSelectCardClick(id);
   }
 }
