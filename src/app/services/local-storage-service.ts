@@ -52,4 +52,26 @@ export class LocalStorageService {
     deck.flashcards = deck.flashcards.filter((card) => card.id !== flashcardID);
     this.saveDecks(decks);
   }
+
+  updateFlashcard(deckID: number, flashcardID: number, flashcard: Flashcard) {
+    const decks = this.getDecks(); 
+    const deck = decks.find((deck) => deck.id === deckID);
+
+    if (!deck) {
+      console.error(`Deck with id ${deckID} not found`);
+      return;
+    }
+
+    const card = deck.flashcards.find((card) => card.id === flashcardID);
+
+    if (!card) {
+      console.error(`Card with id ${deckID} not found`);
+      return;
+    }
+
+    card.front = flashcard.front ?? card.front;
+    card.back = flashcard.back ?? card.back;
+
+    this.saveDecks(decks);
+  }
 }
