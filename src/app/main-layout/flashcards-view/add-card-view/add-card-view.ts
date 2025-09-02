@@ -32,9 +32,9 @@ export class AddCardView {
       back: this.backText,
     };
 
-    const deckId = this.selectedDeckService.selectedDeckID();
-    if (deckId !== null) {
-      this.localStorageService.addFlashcard(deckId, newCard);
+    const deckID = this.selectedDeckService.selectedDeckID();
+    if (deckID !== null) {
+      this.localStorageService.addFlashcard(deckID, newCard);
     } else {
       console.error('No deck selected.');
     }
