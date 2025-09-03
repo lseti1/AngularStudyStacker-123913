@@ -130,4 +130,8 @@ export class LocalStorageService {
     deck.description = deckDescription ?? deck.description;
     this.saveDecks(decks);
   }
+
+  clearAppData(): void {
+    localStorage.removeItem(this.storageKey);
+  }
 }

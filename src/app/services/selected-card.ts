@@ -4,8 +4,7 @@ import { Injectable, signal } from '@angular/core';
 export class SelectedCard {
   selectedCardID = signal<number | null>(null);
 
-  setSelectedCard(CardID: number) {
+  setSelectedCard(CardID: number | null) {
     this.selectedCardID.set(CardID);
-    console.log("Selected Card ID:", this.selectedCardID());
   }
 }
