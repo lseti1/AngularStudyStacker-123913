@@ -98,4 +98,18 @@ export class LocalStorageService {
     const updatedDecks = decks.filter((deck) => deck.id !== deckID);
     this.saveDecks(updatedDecks);
   }
+
+  updateDeck(deckID: number, deckName: string, deckDescription: string) {
+    const decks = this.getDecks();
+    const deck = decks.find((deck) => deck.id === deckID);
+
+    if (!deck) {
+      console.error(`Deck with id ${deckID} not found`);
+      return;
+    }
+
+    deck.title = deckName ?? deck.title;
+    deck.description = deckDescription ?? deck.description;
+    this.saveDecks(decks);
+  }
 }
