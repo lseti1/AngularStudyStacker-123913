@@ -23,7 +23,7 @@ export class AddDeckView {
     if (!this.deckDescription || !this.deckName) return;
 
     const newDeck: Deck = {
-      id: this.localStorageService.getDeckSize() + 1,
+      id: this.localStorageService.getDeckID(),
       title: this.deckName,
       description: this.deckDescription,
       proficiency: this.deckProficiency,

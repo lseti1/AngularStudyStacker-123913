@@ -4,6 +4,7 @@ import { Deck, DummyDataService, Flashcard } from './dummy-data-service';
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
   private storageKey = 'flashcardAppData';
+  deckIndex: number = 0;
 
   constructor(private dummyData: DummyDataService) { this.initialiseData(); }
 
@@ -11,6 +12,9 @@ export class LocalStorageService {
     if (!localStorage.getItem(this.storageKey)) {
       localStorage.setItem(this.storageKey, JSON.stringify(this.dummyData.getDecks()));
     }
+
+    const decks = this.getDecks();
+    this.deckIndex = decks.length > 0 ? Math.max(...decks.map((deck) => deck.id)) + 1 : 1;
   }
 
   getDecks(): Deck[] {
@@ -23,8 +27,8 @@ export class LocalStorageService {
     return decks.map((deck) => deck.title);
   }
 
-  getDeckSize(): number {
-    return this.getDecks().length;
+  getDeckID(): number {
+    return this.deckIndex;
   }
 
   private saveDecks(decks: Deck[]) {
@@ -84,6 +88,7 @@ export class LocalStorageService {
 
     decks.push(deck);
     this.saveDecks(decks);
+    this.deckIndex++;
   }
 
   deleteDeck(deckID: number) {
