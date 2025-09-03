@@ -5,6 +5,7 @@ import { Deck, DummyDataService, Flashcard } from './dummy-data-service';
 export class LocalStorageService {
   private storageKey = 'flashcardAppData';
   deckIndex: number = 0;
+  cardIndex: number = 0;
 
   constructor(private dummyData: DummyDataService) { this.initialiseData(); }
 
@@ -35,6 +36,17 @@ export class LocalStorageService {
     localStorage.setItem(this.storageKey, JSON.stringify(decks));
   }
 
+  getCardID(deckID: number): number {
+    const decks = this.getDecks();
+    const deck = decks.find((deck) => deck.id === deckID);
+
+    if (!deck || !deck.flashcards || deck.flashcards.length === 0) {
+      return 1; 
+  }
+
+  return Math.max(...deck.flashcards.map((card) => card.id)) + 1;
+}
+
   addFlashcard(deckID: number, card: Flashcard) {
     const decks = this.getDecks();
     const deck = decks.find((deck) => deck.id === deckID);
@@ -46,6 +58,7 @@ export class LocalStorageService {
 
     deck.flashcards.push(card); 
     this.saveDecks(decks);       
+    this.cardIndex++;
   }
 
   deleteFlashcard(deckID: number, flashcardID: number) {
