@@ -27,7 +27,7 @@ export class AddCardView {
     if (!this.frontText || !this.backText) return; 
 
     const newCard: Flashcard = {
-      id: this.deckSize + 1, 
+      id: this.localStorageService.getCardID(this.selectedDeckService.selectedDeckID()!), 
       front: this.frontText,
       back: this.backText,
     };

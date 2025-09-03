@@ -4,6 +4,8 @@ import { Deck, DummyDataService, Flashcard } from './dummy-data-service';
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
   private storageKey = 'flashcardAppData';
+  deckIndex: number = 0;
+  cardIndex: number = 0;
 
   constructor(private dummyData: DummyDataService) { this.initialiseData(); }
 
@@ -11,6 +13,9 @@ export class LocalStorageService {
     if (!localStorage.getItem(this.storageKey)) {
       localStorage.setItem(this.storageKey, JSON.stringify(this.dummyData.getDecks()));
     }
+
+    const decks = this.getDecks();
+    this.deckIndex = decks.length > 0 ? Math.max(...decks.map((deck) => deck.id)) + 1 : 1;
   }
 
   getDecks(): Deck[] {
@@ -23,13 +28,24 @@ export class LocalStorageService {
     return decks.map((deck) => deck.title);
   }
 
-  getDeckSize(): number {
-    return this.getDecks().length;
+  getDeckID(): number {
+    return this.deckIndex;
   }
 
   private saveDecks(decks: Deck[]) {
     localStorage.setItem(this.storageKey, JSON.stringify(decks));
   }
+
+  getCardID(deckID: number): number {
+    const decks = this.getDecks();
+    const deck = decks.find((deck) => deck.id === deckID);
+
+    if (!deck || !deck.flashcards || deck.flashcards.length === 0) {
+      return 1; 
+  }
+
+  return Math.max(...deck.flashcards.map((card) => card.id)) + 1;
+}
 
   addFlashcard(deckID: number, card: Flashcard) {
     const decks = this.getDecks();
@@ -42,6 +58,7 @@ export class LocalStorageService {
 
     deck.flashcards.push(card); 
     this.saveDecks(decks);       
+    this.cardIndex++;
   }
 
   deleteFlashcard(deckID: number, flashcardID: number) {
@@ -84,6 +101,7 @@ export class LocalStorageService {
 
     decks.push(deck);
     this.saveDecks(decks);
+    this.deckIndex++;
   }
 
   deleteDeck(deckID: number) {
@@ -97,5 +115,19 @@ export class LocalStorageService {
 
     const updatedDecks = decks.filter((deck) => deck.id !== deckID);
     this.saveDecks(updatedDecks);
+  }
+
+  updateDeck(deckID: number, deckName: string, deckDescription: string) {
+    const decks = this.getDecks();
+    const deck = decks.find((deck) => deck.id === deckID);
+
+    if (!deck) {
+      console.error(`Deck with id ${deckID} not found`);
+      return;
+    }
+
+    deck.title = deckName ?? deck.title;
+    deck.description = deckDescription ?? deck.description;
+    this.saveDecks(decks);
   }
 }
