@@ -1,20 +1,10 @@
 <div class="flex justify-between items-center bg-gray-100 w-full h-full border-y border-gray-200 p-4 gap-4">
-    @if (selectedDeckService.isDeckSelected()) {
     <div class="flex flex-row items-center justify-center gap-4">
         <h1 class="text-4xl font-light" title="{{ deckTitle }}">{{ deckTitle | truncate:25 }}</h1>
-        <div>
-            <p>Learning View</p>
-            <p>Is Active</p>
-        </div>
     </div>
-    } @else {
-    <div class="flex flex-row items-center justify-center gap-4">
-        <h1 class="text-4xl font-light"></h1>
-        <div>
-            <p></p>
-            <p></p>
-        </div>
+    <div class="flex flex-col items-start">
+        <p>Time: {{ flashcardsLearningService.timeCount() * 1000 | date: 'mm:ss' }}</p>
+        <p>Cards: {{ flashcardsLearningService.flashcardsLearntCount() }}</p>
     </div>
-    }
 </div>
 
