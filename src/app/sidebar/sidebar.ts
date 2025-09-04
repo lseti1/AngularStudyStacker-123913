@@ -7,6 +7,7 @@ import { Deck } from '../services/dummy-data-service';
 import { SelectedCard } from '../services/selected-card';
 import { UIStates } from '../services/ui-states';
 import { FlashcardsViewService } from '../services/flashcards-view-service';
+import { FlashcardsLearning } from '../services/flashcards-learning';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class Sidebar {
     public selectedDeckService: SelectedDeck,
     public selectedCardService: SelectedCard,
     public UIStatesService: UIStates,
-    public flashcardsViewService: FlashcardsViewService
+    public flashcardsViewService: FlashcardsViewService,
+    public flashcardsLearningService: FlashcardsLearning
   ) {}
 
   get decks(): Deck[] {
@@ -34,5 +36,9 @@ export class Sidebar {
     this.selectedCardService.setSelectedCard(null);
     this.UIStatesService.toggleView(null);
     this.flashcardsViewService.toggleView('flashcards');
+    
+    if (this.flashcardsLearningService.isLearning()) {
+      this.flashcardsLearningService.toggleIsLearning();
+    }
   }
 }
