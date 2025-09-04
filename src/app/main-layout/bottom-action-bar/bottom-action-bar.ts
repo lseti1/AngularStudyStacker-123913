@@ -25,9 +25,13 @@ export class BottomActionBar {
 
   editButtonText = computed(() => {
     return this.flashcardsViewService.isEditAll() === true ? 'Stop Editing' : 'Edit Flashcards';
-  })
+  });
 
   addButtonText = computed(() => {
     return this.flashcardsViewService.currentView() === 'add' ? 'Back' : 'Add Card';
-  })
+  });
+
+  learningButtonText = computed(() => {
+    return this.flashcardLearningService.isLearning() === true ? 'Finish learning' : 'Start Learning';
+  });
 }

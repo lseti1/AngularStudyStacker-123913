@@ -4,11 +4,7 @@ import { Injectable, signal } from '@angular/core';
 export class FlashcardsLearning {
   isLearning = signal<boolean>(false);
 
-  startSession() {
-    this.isLearning.set(true);
-  }
-
-  endSession() {
-    this.isLearning.set(false);
+  toggleIsLearning() {
+    this.isLearning.set(!this.isLearning());
   }
 }
