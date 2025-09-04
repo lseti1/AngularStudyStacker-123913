@@ -1,0 +1,23 @@
+<div class="flex justify-between items-center bg-gray-100 w-full h-full border-y border-gray-200 p-4 gap-4">
+    @if (selectedDeckService.isDeckSelected()) {
+    <div class="flex flex-row items-center justify-center gap-4">
+        <h1 class="text-4xl font-light" title="{{ deckTitle }}">{{ deckTitle | truncate:25 }}</h1>
+        <div>
+            <p>Deck Size: {{ deckSize }}</p>
+            <p>Proficiency: {{ deckProficiency }}%</p>
+        </div>
+    </div>
+    } @else {
+    <div class="flex flex-row items-center justify-center gap-4">
+        <h1 class="text-4xl font-light">No Deck Selected</h1>
+        <div>
+            <p>Number of Decks: {{ totalDecks }} </p>
+            <p>Last Log-in: {{ currentDate | date:'fullDate'}}</p>
+        </div>
+    </div>
+    }
+    <div class="flex flex-row items-center justify-center gap-4 text-2xl">
+        <fa-icon (click)="uiStates.toggleView('settings')" [icon]="faGear" class="hover:text-black/50 duration-300 cursor-pointer"></fa-icon>
+        <fa-icon (click)="uiStates.toggleView('user')" [icon]="faUser" class="hover:text-black/50 duration-300 cursor-pointer"></fa-icon>
+    </div>
+</div>
