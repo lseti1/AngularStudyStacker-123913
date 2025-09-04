@@ -26,6 +26,9 @@ export class LearningView implements OnInit {
       return;
     }
     this.randomIndex = Math.floor(Math.random() * this.flashcardsData.length);
+    if (this.randomIndex === this.savedIndex) {
+      this.randomIndex = (this.savedIndex + 1) % this.flashcardsData.length
+    }
     this.savedIndex = this.randomIndex;
     this.currentCard.set(this.flashcardsData[this.savedIndex]);
   }
