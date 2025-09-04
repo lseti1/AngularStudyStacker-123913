@@ -4,6 +4,7 @@ import { FlashcardsViewService } from '../../services/flashcards-view-service';
 import { UIStates } from '../../services/ui-states';
 import { UiStatesUser } from '../../services/ui-states-user';
 import { Flashcard } from '../../services/dummy-data-service';
+import { FlashcardsLearning } from '../../services/flashcards-learning';
 
 @Component({
   selector: 'app-bottom-action-bar',
@@ -16,7 +17,8 @@ export class BottomActionBar {
     public selectedDeckService: SelectedDeck, 
     public flashcardsViewService: FlashcardsViewService,
     public uiStates: UIStates,
-    public uiStatesUser: UiStatesUser
+    public uiStatesUser: UiStatesUser,
+    public flashcardLearningService: FlashcardsLearning
   ) {}
 
   @Input() flashcardsData: Flashcard[] = [];

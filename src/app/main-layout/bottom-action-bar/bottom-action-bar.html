@@ -4,7 +4,9 @@
             <button (click)="flashcardsViewService.toggleView('add')" class="blue-btn">{{ addButtonText() }}</button>
             @if (flashcardsData.length !== 0) {
                 <button (click)="flashcardsViewService.toggleEditAll()" class="blue-btn">{{ editButtonText() }}</button>
-                <button class="blue-btn">Start Learning</button>
+                <button (click)="flashcardLearningService.startSession()" class="blue-btn">Start Learning</button>
+            } @else if (flashcardLearningService.isLearning()) {
+                <button class="blue-btn">Finish Learning</button>
             }
         } @else if (flashcardsViewService.currentView() === 'add') {
             <button (click)="flashcardsViewService.toggleView('add')" class="blue-btn">{{ addButtonText() }}</button>
