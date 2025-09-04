@@ -2,9 +2,9 @@
     <div class="flex flex-row items-center justify-center gap-4">
         <h1 class="text-4xl font-light" title="{{ deckTitle }}">{{ deckTitle | truncate:25 }}</h1>
     </div>
-    <div class="flex flex-row items-center justify-center gap-4 text-2xl">
-        <p>Elapsed Time Here</p>
-        <p>10/100</p>
+    <div class="flex flex-col items-start">
+        <p>Time: {{ flashcardsLearningService.timeCount() * 1000 | date: 'mm:ss' }}</p>
+        <p>Cards: {{ flashcardsLearningService.flashcardsLearntCount() }}</p>
     </div>
 </div>
 

@@ -21,6 +21,7 @@ export class LearningView implements OnInit {
   currentCard = signal<Flashcard | null>(null);
 
   getRandomFlashcard() {
+    this.flashcardsLearningService.incrementLearntCount();
     if (this.flashcardsData.length === 0) {
       this.currentCard.set(null);
       return;
