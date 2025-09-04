@@ -4,19 +4,22 @@ import { SelectedDeck } from '../../services/selected-deck';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
-import { TruncatePipe } from '../../pipes/truncate-pipe';
 import { UIStates } from '../../services/ui-states';
+import { FlashcardsLearning } from '../../services/flashcards-learning';
+import { DefaultView } from './default-view/default-view';
+import { LearningView } from './learning-view/learning-view';
 
 @Component({
   selector: 'app-top-bar',
-  imports: [FontAwesomeModule, CommonModule, TruncatePipe],
+  imports: [FontAwesomeModule, CommonModule, DefaultView, LearningView],
   templateUrl: './top-bar.html',
   styles: ``
 })
 export class TopBar {
   constructor(
     public selectedDeckService: SelectedDeck,
-    public uiStates: UIStates
+    public uiStates: UIStates,
+    public flashcardsLearningService: FlashcardsLearning
   ) {}
 
   faUser = faUser;

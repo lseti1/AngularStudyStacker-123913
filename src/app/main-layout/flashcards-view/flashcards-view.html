@@ -24,15 +24,17 @@
 }
 
 @if (selectedDeckService.isDeckSelected()) {
-@if (flashcardsViewService.currentView() === 'add') {
-<app-add-card-view [deckSize]="deckData?.flashcards?.length || 0" />
-} @else if (flashcardsViewService.currentView() === 'edit') {
-<app-edit-card-view [flashcardData]="flashcardData" />
-} @else if (flashcardsViewService.currentView() === 'view') {
-<app-view-card-view [flashcardData]="flashcardData" />
-} @else if (flashcardsViewService.currentView() === 'delete') {
-<app-delete-card-view [flashcardData]="flashcardData" />
-}
+    @if (flashcardsViewService.currentView() === 'add') {
+    <app-add-card-view [deckSize]="deckData?.flashcards?.length || 0" />
+    } @else if (flashcardsViewService.currentView() === 'edit') {
+    <app-edit-card-view [flashcardData]="flashcardData" />
+    } @else if (flashcardsViewService.currentView() === 'view') {
+    <app-view-card-view [flashcardData]="flashcardData" />
+    } @else if (flashcardsViewService.currentView() === 'delete') {
+    <app-delete-card-view [flashcardData]="flashcardData" />
+    } @else if (flashcardsLearningService.isLearning()) {
+    <app-learning-view />
+    }
 }
 
 @if (selectedDeckService.currentView() === 'edit') {
