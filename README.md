@@ -1,6 +1,6 @@
-Angular Web App (21/08/25)
-# InfoMovie
-This is an Angular web app that utilises Tailwind CSS for a flashcards application that will have multiple components and views.
+Angular Web App (04/09/25)
+# Study Stacker
+This is an Angular web app that utilises Angular & Tailwind CSS for a flashcards application that will have multiple components, views, services and pipes.
 
 ## Installation
 This application will not require installation. Simply ensure that you have an internet connection and access it through the link in the About section of this repository once it becomes available.
@@ -10,11 +10,10 @@ The app is still in-progress and not functioning yet.
 Note: Application will be best viewed in Full Screen on a PC
 
 ## Features to be included:
-- Routing
-- Route Guards
-- Lazy Loading Content
-- Backend functionality with SQLite
-- Saving, Editing, Deleting flashcards
+- Use of Web Browser's local storage to store user data for flashcards (flashcards limited to text only)
+- Settings to change autoflip timers, set it to on or off, clear any saved data
+- Mock log-in authentication using a service
+- Able to add, view, edit, or delete flashcards & decks as well as track learning progress
 
 More features to be added later and updated here.
 
