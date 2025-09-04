@@ -33,7 +33,7 @@
     } @else if (flashcardsViewService.currentView() === 'delete') {
     <app-delete-card-view [flashcardData]="flashcardData" />
     } @else if (flashcardsLearningService.isLearning()) {
-    <app-learning-view />
+    <app-learning-view [flashcardsData]="flashcardsData"/>
     }
 }
 
