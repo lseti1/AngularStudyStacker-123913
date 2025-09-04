@@ -4,6 +4,7 @@ import { UIStates } from '../../../services/ui-states';
 import { FlashcardsLearning } from '../../../services/flashcards-learning';
 import { TruncatePipe } from '../../../pipes/truncate-pipe';
 import { DatePipe } from '@angular/common';
+import { UiStatesSettings } from '../../../services/ui-states-settings';
 
 @Component({
   selector: 'app-learning-view',
@@ -15,7 +16,8 @@ export class LearningView {
   constructor(
         public selectedDeckService: SelectedDeck,
         public uiStates: UIStates,
-        public flashcardsLearningService: FlashcardsLearning
+        public flashcardsLearningService: FlashcardsLearning,
+        public uiStatesSettings: UiStatesSettings
       ) {}
 
   @Input() deckTitle: string = '';

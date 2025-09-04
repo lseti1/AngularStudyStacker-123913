@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UIStates } from '../../../services/ui-states';
 import { LocalStorageService } from '../../../services/local-storage-service';
+import { UiStatesSettings } from '../../../services/ui-states-settings';
 
 @Component({
   selector: 'app-settings-view',
@@ -10,11 +11,18 @@ import { LocalStorageService } from '../../../services/local-storage-service';
   styleUrl: './settings-view.css'
 })
 export class SettingsView {
-  constructor(public uiStates: UIStates, public localStorageService: LocalStorageService) {}
-
+  cardsPerSession: number;
   message = signal<string>("Clear App Data");
 
+  constructor(
+    public uiStates: UIStates, 
+    public localStorageService: LocalStorageService, 
+    public uiStatesSettings: UiStatesSettings
+  ) { this.cardsPerSession = this.uiStatesSettings.cardsPerSession() }
+
+
   onSubmit() {
+    this.uiStatesSettings.setCardsPerSession(this.cardsPerSession);
     this.uiStates.toggleView(null);
   }
 

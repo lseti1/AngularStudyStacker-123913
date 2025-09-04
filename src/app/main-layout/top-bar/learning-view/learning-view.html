@@ -4,7 +4,7 @@
     </div>
     <div class="flex flex-col items-start">
         <p>Time: {{ flashcardsLearningService.timeCount() * 1000 | date: 'mm:ss' }}</p>
-        <p>Cards: {{ flashcardsLearningService.flashcardsLearntCount() }}</p>
+        <p>Cards: {{ flashcardsLearningService.flashcardsLearntCount() }} / {{ uiStatesSettings.cardsPerSession() }}</p>
     </div>
 </div>
 
