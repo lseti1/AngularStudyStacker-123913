@@ -1,11 +1,12 @@
-import { Component, Input, OnInit, signal } from '@angular/core';
+import { Component, computed, Input, OnInit, signal } from '@angular/core';
 import { FlashcardsLearning } from '../../../services/flashcards-learning';
 import { Flashcard } from '../../../services/dummy-data-service';
 import { UiStatesSettings } from '../../../services/ui-states-settings';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-learning-view',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './learning-view.html',
   styleUrl: './learning-view.css'
 })
@@ -13,7 +14,9 @@ export class LearningView implements OnInit {
   randomIndex: number = 0;
   savedIndex: number = 0;
   cardsPerSession: number;
-  buttonText = signal<string>("");
+  isCardHidden = signal<boolean>(true);
+  revealButtonText = computed(() => this.isCardHidden() ? "Reveal" : "Hide");
+  nextButtonText = signal<string>("Get Next Card");
 
   constructor(
     public flashcardsLearningService: FlashcardsLearning, 
@@ -22,7 +25,6 @@ export class LearningView implements OnInit {
   
 
   ngOnInit() {
-      this.buttonText.set("Get Next Card");
       this.getRandomFlashcard();
   }
 
@@ -31,6 +33,7 @@ export class LearningView implements OnInit {
 
   getRandomFlashcard() {
     this.flashcardsLearningService.incrementLearntCount();
+
     if (this.flashcardsData.length === 0) {
       this.currentCard.set(null);
       return;
@@ -41,7 +44,7 @@ export class LearningView implements OnInit {
     }
 
     if (this.flashcardsLearningService.flashcardsLearntCount() === this.cardsPerSession) {
-      this.buttonText.set("Finish");
+      this.nextButtonText.set("Finish");
     }
     if (this.flashcardsLearningService.flashcardsLearntCount() > this.cardsPerSession) {
       this.flashcardsLearningService.toggleIsLearning();
@@ -49,5 +52,10 @@ export class LearningView implements OnInit {
 
     this.savedIndex = this.randomIndex;
     this.currentCard.set(this.flashcardsData[this.savedIndex]);
+    this.isCardHidden.set(true);
+  }
+
+  toggleCardHidden() {
+    this.isCardHidden.set(!this.isCardHidden());
   }
 }
