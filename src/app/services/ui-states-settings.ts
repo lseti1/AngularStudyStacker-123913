@@ -7,6 +7,10 @@ export class UiStatesSettings {
   autoFlipTimer = signal<number>(1);
   language = signal<string>("English");
 
+  get cardsPerSessionCount() {
+    return this.cardsPerSession.asReadonly();
+  }
+
   setCardsPerSession(value: number) {
     this.cardsPerSession.set(value);
   }

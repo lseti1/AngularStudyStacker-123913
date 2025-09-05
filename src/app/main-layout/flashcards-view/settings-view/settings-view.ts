@@ -23,6 +23,7 @@ export class SettingsView {
 
   onSubmit() {
     this.uiStatesSettings.setCardsPerSession(this.cardsPerSession);
+    console.log("From Settings-View: Cards Per Session is now: ", this.cardsPerSession);
     this.uiStates.toggleView(null);
   }
 

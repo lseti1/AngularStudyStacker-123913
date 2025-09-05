@@ -3,13 +3,13 @@ import { Injectable, signal } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class FlashcardsLearning {
   isLearning = signal<boolean>(false);
-  flashcardsLearntCount = signal<number>(-1);
+  flashcardsLearntCount = signal<number>(0);
   timeCount = signal(0);
   private timerId: any = null;
 
   toggleIsLearning() {
     if (this.isLearning()) {
-      this.flashcardsLearntCount.set(-1);
+      this.flashcardsLearntCount.set(0);
       this.stopTimer();
       this.timeCount.set(0);
     } else {
