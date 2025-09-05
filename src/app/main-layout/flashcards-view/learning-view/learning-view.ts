@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './learning-view.css'
 })
 export class LearningView implements OnInit {
+  autoflipMessage: boolean = false;
+  autoFlipTimer: number = 1;
   randomIndex: number = 0;
   savedIndex: number = 0;
   cardsPerSession: number;
@@ -21,7 +23,10 @@ export class LearningView implements OnInit {
   constructor(
     public flashcardsLearningService: FlashcardsLearning, 
     public uiStatesSettings: UiStatesSettings
-  ) { this.cardsPerSession = uiStatesSettings.cardsPerSessionCount(); }
+  ) { 
+    this.cardsPerSession = uiStatesSettings.cardsPerSessionCount(); 
+    this.autoFlipTimer = uiStatesSettings.autoFlipTimer();
+  }
   
 
   ngOnInit() {
@@ -32,6 +37,9 @@ export class LearningView implements OnInit {
   currentCard = signal<Flashcard | null>(null);
 
   getRandomFlashcard() {
+    if (this.uiStatesSettings.autoFlip()) {
+      this.autoflipTimer();
+    }
     this.flashcardsLearningService.incrementLearntCount();
 
     if (this.flashcardsData.length === 0) {
@@ -57,5 +65,11 @@ export class LearningView implements OnInit {
 
   toggleCardHidden() {
     this.isCardHidden.set(!this.isCardHidden());
+  }
+
+  autoflipTimer() {
+    setTimeout(() => {
+      this.isCardHidden.set(false);
+    }, this.uiStatesSettings.autoFlipTimer() * 1000)
   }
 }
