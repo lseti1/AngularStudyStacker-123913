@@ -12,18 +12,26 @@ import { UiStatesSettings } from '../../../services/ui-states-settings';
 })
 export class SettingsView {
   cardsPerSession: number;
+  autoFlip: boolean;
+  autoFlipTimer: number;
   message = signal<string>("Clear App Data");
 
   constructor(
     public uiStates: UIStates, 
     public localStorageService: LocalStorageService, 
     public uiStatesSettings: UiStatesSettings
-  ) { this.cardsPerSession = this.uiStatesSettings.cardsPerSession() }
-
+  ) { 
+    this.cardsPerSession = this.uiStatesSettings.cardsPerSession();
+    this.autoFlip = this.uiStatesSettings.autoFlip();
+    this.autoFlipTimer = this.uiStatesSettings.autoFlipTimer();
+  }
 
   onSubmit() {
     this.uiStatesSettings.setCardsPerSession(this.cardsPerSession);
-    console.log("From Settings-View: Cards Per Session is now: ", this.cardsPerSession);
+    this.uiStatesSettings.setAutoFlip(this.autoFlip);
+    this.uiStatesSettings.setAutoFlipTimer(this.autoFlipTimer);
+    console.log("Autoflip is ", this.uiStatesSettings.autoFlip());
+    console.log("Autoflip is ", this.uiStatesSettings.autoFlipTimer());
     this.uiStates.toggleView(null);
   }
 
