@@ -2,11 +2,11 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UIStates } from '../../../services/ui-states';
 import { LocalStorageService } from '../../../services/local-storage-service';
-import { UiStatesSettings } from '../../../services/ui-states-settings';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-settings-view',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './settings-view.html',
   styleUrl: './settings-view.css'
 })
