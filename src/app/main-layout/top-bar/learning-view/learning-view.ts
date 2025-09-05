@@ -5,6 +5,7 @@ import { FlashcardsLearning } from '../../../services/flashcards-learning';
 import { TruncatePipe } from '../../../pipes/truncate-pipe';
 import { DatePipe } from '@angular/common';
 import { UiStatesSettings } from '../../../services/ui-states-settings';
+import { LocalStorageService } from '../../../services/local-storage-service';
 
 @Component({
   selector: 'app-learning-view',
@@ -13,12 +14,15 @@ import { UiStatesSettings } from '../../../services/ui-states-settings';
   styleUrl: './learning-view.css'
 })
 export class LearningView {
+  cardsPerSession: number;
+
   constructor(
-        public selectedDeckService: SelectedDeck,
-        public uiStates: UIStates,
-        public flashcardsLearningService: FlashcardsLearning,
-        public uiStatesSettings: UiStatesSettings
-      ) {}
+    public flashcardsLearningService: FlashcardsLearning,
+    public localStorageService: LocalStorageService
+  ) {
+    const settings = this.localStorageService.getSettings();
+    this.cardsPerSession = settings.cardsPerSession;
+  }
 
   @Input() deckTitle: string = '';
 }

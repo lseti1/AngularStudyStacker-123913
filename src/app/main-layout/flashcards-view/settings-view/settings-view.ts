@@ -19,19 +19,19 @@ export class SettingsView {
   constructor(
     public uiStates: UIStates, 
     public localStorageService: LocalStorageService, 
-    public uiStatesSettings: UiStatesSettings
   ) { 
-    this.cardsPerSession = this.uiStatesSettings.cardsPerSession();
-    this.autoFlip = this.uiStatesSettings.autoFlip();
-    this.autoFlipTimer = this.uiStatesSettings.autoFlipTimer();
+    const settings = this.localStorageService.getSettings()
+
+    this.cardsPerSession = settings.cardsPerSession;
+    this.autoFlip = settings.autoFlip;
+    this.autoFlipTimer = settings.autoFlipTimer;
   }
 
   onSubmit() {
-    this.uiStatesSettings.setCardsPerSession(this.cardsPerSession);
-    this.uiStatesSettings.setAutoFlip(this.autoFlip);
-    this.uiStatesSettings.setAutoFlipTimer(this.autoFlipTimer);
-    console.log("Autoflip is ", this.uiStatesSettings.autoFlip());
-    console.log("Autoflip is ", this.uiStatesSettings.autoFlipTimer());
+    this.localStorageService.updateSettings('cardsPerSession', this.cardsPerSession);
+    this.localStorageService.updateSettings('autoFlip', this.autoFlip);
+    this.localStorageService.updateSettings('autoFlipTimer', this.autoFlipTimer);
+
     this.uiStates.toggleView(null);
   }
 
