@@ -13,24 +13,24 @@
             </div>
             <div class="flex flex-row justify-between justify-center items-center w-full gap-2">
                 <label for="CardsPerSessions" class="text-right">Cards Per Sessions</label>
-                <select class="bg-white/0 tracking-tighter text-center text-xl cursor-pointer">
-                    <option>10</option>
-                    <option>25</option>
-                    <option>50</option>
-                    <option>100</option>
+                <select [(ngModel)]="cardsPerSession" id="CardsPerSessions" class="bg-white/0 tracking-tighter text-center text-xl cursor-pointer">
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="25">25</option>
+                    <option [ngValue]="50">50</option>
+                    <option [ngValue]="100">100</option>
                 </select>
             </div>
             <div class="flex flex-row justify-between justify-center items-center w-full gap-2">
                 <label for="Autoflip" class="text-right">Autoflip</label>
                 <label class="inline-flex items-center cursor-pointer relative select-none">
-                    <input type="checkbox" class="hidden peer">
+                    <input type="checkbox" class="hidden peer" [(ngModel)]="autoFlip" >
                     <span class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full duration-300 peer-checked:translate-x-6"></span>
                     <div class="w-12 h-6 bg-gray-300 rounded-full peer-checked:bg-green-600"></div>
                 </label>
             </div>
             <div class="flex flex-row justify-between justify-center items-center w-full gap-2 ">
                 <label for="AutoFlipTimer" class="text-right">Autoflip Timer (s)</label>
-                <input type="number" value="1" min="1" max="10" class="w-20 text-center text-xl bg-gray-100">
+                <input [(ngModel)]="autoFlipTimer" type="number" min="1" max="10" class="w-20 text-center text-xl bg-gray-100">
             </div>
             <div class="flex flex-row justify-between justify-center items-center w-full gap-2 ">
                 <label for="AutoFlipTimer" class="text-right">Local Storage</label>
