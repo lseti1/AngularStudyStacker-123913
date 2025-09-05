@@ -14,6 +14,13 @@ export interface Deck {
   flashcards: Flashcard[];
 }
 
+export interface settings {
+  language: string;
+  cardsPerSession: number;
+  autoFlip: boolean;
+  autoFlipTimer: number;
+}
+
 @Injectable({ providedIn: 'root' })
 export class DummyDataService {
   private data = {
@@ -90,8 +97,19 @@ export class DummyDataService {
     ],
   };
 
+  private settings = {
+    language: 'English',
+    cardsPerSession: 10,
+    autoFlip: false,
+    autoFlipTimer: 1
+  }
+
   getDecks() {
     return this.data.decks;
+  }
+
+  getSettings() {
+    return this.settings;
   }
 
   getDeckTitles() {

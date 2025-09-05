@@ -3,6 +3,7 @@ import { FlashcardsLearning } from '../../../services/flashcards-learning';
 import { Flashcard } from '../../../services/dummy-data-service';
 import { UiStatesSettings } from '../../../services/ui-states-settings';
 import { CommonModule } from '@angular/common';
+import { LocalStorageService } from '../../../services/local-storage-service';
 
 @Component({
   selector: 'app-learning-view',
@@ -11,6 +12,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './learning-view.css'
 })
 export class LearningView implements OnInit {
+  autoflipMessage: boolean = false;
+  isAutoFlip: boolean = false;
+  autoFlipTimer: number = 1;
   randomIndex: number = 0;
   savedIndex: number = 0;
   cardsPerSession: number;
@@ -20,10 +24,16 @@ export class LearningView implements OnInit {
 
   constructor(
     public flashcardsLearningService: FlashcardsLearning, 
-    public uiStatesSettings: UiStatesSettings
-  ) { this.cardsPerSession = uiStatesSettings.cardsPerSessionCount(); }
-  
+    public localStorageService: LocalStorageService
+  ) { 
+    const settings = this.localStorageService.getSettings();
 
+    this.cardsPerSession = settings.cardsPerSession;
+    console.log(this.cardsPerSession);
+    this.autoFlipTimer = settings.autoFlipTimer;
+    this.isAutoFlip = settings.autoFlip;
+  }
+  
   ngOnInit() {
       this.getRandomFlashcard();
   }
@@ -32,6 +42,9 @@ export class LearningView implements OnInit {
   currentCard = signal<Flashcard | null>(null);
 
   getRandomFlashcard() {
+    if (this.isAutoFlip) {
+      this.autoflipTimer();
+    }
     this.flashcardsLearningService.incrementLearntCount();
 
     if (this.flashcardsData.length === 0) {
@@ -57,5 +70,11 @@ export class LearningView implements OnInit {
 
   toggleCardHidden() {
     this.isCardHidden.set(!this.isCardHidden());
+  }
+
+  autoflipTimer() {
+    setTimeout(() => {
+      this.isCardHidden.set(false);
+    }, this.autoFlipTimer * 1000)
   }
 }

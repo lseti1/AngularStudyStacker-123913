@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Deck, DummyDataService, Flashcard } from './dummy-data-service';
+import { Deck, DummyDataService, Flashcard, settings } from './dummy-data-service';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
   private storageKey = 'flashcardAppData';
+  private settingsKey = 'flashcardAppSettings';
   deckIndex: number = 0;
   cardIndex: number = 0;
 
@@ -12,6 +13,10 @@ export class LocalStorageService {
   private initialiseData() {
     if (!localStorage.getItem(this.storageKey)) {
       localStorage.setItem(this.storageKey, JSON.stringify(this.dummyData.getDecks()));
+    }
+
+    if(!localStorage.getItem(this.settingsKey)) {
+      localStorage.setItem(this.settingsKey, JSON.stringify(this.dummyData.getSettings()));
     }
 
     const decks = this.getDecks();
@@ -130,8 +135,24 @@ export class LocalStorageService {
     deck.description = deckDescription ?? deck.description;
     this.saveDecks(decks);
   }
+  
+  updateSettings<name extends keyof settings>(settingName: name, value: settings[name]) {
+    const currentSettings: settings = this.getSettings();
+    currentSettings[settingName] = value;
+    this.saveSettings(currentSettings);
+  }
+
+  getSettings(): settings {
+    const settingsData = localStorage.getItem(this.settingsKey);
+    return settingsData ? JSON.parse(settingsData) : this.dummyData.getSettings();
+  }
+
+  private saveSettings(settings: settings) {
+    localStorage.setItem(this.settingsKey, JSON.stringify(settings));
+  }
 
   clearAppData(): void {
     localStorage.removeItem(this.storageKey);
+    this.saveSettings(this.dummyData.getSettings());
   }
 }
