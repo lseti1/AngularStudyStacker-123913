@@ -126,7 +126,7 @@ export class DummyDataService {
     return this.demoData.decks.map((deck) => deck.title);
   }
 
-  getDemoUser() {
+  getDemoUserCredentials() {
     return this.demoUser;
   }
 }
