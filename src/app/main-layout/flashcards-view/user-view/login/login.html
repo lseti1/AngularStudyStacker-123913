@@ -4,11 +4,11 @@
         <div class="w-full flex flex-col gap-4 px-4 rounded">
             <div class="flex flex-col justify-between w-full gap-2">
                 <label for="email" class="select-none">Email</label>
-                <input class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl" type="email" id="email" name="email" placeholder="Enter Email" [(ngModel)]="enteredEmail" required />
-                @if (invalidEmail()) {
-                    <p class="text-sm text-red-500">Invalid email address</p>
-                } @else if (invalidPassword()) {
-                    <p class="text-sm text-red-500">Invalid email address or password</p>
+                <input class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl" type="email" id="email" name="email" placeholder="Enter Email" #email="ngModel" [(ngModel)]="enteredEmail" required email />
+                @if (email.dirty && email.errors?.['email']) {
+                    <p class="text-sm text-red-500">Email address is invalid</p>
+                } @else if (invalidPassword() || invalidEmail()) {
+                    <p class="text-sm text-red-500">Email address or password is incorrect. Please check again. </p>
                 }
             </div>
             <div class="flex flex-col justify-between w-full gap-2">
