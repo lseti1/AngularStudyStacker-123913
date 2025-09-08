@@ -2,7 +2,7 @@
     <div class="relative flex flex-col min-w-[40%] max-w-[40%] justify-start items-center p-8 text-2xl shadow-full rounded bg-white gap-4">
         <h1 class="text-3xl">Settings</h1>
         <div class="w-full flex flex-col gap-4 bg-gray-100 p-4 rounded">
-            <div class="flex flex-row justify-between justify-center items-center w-full gap-2">
+            <div class="flex flex-row justify-between justify-center items-center w-full gap-2 select-none pointer-events-none text-gray-300">
                 <label for="Language" class="text-right">Language</label>
                 <select class="bg-white/0 tracking-tighter text-center text-xl cursor-pointer">
                     <option>English</option>
@@ -20,7 +20,7 @@
                     <option [ngValue]="100">100</option>
                 </select>
             </div>
-            <div class="flex flex-row justify-between justify-center items-center w-full gap-2">
+            <div class="flex flex-row justify-between justify-center items-center w-full gap-2 ">
                 <label for="Autoflip" class="text-right">Autoflip</label>
                 <label class="inline-flex items-center cursor-pointer relative select-none">
                     <input type="checkbox" class="hidden peer" [(ngModel)]="autoFlip">
@@ -34,7 +34,7 @@
             </div>
             <div class="flex flex-row justify-between justify-center items-center w-full gap-2 ">
                 <label for="AutoFlipTimer" class="text-right">Local Storage</label>
-                <button class="text-red-600 tracking-tighter" (click)="onClearData()">{{ message() }}</button>
+                <button class="text-red-600 tracking-tighter hover:text-red-400 duration-300" (click)="onClearData()">{{ message() }}</button>
             </div>
         </div>
         <button class="green-btn col-span-2" type="submit" (click)="onSubmit()">Save Settings</button>

@@ -21,9 +21,14 @@ export interface settings {
   autoFlipTimer: number;
 }
 
+export interface user {
+  email: string;
+  password: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class DummyDataService {
-  private data = {
+  private demoData = {
     decks: [
       {
         id: 1,
@@ -97,22 +102,31 @@ export class DummyDataService {
     ],
   };
 
-  private settings = {
+  private defaultSettings = {
     language: 'English',
     cardsPerSession: 10,
     autoFlip: false,
     autoFlipTimer: 1
   }
 
+  private demoUser = {
+    email: 'StudyStacker@stack.com',
+    password: 'StudyStacker2025'
+  };
+
   getDecks() {
-    return this.data.decks;
+    return this.demoData.decks;
   }
 
   getSettings() {
-    return this.settings;
+    return this.defaultSettings;
   }
 
   getDeckTitles() {
-    return this.data.decks.map((deck) => deck.title);
+    return this.demoData.decks.map((deck) => deck.title);
+  }
+
+  getDemoUserCredentials() {
+    return this.demoUser;
   }
 }
