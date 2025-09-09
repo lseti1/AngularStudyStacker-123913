@@ -29,6 +29,7 @@ export class User {
     setTimeout(() => {
       this.uiStatesUser.setUserLoggedIn(false);
       this.uiStatesUser.toggleView('login');
+      this.uiStates.toggleView(null);
     }, 3000)
   }
   

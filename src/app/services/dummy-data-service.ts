@@ -110,6 +110,13 @@ export class DummyDataService {
     autoFlipTimer: 1
   };
 
+  private demoSettings: settings = {
+    language: 'English',
+    cardsPerSession: 25,
+    autoFlip: true,
+    autoFlipTimer: 4
+  };
+
   private demoUser: user = {
     email: 'StudyStacker@stack.com',
     name: 'StudyStacker Demo User',
@@ -120,8 +127,12 @@ export class DummyDataService {
     return this.demoData.decks;
   }
 
-  getSettings(): settings {
+  getDefaultSettings(): settings {
     return this.defaultSettings;
+  }
+
+  getDemoSettings(): settings {
+    return this.demoSettings;
   }
 
   getDeckTitles(): string[] {

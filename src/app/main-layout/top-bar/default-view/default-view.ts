@@ -31,4 +31,13 @@ export class DefaultView {
       public uiStatesUserService: UiStatesUser,
       public flashcardsLearningService: FlashcardsLearning
     ) {}
+
+  setUserView() {
+    if (this.uiStatesUserService.userLoggedIn()) {
+      this.uiStatesService.toggleView('user');
+      this.uiStatesUserService.toggleView('userAccount');
+    } else {
+      this.uiStatesService.toggleView('user');
+    }
+  }
 }

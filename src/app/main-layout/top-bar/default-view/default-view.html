@@ -18,10 +18,9 @@
     }
     <div class="flex flex-row items-center justify-center text-2xl h-full">
         <fa-icon (click)="uiStatesService.toggleView('settings')" [icon]="faGear" class="px-2 hover:text-black/50 duration-300 cursor-pointer"></fa-icon>
-        <div (click)="uiStatesService.toggleView('user')" class="relative flex flex-col justify-center items-center px-2 h-full hover:text-black/50 duration-300 cursor-pointer">
+        <div (click)="setUserView()" class="relative flex flex-col justify-center items-center px-2 h-full hover:text-black/50 duration-300 cursor-pointer">
             <fa-icon [icon]="faUser"></fa-icon>
             <p class="absolute text-center bottom-0 w-full text-sm"> {{ userName() }} </p>
         </div>
-        
     </div>
 </div>

@@ -40,6 +40,7 @@ export class Login {
       this.loginButtonMessage = 'Logging In...';
       setTimeout(() => {
         this.uiStatesUserService.setUserLoggedIn(true);
+        this.uiStatesService.toggleView(null);
         this.uiStatesUserService.toggleView('userAccount');
         formData.reset();
       }, 3000)
