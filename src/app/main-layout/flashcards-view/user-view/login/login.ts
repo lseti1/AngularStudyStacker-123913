@@ -12,44 +12,40 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.css'
 })
 export class Login {
-  invalidEmail = signal<boolean>(false);
-  invalidPassword = signal<boolean>(false);
   demoEmail: string;
   demoPassword: string;
   enteredEmail: string = '';
   enteredPassword: string = '';
 
+  validEmail = signal<boolean>(true);
+  validPassword = signal<boolean>(true);
+
   constructor(
-    public uiStates: UIStates, 
-    public uiStatesUser: UiStatesUser,
+    public uiStatesService: UIStates, 
+    public uiStatesUserService: UiStatesUser,
     public dummyDataService: DummyDataService
   ) {
     this.demoEmail = this.dummyDataService.getDemoUserCredentials().email;
     this.demoPassword = this.dummyDataService.getDemoUserCredentials().password;
   }
 
-  onSubmit(formData: NgForm) {
+  onSubmit(formData: NgForm): void {
     if (formData.invalid) return;
     if (this.demoEmail !== this.enteredEmail) {
-      this.invalidEmail.set(true);
+      this.validEmail.set(false);
     } else if (this.demoPassword !== this.enteredPassword) {
-      this.invalidPassword.set(true);
+      this.validPassword.set(false);
     } else {
-      this.uiStatesUser.toggleView('userAccount');
+      this.uiStatesUserService.toggleView('userAccount');
       formData.reset();
-      
-      this.invalidEmail.set(false);
-      this.invalidPassword.set(false);
     }
   }
 
-  onSignUp() {
-    this.uiStatesUser.toggleView('signup');
+  onSignUp(): void {
+    this.uiStatesUserService.toggleView('signup');
   }
 
-  onForgotPassword() {
-    this.uiStatesUser.toggleView('forgotPassword');
+  onForgotPassword(): void {
+    this.uiStatesUserService.toggleView('forgotPassword');
   }
-
-
 }
