@@ -12,36 +12,38 @@ import { LocalStorageService } from '../../../services/local-storage-service';
   styleUrl: './learning-view.css'
 })
 export class LearningView implements OnInit {
-  autoflipMessage: boolean = false;
-  isAutoFlip: boolean = false;
-  autoFlipTimer: number = 1;
-  randomIndex: number = 0;
-  savedIndex: number = 0;
-  cardsPerSession: number;
-  isCardHidden = signal<boolean>(true);
-  revealButtonText = computed(() => this.isCardHidden() ? "Reveal" : "Hide");
-  nextButtonText = signal<string>("Get Next Card");
+  @Input() flashcardsData: Flashcard[] = [];
+
+  public autoflipMessage: boolean = false;
+  public isAutoFlip: boolean = false;
+  public autoFlipTimer: number = 1;
+  private autoFlipTimeoutID: any = null;
+  private cardsPerSession: number;
+
+  private randomIndex: number = 0;
+  private savedIndex: number = 0;
+  public currentCard = signal<Flashcard | null>(null);
+  
+  public isCardHidden = signal<boolean>(true);
+  public revealButtonText = computed(() => this.isCardHidden() ? "Reveal" : "Hide");
+  public nextButtonText = signal<string>("Get Next Card");
 
   constructor(
-    public flashcardsLearningService: FlashcardsLearning, 
-    public localStorageService: LocalStorageService
+    private flashcardsLearningService: FlashcardsLearning, 
+    private localStorageService: LocalStorageService
   ) { 
     const settings = this.localStorageService.getSettings();
 
     this.cardsPerSession = settings.cardsPerSession;
-    console.log(this.cardsPerSession);
     this.autoFlipTimer = settings.autoFlipTimer;
     this.isAutoFlip = settings.autoFlip;
   }
   
-  ngOnInit() {
+  ngOnInit(): void {
       this.getRandomFlashcard();
   }
 
-  @Input() flashcardsData: Flashcard[] = [];
-  currentCard = signal<Flashcard | null>(null);
-
-  getRandomFlashcard() {
+  getRandomFlashcard(): void {
     if (this.isAutoFlip) {
       this.autoflipTimer();
     }
@@ -68,13 +70,18 @@ export class LearningView implements OnInit {
     this.isCardHidden.set(true);
   }
 
-  toggleCardHidden() {
+  toggleCardHidden(): void {
     this.isCardHidden.set(!this.isCardHidden());
   }
 
-  autoflipTimer() {
-    setTimeout(() => {
+  autoflipTimer(): void {
+    if (this.autoFlipTimeoutID) {
+      clearTimeout(this.autoFlipTimeoutID);
+    }
+
+    this.autoFlipTimeoutID = setTimeout(() => {
       this.isCardHidden.set(false);
+      this.autoFlipTimeoutID = null;
     }, this.autoFlipTimer * 1000)
   }
 }
