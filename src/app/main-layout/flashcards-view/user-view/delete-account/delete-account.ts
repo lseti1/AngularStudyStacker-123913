@@ -15,7 +15,7 @@ export class DeleteAccount {
   enteredPassword: string = '';
   demoPassword: string;
   invalidPassword = signal<boolean>(true);
-  message: string = 'Note: Deleting accounts is not implemented at this time. This page is for demonstrating page functionality & navigation only.';
+  message: string = 'Note: Deleting accounts is not implemented at this time. This page is for demonstrating page functionality & only works with the demo user only.';
   deleteMessage: string = 'Delete Account';
 
   constructor(
