@@ -11,14 +11,14 @@ import { CommonModule } from '@angular/common';
   styleUrl: './settings-view.css'
 })
 export class SettingsView {
-  cardsPerSession: number;
-  autoFlip: boolean;
-  autoFlipTimer: number;
-  message = signal<string>("Clear App Data");
+  public cardsPerSession: number;
+  public autoFlip: boolean;
+  public autoFlipTimer: number;
+  public message = signal<string>("Clear App Data");
 
   constructor(
-    public uiStates: UIStates, 
-    public localStorageService: LocalStorageService, 
+    private uiStates: UIStates, 
+    private localStorageService: LocalStorageService, 
   ) { 
     const settings = this.localStorageService.getSettings()
 
@@ -27,7 +27,7 @@ export class SettingsView {
     this.autoFlipTimer = settings.autoFlipTimer;
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.localStorageService.updateSettings('cardsPerSession', this.cardsPerSession);
     this.localStorageService.updateSettings('autoFlip', this.autoFlip);
     this.localStorageService.updateSettings('autoFlipTimer', this.autoFlipTimer);
@@ -35,7 +35,7 @@ export class SettingsView {
     this.uiStates.toggleView(null);
   }
 
-  onClearData() {
+  onClearData(): void {
     this.message.set("Clearing...");
 
     setTimeout(() => {
