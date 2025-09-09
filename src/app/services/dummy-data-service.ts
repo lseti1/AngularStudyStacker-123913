@@ -23,6 +23,7 @@ export interface settings {
 
 export interface user {
   email: string;
+  name: string;
   password: string;
 }
 
@@ -102,31 +103,32 @@ export class DummyDataService {
     ],
   };
 
-  private defaultSettings = {
+  private defaultSettings: settings = {
     language: 'English',
     cardsPerSession: 10,
     autoFlip: false,
     autoFlipTimer: 1
-  }
+  };
 
-  private demoUser = {
+  private demoUser: user = {
     email: 'StudyStacker@stack.com',
+    name: 'StudyStacker Demo User',
     password: 'StudyStacker2025'
   };
 
-  getDecks() {
+  getDecks(): Deck[] {
     return this.demoData.decks;
   }
 
-  getSettings() {
+  getSettings(): settings {
     return this.defaultSettings;
   }
 
-  getDeckTitles() {
+  getDeckTitles(): string[] {
     return this.demoData.decks.map((deck) => deck.title);
   }
 
-  getDemoUserCredentials() {
+  getDemoUserCredentials(): user {
     return this.demoUser;
   }
 }

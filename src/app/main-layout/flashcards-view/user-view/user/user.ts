@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UIStates } from '../../../../services/ui-states';
 import { FormsModule } from '@angular/forms';
 import { UiStatesUser } from '../../../../services/ui-states-user';
+import { DummyDataService } from '../../../../services/dummy-data-service';
 
 @Component({
   selector: 'app-user',
@@ -10,12 +11,18 @@ import { UiStatesUser } from '../../../../services/ui-states-user';
   styleUrl: './user.css'
 })
 export class User {
-  logoutButtonMessage = "Log Out";
+  logoutButtonMessage: string = "Log Out";
+  userEmail: string;
+  userName: string;
 
   constructor(
     public uiStates: UIStates, 
-    public uiStatesUser: UiStatesUser
-  ) {}
+    public uiStatesUser: UiStatesUser,
+    public dummyDataService: DummyDataService
+  ) {
+    this.userEmail = this.dummyDataService.getDemoUserCredentials().email;
+    this.userName = this.dummyDataService.getDemoUserCredentials().name;
+  }
 
   onSignOut(): void {
     this.logoutButtonMessage = "Logging Out...";

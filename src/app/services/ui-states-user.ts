@@ -7,7 +7,6 @@ type userArea = 'signup' | 'login' | 'forgotPassword' | 'userAccount' | 'changeP
 export class UiStatesUser {
   private UserAreaView = signal<userArea>('login');
   userLoggedIn = signal<boolean>(false);
-  userName = signal<string>('guest');
 
   constructor(
     public dummyDataService: DummyDataService
