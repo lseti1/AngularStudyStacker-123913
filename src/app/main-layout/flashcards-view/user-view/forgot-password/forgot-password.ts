@@ -11,17 +11,17 @@ import { CommonModule } from '@angular/common';
   styleUrl: './forgot-password.css'
 })
 export class ForgotPassword {
-  enteredEmail: string = '';
   resetMessage: string = 'Send Reset Link';
   message: string = 'Note: Resetting passwords is not implemented at this time. This page is for demonstrating page functionality & navigation only.';
 
+  enteredEmail: string = '';
+  
   constructor(
     public uiStates : UIStates, 
     public uiStatesUser: UiStatesUser
   ) {}
   
-
-  onSendReset(formData: NgForm) {
+  onSendReset(formData: NgForm): void {
     this.message = 'Password reset link has been sent.';
     this.resetMessage = 'Redirecting...';
 
@@ -30,7 +30,7 @@ export class ForgotPassword {
     }, 3000); 
   }
 
-  onReturn() {
+  onReturn(): void {
     this.uiStatesUser.toggleView('login');
   }
 }

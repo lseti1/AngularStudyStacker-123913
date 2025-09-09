@@ -12,40 +12,36 @@ import { CommonModule } from '@angular/common';
   styleUrl: './delete-account.css'
 })
 export class DeleteAccount {
-  enteredPassword: string = '';
-  demoPassword: string;
-  invalidPassword = signal<boolean>(true);
-  message: string = 'Note: Deleting accounts is not implemented at this time. This page is for demonstrating page functionality & navigation only.';
+  message: string = 'Note: Deleting accounts is not implemented at this time. This page is for demonstrating page functionality & only works with the demo user only.';
   deleteMessage: string = 'Delete Account';
 
+  enteredPassword: string = '';
+  demoPassword: string;
+  validPassword = signal<boolean>(false);
+  
   constructor(
-    public uiStates: UIStates, 
-    public uiStatesUser: UiStatesUser,
+    public uiStatesService: UIStates, 
+    public uiStatesUserService: UiStatesUser,
     public dummyDataService: DummyDataService
-  ) { this.demoPassword = this.dummyDataService.getDemoUserCredentials().password; }
-
-  onCancel() {
-    this.uiStatesUser.toggleView('userAccount');
+  ) { 
+    this.demoPassword = this.dummyDataService.getDemoUserCredentials().password; 
   }
 
-  checkPassword(value: string) {
-    this.invalidPassword.set(value !== this.demoPassword);
+  onCancel(): void {
+    this.uiStatesUserService.toggleView('userAccount');
   }
 
-  onSubmit(formData: NgForm) {
-    if (this.demoPassword !== this.enteredPassword) {
-      this.invalidPassword.set(true);
-      return;
-    } 
-    this.invalidPassword.set(false);
-    
+  checkPassword(value: string): void {
+    this.validPassword.set(value === this.demoPassword);
+  }
+
+  onSubmit(formData: NgForm): void {
     this.deleteMessage = 'Redirecting...';
     this.message = "Simulating account deletion."
 
     setTimeout(() => {
-      this.uiStatesUser.toggleView('login');
-      this.uiStates.toggleView(null);
-      this.invalidPassword.set(true);
-    }, 5000);  
+      this.uiStatesUserService.toggleView('login');
+      this.uiStatesService.toggleView(null);
+    }, 3000);  
   }
 }

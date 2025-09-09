@@ -4,22 +4,24 @@
         <div class="w-full flex flex-col gap-4 px-4 rounded">
             <div class="flex flex-col justify-between w-full gap-2">
                 <label for="email" class="select-none">Email</label>
-                <input class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl" type="email" id="email" name="email" placeholder="Enter Email" #email="ngModel" [(ngModel)]="enteredEmail" required email />
-                @if (email.dirty && email.errors?.['email']) {
-                    <p class="text-sm text-red-500">Email address is invalid</p>
-                } @else if (invalidPassword() || invalidEmail()) {
-                    <p class="text-sm text-red-500">Email address or password is incorrect. Please check again. </p>
-                }
+                <div class="flex flex-col w-full gap-1">
+                    <input class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl" type="email" id="email" name="email" placeholder="Enter Email" #email="ngModel" [(ngModel)]="enteredEmail" required email />
+                    @if (email.dirty && email.errors?.['email']) {
+                        <p class="text-sm text-red-500">Email address is invalid. Please check that that it is formatted correctly.</p>
+                    } @else if (!validPassword() && password.dirty || !validEmail() && email.dirty) {
+                        <p class="text-sm text-red-500">Email address or password is incorrect. Please try again.</p>
+                    }
+                </div>
             </div>
             <div class="flex flex-col justify-between w-full gap-2">
                 <label for="password" class="select-none">Password</label>
-                <input class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl" type="password" id="password" name="password" placeholder="Enter Password" [(ngModel)]="enteredPassword" required />
+                <input class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl" type="password" id="password" name="password" placeholder="Enter Password" #password="ngModel" [(ngModel)]="enteredPassword" required />
             </div>
         </div>
         <div class="flex w-full justify-end px-4">   
             <button class=" tracking-tighter text-base underline text-blue-400" type="button" (click)="onForgotPassword()">Forgot Password?</button>
         </div>
-        <button class="green-btn" type="submit" [ngClass]="form.invalid ? 'opacity-30 pointer-events-none' : ''" [disabled]="form.invalid">Log In</button>
+        <button class="green-btn" type="submit" [ngClass]="form.valid ? '' : 'opacity-30 pointer-events-none'" [disabled]="form.invalid">Log In</button>
         <div class="w-full border-t-2 pt-4 px-4 flex flex-col justify-center gap-4">
             <p class="text-center text-base select-none">Don't have an account?</p>
         </div>
