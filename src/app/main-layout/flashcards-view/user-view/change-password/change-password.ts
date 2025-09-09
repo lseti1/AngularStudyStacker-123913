@@ -12,42 +12,44 @@ import { DummyDataService } from '../../../../services/dummy-data-service';
   styleUrl: './change-password.css'
 })
 export class ChangePassword {
+  loggedInUserPassword: string;
+  changeButtonMessage: string = 'Change Password';
   message: string = 'Note: Changing passwords is not implemented at this time. This page is for demonstrating page functionality & only works with the demo user only.';
+
   enteredOldPassword: string = '';
   enteredNewPassword: string = '';
   enteredNewConfirmPassword: string = '';
-  invalidMatchingPasswords = signal<boolean>(true);
-  invalidOldPassword = signal<boolean>(true);
-  changeButtonMessage: string = 'Change Password';
-  loggedInUserPassword: string;
+
+  validMatchingNewPasswords = signal<boolean>(false);
+  validOldPassword = signal<boolean>(false);
 
   constructor(
-    public uiStates: UIStates, 
-    public uiStatesUser: UiStatesUser,
+    public uiStatesService: UIStates, 
+    public uiStatesUserService: UiStatesUser,
     public dummyDataService: DummyDataService
   ) {
     this.loggedInUserPassword = this.dummyDataService.getDemoUserCredentials().password;
   }
   
-  onCancel() {
-    this.uiStatesUser.toggleView('userAccount');
+  onCancel(): void {
+    this.uiStatesUserService.toggleView('userAccount');
   }
 
-  checkOldPassword(value: string) {
-    this.invalidOldPassword.set(value !== this.loggedInUserPassword);
+  checkOldPassword(value: string): void {
+    this.validOldPassword.set(value === this.loggedInUserPassword);
   }
 
-  checkMatchingNewPassword(value: string) {
-    this.invalidMatchingPasswords.set(value !== this.enteredNewPassword);
+  checkMatchingNewPassword(value: string): void {
+    this.validMatchingNewPasswords.set(value === this.enteredNewPassword);
   }
 
-  onSubmit(formData: NgForm) {
+  onSubmit(formData: NgForm): void {
     this.changeButtonMessage = 'Redirecting...';
     this.message = 'Simulating Password Change.';
 
     setTimeout(() => {
-      this.uiStatesUser.toggleView('login');
-      this.uiStates.toggleView(null);
+      this.uiStatesUserService.toggleView('login');
+      this.uiStatesService.toggleView(null);
     }, 3000);
   }
 }
