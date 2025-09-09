@@ -1,26 +1,59 @@
-import { Injectable } from '@angular/core';
+import { effect, Injectable } from '@angular/core';
 import { Deck, DummyDataService, Flashcard, settings } from './dummy-data-service';
+import { UiStatesUser } from './ui-states-user';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
   private storageKey = 'flashcardAppData';
   private settingsKey = 'flashcardAppSettings';
+  guestDecks!: Deck[];
+  guestSettings!: settings;
+
   deckIndex: number = 0;
   cardIndex: number = 0;
 
-  constructor(private dummyData: DummyDataService) { this.initialiseData(); }
+  constructor(
+    private dummyData: DummyDataService,
+    private uiUserStatesService: UiStatesUser
+  ) { 
+    this.initialiseData(); 
+    effect(() => {
+      if (this.uiUserStatesService.userLoggedIn()) {
+        this.loadDemoData();
+      } else {
+        this.loadGuestData();
+      }
+    })
+  }
 
   private initialiseData() {
-    if (!localStorage.getItem(this.storageKey)) {
-      localStorage.setItem(this.storageKey, JSON.stringify(this.dummyData.getDecks()));
-    }
+    // if (!localStorage.getItem(this.storageKey)) {
+    //   localStorage.setItem(this.storageKey, JSON.stringify(this.dummyData.getDecks()));
+    // }
 
     if(!localStorage.getItem(this.settingsKey)) {
-      localStorage.setItem(this.settingsKey, JSON.stringify(this.dummyData.getSettings()));
+      localStorage.setItem(this.settingsKey, JSON.stringify(this.dummyData.getDefaultSettings()));
     }
 
     const decks = this.getDecks();
     this.deckIndex = decks.length > 0 ? Math.max(...decks.map((deck) => deck.id)) + 1 : 1;
+  }
+
+  loadDemoData() {
+    this.guestDecks = JSON.parse(localStorage.getItem(this.storageKey) || '[]');
+    this.guestSettings = JSON.parse(localStorage.getItem(this.settingsKey) || '{}');
+
+    localStorage.setItem(this.storageKey, JSON.stringify(this.dummyData.getDecks()));
+    localStorage.setItem(this.settingsKey, JSON.stringify(this.dummyData.getDemoSettings()));
+  }
+
+  loadGuestData() {
+    if (this.guestDecks.length === 0) {
+      localStorage.removeItem(this.storageKey);
+    } else {
+      localStorage.setItem(this.storageKey, JSON.stringify(this.guestDecks));
+    }
+    localStorage.setItem(this.settingsKey, JSON.stringify(this.guestSettings));
   }
 
   getDecks(): Deck[] {
@@ -144,7 +177,7 @@ export class LocalStorageService {
 
   getSettings(): settings {
     const settingsData = localStorage.getItem(this.settingsKey);
-    return settingsData ? JSON.parse(settingsData) : this.dummyData.getSettings();
+    return settingsData ? JSON.parse(settingsData) : this.dummyData.getDefaultSettings();
   }
 
   private saveSettings(settings: settings) {
@@ -153,6 +186,6 @@ export class LocalStorageService {
 
   clearAppData(): void {
     localStorage.removeItem(this.storageKey);
-    this.saveSettings(this.dummyData.getSettings());
+    this.saveSettings(this.dummyData.getDefaultSettings());
   }
 }

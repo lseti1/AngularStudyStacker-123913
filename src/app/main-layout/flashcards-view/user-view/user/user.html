@@ -4,11 +4,11 @@
         <div class="w-full flex flex-col bg-gray-100 rounded">
             <div class="flex flex-row justify-between w-full p-3">
                 <label for="email" class="text-right">Email</label>
-                <p class="bg-white/0 tracking-tighter text-center font-light">StudyStacker@stack.com</p>
+                <p class="bg-white/0 tracking-tighter text-center font-light">{{ userEmail }}</p>
             </div>
             <div class="flex flex-row justify-between w-full p-3">
                 <label for="name" class="text-right">Name</label>
-                <p class="bg-white/0 tracking-tighter text-center font-light">Study Stacker Demo User</p>
+                <p class="bg-white/0 tracking-tighter text-center font-light">{{ userName }} </p>
             </div>
             <div (click)="onChangePassword()" class="flex flex-row justify-between w-full p-3 hover:bg-gray-200 duration-300 cursor-pointer">
                 <label for="changePassword" class="text-right">Change Password</label>
@@ -19,6 +19,6 @@
                 <p>&gt;</p>
             </div>
         </div>
-        <button class="black-btn col-span-2" type="submit" (click)="onSignOut()">Log Out</button>
+        <button class="black-btn col-span-2" type="submit" (click)="onSignOut()">{{ logoutButtonMessage }}</button>
     </div>
 </div>

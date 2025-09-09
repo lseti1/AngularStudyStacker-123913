@@ -21,7 +21,7 @@
         <div class="flex w-full justify-end px-4">   
             <button class=" tracking-tighter text-base underline text-blue-400" type="button" (click)="onForgotPassword()">Forgot Password?</button>
         </div>
-        <button class="green-btn" type="submit" [ngClass]="form.valid ? '' : 'opacity-30 pointer-events-none'" [disabled]="form.invalid">Log In</button>
+        <button class="green-btn" type="submit" [ngClass]="form.valid ? '' : 'opacity-30 pointer-events-none'" [disabled]="form.invalid">{{ loginButtonMessage }}</button>
         <div class="w-full border-t-2 pt-4 px-4 flex flex-col justify-center gap-4">
             <p class="text-center text-base select-none">Don't have an account?</p>
         </div>
