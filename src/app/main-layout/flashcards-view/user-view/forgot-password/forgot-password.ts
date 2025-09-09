@@ -22,7 +22,7 @@ export class ForgotPassword {
   ) {}
   
   onSendReset(formData: NgForm): void {
-    this.message = 'Password reset link has been sent.';
+    this.message = 'Simulating sending password reset link.';
     this.resetMessage = 'Redirecting...';
 
     setTimeout(() => {

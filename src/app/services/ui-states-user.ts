@@ -7,6 +7,7 @@ type userArea = 'signup' | 'login' | 'forgotPassword' | 'userAccount' | 'changeP
 export class UiStatesUser {
   private UserAreaView = signal<userArea>('login');
   userLoggedIn = signal<boolean>(false);
+  userName = signal<string>('guest');
 
   constructor(
     public dummyDataService: DummyDataService
@@ -22,6 +23,5 @@ export class UiStatesUser {
 
   setUserLoggedIn(value: boolean): void {
     this.userLoggedIn.set(value);
-    console.log("User Logged In: ", this.userLoggedIn());
   }
 }

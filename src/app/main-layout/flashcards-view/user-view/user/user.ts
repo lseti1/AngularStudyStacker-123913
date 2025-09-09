@@ -10,14 +10,19 @@ import { UiStatesUser } from '../../../../services/ui-states-user';
   styleUrl: './user.css'
 })
 export class User {
+  logoutButtonMessage = "Log Out";
+
   constructor(
     public uiStates: UIStates, 
     public uiStatesUser: UiStatesUser
   ) {}
 
   onSignOut(): void {
-    this.uiStatesUser.setUserLoggedIn(false);
-    this.uiStatesUser.toggleView('login');
+    this.logoutButtonMessage = "Logging Out...";
+    setTimeout(() => {
+      this.uiStatesUser.setUserLoggedIn(false);
+      this.uiStatesUser.toggleView('login');
+    }, 3000)
   }
   
   onClose(): void {

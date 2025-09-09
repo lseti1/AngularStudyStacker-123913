@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.css'
 })
 export class Login {
+  loginButtonMessage: string = "Log In";
   demoEmail: string;
   demoPassword: string;
   enteredEmail: string = '';
@@ -36,9 +37,12 @@ export class Login {
     } else if (this.demoPassword !== this.enteredPassword) {
       this.validPassword.set(false);
     } else {
-      this.uiStatesUserService.setUserLoggedIn(true);
-      this.uiStatesUserService.toggleView('userAccount');
-      formData.reset();
+      this.loginButtonMessage = 'Logging In...';
+      setTimeout(() => {
+        this.uiStatesUserService.setUserLoggedIn(true);
+        this.uiStatesUserService.toggleView('userAccount');
+        formData.reset();
+      }, 3000)
     }
   }
 
