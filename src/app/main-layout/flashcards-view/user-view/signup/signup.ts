@@ -11,24 +11,28 @@ import { CommonModule } from '@angular/common';
   styleUrl: './signup.css'
 })
 export class Signup {
-  createAccountMessage: string = 'Create Account';
+  createButtonMessage: string = 'Create Account';
   message: string = 'Note: User creation is not implemented at this time. This page is for demonstrating page functionality & navigation only.';
+
   enteredEmail: string = '';
   enteredPassword: string = '';
   enteredConfirmPassword: string = '';
 
-  constructor(public uiStates: UIStates, public uiStatesUser: UiStatesUser) {}
+  constructor(
+    public uiStates: UIStates, 
+    public uiStatesUser: UiStatesUser
+  ) {}
 
-  onSubmit(formData: NgForm) {
+  onSubmit(formData: NgForm): void {
     this.message = "Demo credentials can be found by pressing the info icon on the login screen.";
-    this.createAccountMessage = 'Redirecting...';
+    this.createButtonMessage = 'Redirecting...';
 
     setTimeout(() => {
       this.uiStatesUser.toggleView('login');
     }, 5000);
   }
 
-  onLogin() {
+  onLogin(): void {
     this.uiStatesUser.toggleView('login');
   }
 }

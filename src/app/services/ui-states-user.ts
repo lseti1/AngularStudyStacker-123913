@@ -1,16 +1,27 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, Signal, signal } from '@angular/core';
+import { DummyDataService, user } from './dummy-data-service';
 
 type userArea = 'signup' | 'login' | 'forgotPassword' | 'userAccount' | 'changePassword' | 'deleteAccount';
 
 @Injectable({ providedIn: 'root' })
 export class UiStatesUser {
   private UserAreaView = signal<userArea>('login');
+  userLoggedIn = signal<boolean>(false);
 
-  get currentView() {
-    return this.UserAreaView.asReadonly()
+  constructor(
+    public dummyDataService: DummyDataService
+  ) {}
+
+  get currentView(): Signal<userArea> {
+    return this.UserAreaView.asReadonly();
   }
 
-  toggleView(view: userArea) {
+  toggleView(view: userArea): void {
     this.UserAreaView.set(view);
+  }
+
+  setUserLoggedIn(value: boolean): void {
+    this.userLoggedIn.set(value);
+    console.log("User Logged In: ", this.userLoggedIn());
   }
 }

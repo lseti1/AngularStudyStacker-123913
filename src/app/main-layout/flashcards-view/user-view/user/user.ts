@@ -10,21 +10,25 @@ import { UiStatesUser } from '../../../../services/ui-states-user';
   styleUrl: './user.css'
 })
 export class User {
-  constructor(public uiStates: UIStates, public uiStatesUser: UiStatesUser) {}
+  constructor(
+    public uiStates: UIStates, 
+    public uiStatesUser: UiStatesUser
+  ) {}
 
-  onSignOut() {
+  onSignOut(): void {
+    this.uiStatesUser.setUserLoggedIn(false);
     this.uiStatesUser.toggleView('login');
   }
   
-  onClose() {
+  onClose(): void {
     this.uiStates.toggleView(null);
   }
 
-  onDeleteAccount() {
+  onDeleteAccount(): void {
     this.uiStatesUser.toggleView('deleteAccount');
   }
 
-  onChangePassword() {
+  onChangePassword(): void {
     this.uiStatesUser.toggleView('changePassword');
   }
 }

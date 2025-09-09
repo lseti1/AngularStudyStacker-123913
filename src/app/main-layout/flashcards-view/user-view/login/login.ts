@@ -36,6 +36,7 @@ export class Login {
     } else if (this.demoPassword !== this.enteredPassword) {
       this.validPassword.set(false);
     } else {
+      this.uiStatesUserService.setUserLoggedIn(true);
       this.uiStatesUserService.toggleView('userAccount');
       formData.reset();
     }
