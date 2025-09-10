@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { SelectedDeck } from '../../services/selected-deck';
-import { FlashcardsViewService } from '../../services/flashcards-view-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,11 +10,13 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
   styleUrl: './add-deck-options.css'
 })
 export class AddDeckOptions {
-  constructor(public selectedDeckService: SelectedDeck, public flashcardsViewService: FlashcardsViewService) {}
+  public faBars = faBars;
+  
+  constructor(
+    private selectedDeckService: SelectedDeck, 
+  ) {}
 
-  faBars = faBars;
-
-  onAddDeckClick() {
+  onAddDeckClick(): void {
     this.selectedDeckService.toggleView('add');
   }
 }

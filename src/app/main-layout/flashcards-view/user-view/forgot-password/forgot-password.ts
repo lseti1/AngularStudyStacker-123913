@@ -1,6 +1,5 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { UIStates } from '../../../../services/ui-states';
 import { UiStatesUser } from '../../../../services/ui-states-user';
 import { CommonModule } from '@angular/common';
 
@@ -11,27 +10,29 @@ import { CommonModule } from '@angular/common';
   styleUrl: './forgot-password.css'
 })
 export class ForgotPassword {
-  resetMessage: string = 'Send Reset Link';
-  message: string = 'Note: Resetting passwords is not implemented at this time. This page is for demonstrating page functionality & navigation only.';
+  public resetMessage: string = 'Send Reset Link';
+  public message: string = 'Note: Resetting passwords is not implemented at this time. This page is for demonstrating page functionality & navigation only.';
 
-  enteredEmail: string = '';
+  public enteredEmail: string = '';
   
   constructor(
-    public uiStates : UIStates, 
-    public uiStatesUser: UiStatesUser
+    private uiStatesUserService: UiStatesUser
   ) {}
   
   onSendReset(formData: NgForm): void {
     this.message = 'Simulating sending password reset link.';
     this.resetMessage = 'Redirecting...';
+    
 
     setTimeout(() => {
-      this.uiStatesUser.toggleView('login');
+      formData.reset();
+      this.uiStatesUserService.toggleView('login');
+      
     }, 3000); 
   }
 
   onReturn(): void {
-    this.uiStatesUser.toggleView('login');
+    this.uiStatesUserService.toggleView('login');
   }
 }
 

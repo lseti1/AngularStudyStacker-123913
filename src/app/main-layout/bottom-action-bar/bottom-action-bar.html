@@ -1,29 +1,29 @@
 <div class="flex justify-end items-center bg-gray-100 w-full h-full border-y border-gray-200 p-4 text-white text-xl gap-4">
-    @if (selectedDeckService.isDeckSelected()) {
-        @if (flashcardsViewService.currentView() === 'flashcards' && selectedDeckService.currentView() === null && !(uiStates.currentView() === 'user' || uiStates.currentView() === 'settings')) {
-            @if (!flashcardLearningService.isLearning()) {
-                <button (click)="flashcardsViewService.toggleView('add')" class="blue-btn">{{ addButtonText() }}</button>
+    @if (deckSelected()) {
+        @if (currentFlashcardView() === 'flashcards' && currentDeckView() === null && !(currentUIView() === 'user' || currentUIView() === 'settings')) {
+            @if (!isLearning()) {
+                <button (click)="toggleFlashcardsView('add')" class="blue-btn">{{ addButtonText() }}</button>
             }
             @if (flashcardsData.length !== 0) {
-                @if (!flashcardLearningService.isLearning()) {
-                    <button (click)="flashcardsViewService.toggleEditAll()" class="blue-btn">{{ editButtonText() }}</button>
+                @if (!isLearning()) {
+                    <button (click)="toggleFlashcardsEditAll()" class="blue-btn">{{ editButtonText() }}</button>
                 }
-                <button (click)="flashcardLearningService.toggleIsLearning()" class="green-btn">{{ learningButtonText() }}</button>
+                <button (click)="toggleFlashcardsIsLearning()" class="green-btn">{{ learningButtonText() }}</button>
             }
-        } @else if (flashcardsViewService.currentView() === 'add') {
-            <button (click)="flashcardsViewService.toggleView('add')" class="blue-btn">{{ addButtonText() }}</button>
-        } @else if (flashcardsViewService.currentView() === 'edit' || flashcardsViewService.currentView() === 'view' ||
-            flashcardsViewService.currentView() === 'delete') { <button (click)="flashcardsViewService.toggleView('flashcards')" class="blue-btn">Back</button>
-        } @else if (selectedDeckService.currentView() !== null) {
-            <button (click)="selectedDeckService.toggleView(null)" class="blue-btn">Close</button>
-        } @else if (uiStates.currentView() === 'user' || uiStates.currentView() === 'settings') {
-            <button (click)="uiStates.toggleView(null); uiStatesUser.toggleView('login')" class="blue-btn">Close</button>
+        } @else if (currentFlashcardView() === 'add') {
+            <button (click)="toggleFlashcardsView('add')" class="blue-btn">{{ addButtonText() }}</button>
+        } @else if (currentFlashcardView() === 'edit' || currentFlashcardView() === 'view' || currentFlashcardView() === 'delete') { 
+            <button (click)="toggleFlashcardsView('flashcards')" class="blue-btn">Back</button>
+        } @else if (currentDeckView() !== null) {
+            <button (click)="toggleDeckView(null)" class="blue-btn">Close</button>
+        } @else if (currentUIView() === 'user' || currentUIView() === 'settings') {
+            <button (click)="toggleUIStatesView(null); toggleUIStatesUserView('login')" class="blue-btn">Close</button>
         }
-    } @else if (selectedDeckService.currentView() === 'add') {
-        <button (click)="selectedDeckService.toggleView(null)" class="blue-btn">Close</button>
+    } @else if (currentDeckView() === 'add') {
+        <button (click)="toggleDeckView(null)" class="blue-btn">Close</button>
     } @else {
-        @if (uiStates.currentView() === 'user' || uiStates.currentView() === 'settings') {
-            <button (click)="uiStates.toggleView(null); uiStatesUser.toggleView('login')" class="blue-btn">Close</button>
+        @if (currentUIView() === 'user' || currentUIView() === 'settings') {
+            <button (click)="toggleUIStatesView(null); toggleUIStatesUserView('login')" class="blue-btn">Close</button>
         }
     }
 </div>

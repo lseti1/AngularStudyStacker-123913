@@ -18,19 +18,19 @@ import { FlashcardsLearning } from '../services/flashcards-learning';
 })
 export class Sidebar {
   constructor (
-    public localStorageService: LocalStorageService, 
-    public selectedDeckService: SelectedDeck,
-    public selectedCardService: SelectedCard,
-    public UIStatesService: UIStates,
-    public flashcardsViewService: FlashcardsViewService,
-    public flashcardsLearningService: FlashcardsLearning
+    private localStorageService: LocalStorageService, 
+    private selectedDeckService: SelectedDeck,
+    private selectedCardService: SelectedCard,
+    private UIStatesService: UIStates,
+    private flashcardsViewService: FlashcardsViewService,
+    private flashcardsLearningService: FlashcardsLearning
   ) {}
 
   get decks(): Deck[] {
     return this.localStorageService.getDecks();
   }
 
-  onReturnHome() {
+  onReturnHome(): void {
     this.selectedDeckService.setSelectedDeck(false, 0)
     this.selectedDeckService.toggleView(null);
     this.selectedCardService.setSelectedCard(null);

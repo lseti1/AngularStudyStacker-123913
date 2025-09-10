@@ -12,22 +12,24 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.css'
 })
 export class Login {
-  loginButtonMessage: string = "Log In";
-  demoEmail: string;
-  demoPassword: string;
-  enteredEmail: string = '';
-  enteredPassword: string = '';
+  public loginButtonMessage: string = "Log In";
+  private demoEmail: string;
+  private demoPassword: string;
+  public enteredEmail: string = '';
+  public enteredPassword: string = '';
 
-  validEmail = signal<boolean>(true);
-  validPassword = signal<boolean>(true);
+  public validEmail = signal<boolean>(true);
+  public validPassword = signal<boolean>(true);
 
   constructor(
-    public uiStatesService: UIStates, 
-    public uiStatesUserService: UiStatesUser,
-    public dummyDataService: DummyDataService
+    private uiStatesService: UIStates, 
+    private uiStatesUserService: UiStatesUser,
+    private dummyDataService: DummyDataService
   ) {
-    this.demoEmail = this.dummyDataService.getDemoUserCredentials().email;
-    this.demoPassword = this.dummyDataService.getDemoUserCredentials().password;
+    const demoCredentials = this.dummyDataService.getDemoUserCredentials();
+
+    this.demoEmail = demoCredentials.email;
+    this.demoPassword = demoCredentials.password;
   }
 
   onSubmit(formData: NgForm): void {
@@ -38,11 +40,12 @@ export class Login {
       this.validPassword.set(false);
     } else {
       this.loginButtonMessage = 'Logging In...';
+
       setTimeout(() => {
+        formData.reset();
         this.uiStatesUserService.setUserLoggedIn(true);
         this.uiStatesService.toggleView(null);
         this.uiStatesUserService.toggleView('userAccount');
-        formData.reset();
       }, 3000)
     }
   }

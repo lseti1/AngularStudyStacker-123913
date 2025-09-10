@@ -1,7 +1,6 @@
 import { Component, computed, Input, OnInit, signal } from '@angular/core';
 import { FlashcardsLearning } from '../../../services/flashcards-learning';
 import { Flashcard } from '../../../services/dummy-data-service';
-import { UiStatesSettings } from '../../../services/ui-states-settings';
 import { CommonModule } from '@angular/common';
 import { LocalStorageService } from '../../../services/local-storage-service';
 

@@ -1,6 +1,6 @@
 import { Component, computed, Input, Signal } from '@angular/core';
 import { SelectedDeck } from '../../../services/selected-deck';
-import { AccountArea, UIStates } from '../../../services/ui-states';
+import { selectedAccountArea, UIStates } from '../../../services/ui-states';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGear, faUser } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
@@ -43,7 +43,7 @@ export class DefaultView {
     }
   }
 
-  toggleUIStatesView(view: AccountArea): void {
+  toggleUIStatesView(view: selectedAccountArea): void {
     this.uiStatesService.toggleView(view);
   }
 }

@@ -12,17 +12,17 @@ import { CommonModule } from '@angular/common';
   styleUrl: './delete-account.css'
 })
 export class DeleteAccount {
-  message: string = 'Note: Deleting accounts is not implemented at this time. This page is for demonstrating page functionality & only works with the demo user only.';
-  deleteMessage: string = 'Delete Account';
+  public message: string = 'Note: Deleting accounts is not implemented at this time. This page is for demonstrating page functionality & only works with the demo user only.';
+  public deleteMessage: string = 'Delete Account';
 
-  enteredPassword: string = '';
-  demoPassword: string;
-  validPassword = signal<boolean>(false);
+  public enteredPassword: string = '';
+  private demoPassword: string;
+  public validPassword = signal<boolean>(false);
   
   constructor(
-    public uiStatesService: UIStates, 
-    public uiStatesUserService: UiStatesUser,
-    public dummyDataService: DummyDataService
+    private uiStatesService: UIStates, 
+    private uiStatesUserService: UiStatesUser,
+    private dummyDataService: DummyDataService
   ) { 
     this.demoPassword = this.dummyDataService.getDemoUserCredentials().password; 
   }
@@ -38,8 +38,10 @@ export class DeleteAccount {
   onSubmit(formData: NgForm): void {
     this.deleteMessage = 'Redirecting...';
     this.message = "Simulating account deletion."
+    
 
     setTimeout(() => {
+      formData.reset();
       this.uiStatesUserService.toggleView('login');
       this.uiStatesService.toggleView(null);
     }, 3000);  
