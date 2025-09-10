@@ -11,16 +11,19 @@ import { Deck } from '../../services/dummy-data-service';
   styleUrl: './decks-list.css'
 })
 export class DecksList  {
-  constructor(public selectedDeckService: SelectedDeck) {}
-  faGear = faGear;
   @Input() decksData: Deck[] = [];
+  public faGear = faGear;
 
-  onSelectDeckClick(index: number) {
+  constructor(
+    private selectedDeckService: SelectedDeck
+  ) {}
+  
+  onSelectDeckClick(index: number): void {
     this.selectedDeckService.setSelectedDeck(true, index);
     this.selectedDeckService.toggleView(null);
   }
 
-  onEditDeckClick(index: number, event: MouseEvent ) {
+  onEditDeckClick(index: number, event: MouseEvent): void {
     event.stopPropagation();
     this.selectedDeckService.setSelectedDeck(true, index);
     this.selectedDeckService.toggleView('edit');
