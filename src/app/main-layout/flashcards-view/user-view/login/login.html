@@ -1,5 +1,6 @@
 <div class="flex justify-center items-center flex-col absolute top-0 left-0 w-full h-full backdrop-blur-sm gap-4">
     <form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate class="relative flex flex-col min-w-[40%] max-w-[40%] justify-start items-center p-8 text-2xl shadow-full rounded bg-white gap-4">
+        <fa-icon (click)="toggleInfoScreen()" [icon]="faInfo" class="absolute top-2 right-2 text-base bg-gray-100/50 border rounded-full p-1 hover:bg-gray-100 duration-300 cursor-pointer"></fa-icon>
         <h1 class="text-3xl">Log In</h1>
         <div class="w-full flex flex-col gap-4 px-4 rounded">
             <div class="flex flex-col justify-between w-full gap-2">
@@ -7,9 +8,10 @@
                 <div class="flex flex-col w-full gap-1">
                     <input class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl" type="email" id="email" name="email" placeholder="Enter Email" #email="ngModel" [(ngModel)]="enteredEmail" required email />
                     @if (email.dirty && email.errors?.['email']) {
-                        <p class="text-sm text-red-500">Email address is invalid. Please check that that it is formatted correctly.</p>
+                    <p class="text-sm text-red-500">Email address is invalid. Please check that that it is formatted
+                        correctly.</p>
                     } @else if (!validPassword() && password.dirty || !validEmail() && email.dirty) {
-                        <p class="text-sm text-red-500">Email address or password is incorrect. Please try again.</p>
+                    <p class="text-sm text-red-500">Email address or password is incorrect. Please try again.</p>
                     }
                 </div>
             </div>
@@ -18,7 +20,7 @@
                 <input class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl" type="password" id="password" name="password" placeholder="Enter Password" #password="ngModel" [(ngModel)]="enteredPassword" required />
             </div>
         </div>
-        <div class="flex w-full justify-end px-4">   
+        <div class="flex w-full justify-end px-4">
             <button class=" tracking-tighter text-base underline text-blue-400" type="button" (click)="onForgotPassword()">Forgot Password?</button>
         </div>
         <button class="green-btn" type="submit" [ngClass]="form.valid ? '' : 'opacity-30 pointer-events-none'" [disabled]="form.invalid">{{ loginButtonMessage }}</button>
@@ -27,4 +29,8 @@
         </div>
         <button (click)="onSignUp()" class="blue-btn select-none" type="button">Sign Up Here</button>
     </form>
+    @if (isShowingInfoScreen()) {
+        <app-info-screen (infoToggle)="toggleInfoScreen()" (infoDemoUserToggle)="toggleInfoScreenDemoUser()" class="absolute w-full h-full flex justify-center items-center backdrop-blur-sm"/>
+    }
+    
 </div>
