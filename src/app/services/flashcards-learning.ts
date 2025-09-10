@@ -2,12 +2,13 @@ import { Injectable, signal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class FlashcardsLearning {
-  isLearning = signal<boolean>(false);
-  flashcardsLearntCount = signal<number>(0);
-  timeCount = signal(0);
+  public isLearning = signal<boolean>(false);
+  public flashcardsLearntCount = signal<number>(0);
+  public timeCount = signal(0);
+  
   private timerId: any = null;
 
-  toggleIsLearning() {
+  toggleIsLearning(): void {
     if (this.isLearning()) {
       this.flashcardsLearntCount.set(0);
       this.stopTimer();
@@ -18,18 +19,18 @@ export class FlashcardsLearning {
     this.isLearning.set(!this.isLearning());
   }
 
-  incrementLearntCount() {
+  incrementLearntCount(): void {
     this.flashcardsLearntCount.set(this.flashcardsLearntCount() + 1);
   }
 
-  startTimer() {
+  startTimer(): void {
     if (this.timerId) return;
     this.timerId = setInterval(() => {
       this.timeCount.set(this.timeCount() + 1);
     }, 1000);
   }
 
-  stopTimer() {
+  stopTimer(): void {
     if (this.timerId) {
       clearInterval(this.timerId);
       this.timerId = null;
