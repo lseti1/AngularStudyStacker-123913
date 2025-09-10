@@ -11,7 +11,7 @@ import { SelectedCard } from '../../services/selected-card';
 import { ViewCardView } from './view-card-view/view-card-view';
 import { DeleteCardView } from './delete-card-view/delete-card-view';
 import { EditDeckView } from './edit-deck-view/edit-deck-view';
-import { AccountArea, UIStates } from '../../services/ui-states';
+import { selectedAccountArea, UIStates } from '../../services/ui-states';
 import { SettingsView } from './settings-view/settings-view';
 import { UserView } from './user-view/user-view';
 import { DeleteDeckView } from './delete-deck-view/delete-deck-view';
@@ -39,7 +39,7 @@ export class FlashcardsView {
     private flashcardsLearningService: FlashcardsLearning
   ) {}
 
-  public get currentUIView(): Signal<AccountArea> {
+  public get currentUIView(): Signal<selectedAccountArea> {
     return this.uiStatesService.currentView;
   }
 

@@ -4,6 +4,7 @@ import { FlashcardsView } from './flashcards-view/flashcards-view';
 import { BottomActionBar } from './bottom-action-bar/bottom-action-bar';
 import { SelectedDeck } from '../services/selected-deck';
 import { LocalStorageService } from '../services/local-storage-service';
+import { Deck } from '../services/dummy-data-service';
 
 @Component({
   selector: 'app-main-layout',
@@ -14,9 +15,12 @@ import { LocalStorageService } from '../services/local-storage-service';
 export class MainLayout {
   isEditingDeck: boolean = false;
 
-  constructor(public selectedDeckService: SelectedDeck, public localStorageService: LocalStorageService) {}
+  constructor(
+    private selectedDeckService: SelectedDeck, 
+    private localStorageService: LocalStorageService
+  ) {}
   
-  get selectedDeck() {
+  get selectedDeck(): Deck | null {
     const id = this.selectedDeckService.selectedDeckID();
     const deck = this.localStorageService.getDecks().find(deck => deck.id === id);
     return deck ?? null;
@@ -34,7 +38,7 @@ export class MainLayout {
     return this.localStorageService.getDecks().length;
   }
 
-  setIsEditingDeck(value: boolean) {
+  setIsEditingDeck(value: boolean): void {
     this.isEditingDeck = value;
   }
 }
