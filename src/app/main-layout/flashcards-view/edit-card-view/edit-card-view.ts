@@ -13,25 +13,26 @@ import { SelectedCard } from '../../../services/selected-card';
   styleUrl: './edit-card-view.css',
 })
 export class EditCardView implements OnInit {
+  @Input() flashcardData: Flashcard | null = null;
+
+  public frontText: string = '';
+  public backText: string = '';
+
   constructor(
-    public flashcardsViewService: FlashcardsViewService,
-    public selectedDeckService: SelectedDeck,
-    public selectedCardService: SelectedCard,
-    public localStorageService: LocalStorageService
+    private flashcardsViewService: FlashcardsViewService,
+    private selectedDeckService: SelectedDeck,
+    private selectedCardService: SelectedCard,
+    private localStorageService: LocalStorageService
   ) {}
 
-  frontText: string = '';
-  backText: string = '';
-
-  @Input() flashcardData: Flashcard | null = null;
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.flashcardData) {
       this.frontText = this.flashcardData.front;
       this.backText = this.flashcardData.back;
     }
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.frontText || this.backText) {
       const newCard: Flashcard = {
         id: 0,

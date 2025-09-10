@@ -1,4 +1,4 @@
-@if (selectedDeckService.isDeckSelected()) {
+@if (deckSelected()) {
     @if (flashcardsData.length === 0) {
     <p class="flex w-full h-full justify-center items-center text-2xl text-gray-400 text-center">No flashcards in this deck.<br />Get started using 'Add Card' below.</p>
     } @else {
@@ -8,7 +8,7 @@
                 class="relative flex flex-col h-72 justify-center items-center bg-gray-100 rounded border border-gray-300 p-2 text-2xl shadow-half hover:bg-gray-200 cursor-pointer select-none duration-300">
                 <p class="flex justify-center items-center border-b border-gray-400 h-1/2 w-full">{{ flashcard.front }}</p>
                 <p class="flex justify-center items-center border-t border-gray-400 h-1/2 w-full">{{ flashcard.back }}</p>
-                @if (flashcardsViewService.isEditAll()) {
+                @if (isEditingAllFlashcards()) {
                 <div class="absolute flex flex-row justify-end top-2 right-5 gap-4 h-10 w-10 select-none text-base font-bold">
                     <fa-icon (click)="onEditAllCardClick(flashcard.id, $event)" [icon]="faGear"
                         class="flex justify-center items-center text-gray-400 hover:text-gray-600 duration-300"></fa-icon>
@@ -20,31 +20,30 @@
         }
         </div>
     }
-    
 }
 
-@if (selectedDeckService.isDeckSelected()) {
-    @if (flashcardsViewService.currentView() === 'add') {
+@if (deckSelected()) {
+    @if (currentFlashcardView() === 'add') {
     <app-add-card-view [deckSize]="deckData?.flashcards?.length || 0" />
-    } @else if (flashcardsViewService.currentView() === 'edit') {
+    } @else if (currentFlashcardView() === 'edit') {
     <app-edit-card-view [flashcardData]="flashcardData" />
-    } @else if (flashcardsViewService.currentView() === 'view') {
+    } @else if (currentFlashcardView() === 'view') {
     <app-view-card-view [flashcardData]="flashcardData" />
-    } @else if (flashcardsViewService.currentView() === 'delete') {
+    } @else if (currentFlashcardView() === 'delete') {
     <app-delete-card-view [flashcardData]="flashcardData" />
-    } @else if (flashcardsLearningService.isLearning()) {
+    } @else if (isLearning()) {
     <app-learning-view [flashcardsData]="flashcardsData"/>
     }
 }
 
-@if (selectedDeckService.currentView() === 'edit') {
+@if (currentDeckView() === 'edit') {
 <app-edit-deck-view [deckData]="deckData" />
-} @else if (selectedDeckService.currentView() === 'add') {
+} @else if (currentDeckView() === 'add') {
 <app-add-deck-view />
-} @else if (selectedDeckService.currentView() === 'delete') {
+} @else if (currentDeckView() === 'delete') {
 <app-delete-deck-view [deckData]="deckData" />
-} @else if (uiStates.currentView() === 'settings') {
+} @else if (currentUIView() === 'settings') {
 <app-settings-view />
-} @else if (uiStates.currentView() === 'user') {
+} @else if (currentUIView() === 'user') {
 <app-user-view />
 }

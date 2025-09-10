@@ -12,18 +12,18 @@ import { SelectedDeck } from '../../../services/selected-deck';
   styleUrl: './add-card-view.css'
 })
 export class AddCardView {
-  constructor(
-    public flashcardsViewService: FlashcardsViewService, 
-    public localStorageService: LocalStorageService,
-    public selectedDeckService: SelectedDeck
-  ){}
-
   @Input() deckSize: number = 0;
 
-  frontText: string = '';
-  backText: string = '';
+  public frontText: string = '';
+  public backText: string = '';
 
-  onSubmit() {
+  constructor(
+    private flashcardsViewService: FlashcardsViewService, 
+    private localStorageService: LocalStorageService,
+    private selectedDeckService: SelectedDeck
+  ) {}
+
+  onSubmit(): void {
     if (!this.frontText || !this.backText) return; 
 
     const newCard: Flashcard = {

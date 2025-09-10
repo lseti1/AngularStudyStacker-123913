@@ -1,4 +1,4 @@
-@if (!flashcardsLearningService.isLearning()) {
+@if (!isLearning()) {
     <app-default-view [deckTitle]="deckTitle" [deckSize]="deckSize" [deckProficiency]="deckProficiency" [totalDecks]="totalDecks"/>
 } @else {
     <app-learning-view [deckTitle]="deckTitle"/>

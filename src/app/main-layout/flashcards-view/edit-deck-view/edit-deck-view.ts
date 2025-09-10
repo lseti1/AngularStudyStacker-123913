@@ -11,20 +11,24 @@ import { LocalStorageService } from '../../../services/local-storage-service';
   styleUrl: './edit-deck-view.css'
 })
 export class EditDeckView implements OnInit {
-  constructor(public selectedDeckService: SelectedDeck, public localStorageService: LocalStorageService) {}
   @Input() deckData: Deck | null = null;
 
-  deckName: string = '';
-  deckDescription: string = '';
+  public deckName: string = '';
+  public deckDescription: string = '';
 
-  ngOnInit() {
+  constructor(
+    private selectedDeckService: SelectedDeck, 
+    private localStorageService: LocalStorageService
+  ) {}
+  
+  ngOnInit(): void {
     if (this.deckData) {
       this.deckName = this.deckData.title;
       this.deckDescription = this.deckData.description;
     }
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.deckName || this.deckDescription) {
       const deckID = this.selectedDeckService.selectedDeckID();
       if (deckID !== null) {
@@ -40,7 +44,7 @@ export class EditDeckView implements OnInit {
     this.selectedDeckService.toggleView(null);
   }
 
-  onDelete() {
+  onDelete(): void {
     this.selectedDeckService.toggleView('delete');
   }
 }

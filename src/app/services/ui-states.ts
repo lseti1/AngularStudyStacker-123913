@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal } from '@angular/core';
 import { signal } from '@angular/core';
 
-type AccountArea = 'settings' | 'user' | null;
+export type AccountArea = 'settings' | 'user' | null;
 
 @Injectable({ providedIn: 'root' })
 export class UIStates {
-  AccountAreaView = signal<AccountArea>(null);
+  private AccountAreaView = signal<AccountArea>(null);
 
-  get currentView() {
+  public get currentView(): Signal<AccountArea> {
     return this.AccountAreaView.asReadonly();
   }
 
-  toggleView(view: AccountArea) {
+  toggleView(view: AccountArea): void {
     this.AccountAreaView.set(view);
   }
 }

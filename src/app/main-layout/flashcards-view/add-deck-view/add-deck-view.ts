@@ -11,15 +11,17 @@ import { LocalStorageService } from '../../../services/local-storage-service';
   styleUrl: './add-deck-view.css'
 })
 export class AddDeckView {
-  constructor(public selectedDeckService: SelectedDeck, public localStorageService: LocalStorageService) {}
+  public deckName: string = '';
+  public deckDescription: string ='';
+  private deckProficiency: number = 0;
+  private deckFlashcards: Flashcard[] = [];
 
-  deckID: number = 0;
-  deckName: string = '';
-  deckDescription: string ='';
-  deckProficiency: number = 0;
-  deckFlashcards: Flashcard[] = [];
+  constructor(
+    private selectedDeckService: SelectedDeck, 
+    private localStorageService: LocalStorageService
+  ) {}
 
-  onSubmit() {
+  onSubmit(): void {
     if (!this.deckDescription || !this.deckName) return;
 
     const newDeck: Deck = {

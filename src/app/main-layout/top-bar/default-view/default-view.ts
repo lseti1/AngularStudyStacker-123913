@@ -1,7 +1,6 @@
-import { Component, computed, Input, signal } from '@angular/core';
+import { Component, computed, Input, Signal } from '@angular/core';
 import { SelectedDeck } from '../../../services/selected-deck';
-import { UIStates } from '../../../services/ui-states';
-import { FlashcardsLearning } from '../../../services/flashcards-learning';
+import { AccountArea, UIStates } from '../../../services/ui-states';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGear, faUser } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
@@ -20,24 +19,31 @@ export class DefaultView {
   @Input() deckProficiency: number = 0;
   @Input() totalDecks: number = 0;
 
-  userName = computed(() => this.uiStatesUserService.userLoggedIn() ? 'Demo' : 'Guest') 
-  faUser = faUser;
-  faGear = faGear;
-  currentDate: Date = new Date();
+  public userName = computed(() => this.uiStatesUserService.userLoggedIn() ? 'Demo' : 'Guest') 
+  public faUser = faUser;
+  public faGear = faGear;
+  public currentDate: Date = new Date();
 
   constructor(
-      public selectedDeckService: SelectedDeck,
-      public uiStatesService: UIStates,
-      public uiStatesUserService: UiStatesUser,
-      public flashcardsLearningService: FlashcardsLearning
+      private selectedDeckService: SelectedDeck,
+      private uiStatesService: UIStates,
+      private uiStatesUserService: UiStatesUser,
     ) {}
 
-  setUserView() {
+  public get deckSelected(): Signal<boolean> {
+    return this.selectedDeckService.isDeckSelected;
+  }
+
+  setUserView(): void {
     if (this.uiStatesUserService.userLoggedIn()) {
       this.uiStatesService.toggleView('user');
       this.uiStatesUserService.toggleView('userAccount');
     } else {
       this.uiStatesService.toggleView('user');
     }
+  }
+
+  toggleUIStatesView(view: AccountArea): void {
+    this.uiStatesService.toggleView(view);
   }
 }
