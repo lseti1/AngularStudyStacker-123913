@@ -20,6 +20,8 @@
         }
         </div>
     }
+} @else if (!deckSelected() && totalDecks !== 0) {
+    <p class="flex w-full h-full justify-center items-center text-2xl text-gray-400 text-center">To begin viewing flashcards, select a deck from the sidebar.</p>
 }
 
 @if (deckSelected()) {

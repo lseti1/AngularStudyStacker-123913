@@ -27,6 +27,7 @@ import { LearningView } from './learning-view/learning-view';
 export class FlashcardsView {
   @Input() flashcardsData: Flashcard[] = [];
   @Input() deckData: Deck | null = null;
+  @Input() totalDecks: number = 0;
 
   public flashcardData: Flashcard | null = null;
   public faGear = faGear;
