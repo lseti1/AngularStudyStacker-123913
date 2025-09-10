@@ -50,7 +50,7 @@ export class AddDeckView {
     this.selectedDeckService.toggleView(null);
   }
 
-  setTemporaryMessage(message: string) {
+  setTemporaryMessage(message: string): void {
     this.errorMessage = message;
     this.showErrorMessage.set(true);
 
