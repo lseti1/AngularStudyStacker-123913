@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { UIStates } from '../../../../services/ui-states';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UiStatesUser } from '../../../../services/ui-states-user';
 import { CommonModule } from '@angular/common';
@@ -11,16 +10,15 @@ import { CommonModule } from '@angular/common';
   styleUrl: './signup.css'
 })
 export class Signup {
-  createButtonMessage: string = 'Create Account';
-  message: string = 'Note: User creation is not implemented at this time. This page is for demonstrating page functionality & navigation only.';
+  public createButtonMessage: string = 'Create Account';
+  public message: string = 'Note: User creation is not implemented at this time. This page is for demonstrating page functionality & navigation only.';
 
-  enteredEmail: string = '';
-  enteredPassword: string = '';
-  enteredConfirmPassword: string = '';
+  public enteredEmail: string = '';
+  public enteredPassword: string = '';
+  public enteredConfirmPassword: string = '';
 
   constructor(
-    public uiStates: UIStates, 
-    public uiStatesUser: UiStatesUser
+    private uiStatesUser: UiStatesUser
   ) {}
 
   onSubmit(formData: NgForm): void {
@@ -28,6 +26,7 @@ export class Signup {
     this.createButtonMessage = 'Redirecting...';
 
     setTimeout(() => {
+      formData.reset();
       this.uiStatesUser.toggleView('login');
     }, 5000);
   }

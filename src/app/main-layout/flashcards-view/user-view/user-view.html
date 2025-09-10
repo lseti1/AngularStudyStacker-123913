@@ -1,14 +1,14 @@
-@if (uiStatesUser.currentView() === 'login') {
+@if (currentUserUIView() === 'login') {
     <app-login />
-} @else if (uiStatesUser.currentView() === 'signup') {
+} @else if (currentUserUIView() === 'signup') {
     <app-signup />
-} @else if (uiStatesUser.currentView() === 'userAccount') {
+} @else if (currentUserUIView() === 'userAccount') {
     <app-user />
-} @else if (uiStatesUser.currentView() === 'forgotPassword') {
+} @else if (currentUserUIView() === 'forgotPassword') {
     <app-forgot-password />
-} @else if (uiStatesUser.currentView() === 'changePassword') {
+} @else if (currentUserUIView() === 'changePassword') {
     <app-change-password />
-} @else if (uiStatesUser.currentView() === 'deleteAccount') {
+} @else if (currentUserUIView() === 'deleteAccount') {
     <app-delete-account />
 }
     

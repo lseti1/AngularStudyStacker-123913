@@ -12,21 +12,21 @@ import { DummyDataService } from '../../../../services/dummy-data-service';
   styleUrl: './change-password.css'
 })
 export class ChangePassword {
-  loggedInUserPassword: string;
-  changeButtonMessage: string = 'Change Password';
-  message: string = 'Note: Changing passwords is not implemented at this time. This page is for demonstrating page functionality & only works with the demo user only.';
+  private loggedInUserPassword: string;
+  public changeButtonMessage: string = 'Change Password';
+  public message: string = 'Note: Changing passwords is not implemented at this time. This page is for demonstrating page functionality & only works with the demo user only.';
 
-  enteredOldPassword: string = '';
-  enteredNewPassword: string = '';
-  enteredNewConfirmPassword: string = '';
+  public enteredOldPassword: string = '';
+  public enteredNewPassword: string = '';
+  public enteredNewConfirmPassword: string = '';
 
-  validMatchingNewPasswords = signal<boolean>(false);
-  validOldPassword = signal<boolean>(false);
+  public validMatchingNewPasswords = signal<boolean>(false);
+  public validOldPassword = signal<boolean>(false);
 
   constructor(
-    public uiStatesService: UIStates, 
-    public uiStatesUserService: UiStatesUser,
-    public dummyDataService: DummyDataService
+    private uiStatesService: UIStates, 
+    private uiStatesUserService: UiStatesUser,
+    private dummyDataService: DummyDataService
   ) {
     this.loggedInUserPassword = this.dummyDataService.getDemoUserCredentials().password;
   }
@@ -48,6 +48,7 @@ export class ChangePassword {
     this.message = 'Simulating Password Change.';
 
     setTimeout(() => {
+      formData.reset();
       this.uiStatesUserService.toggleView('login');
       this.uiStatesService.toggleView(null);
     }, 3000);
