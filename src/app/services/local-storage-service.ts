@@ -6,17 +6,18 @@ import { UiStatesUser } from './ui-states-user';
 export class LocalStorageService {
   private storageKey = 'flashcardAppData';
   private settingsKey = 'flashcardAppSettings';
-  guestDecks!: Deck[];
-  guestSettings!: settings;
+  private guestDecks!: Deck[];
+  private guestSettings!: settings;
 
-  deckIndex: number = 0;
-  cardIndex: number = 0;
+  private deckIndex: number = 0;
+  private cardIndex: number = 0;
 
   constructor(
     private dummyData: DummyDataService,
     private uiUserStatesService: UiStatesUser
   ) { 
     this.initialiseData(); 
+
     effect(() => {
       if (this.uiUserStatesService.userLoggedIn()) {
         this.loadDemoData();
@@ -27,10 +28,6 @@ export class LocalStorageService {
   }
 
   private initialiseData() {
-    // if (!localStorage.getItem(this.storageKey)) {
-    //   localStorage.setItem(this.storageKey, JSON.stringify(this.dummyData.getDecks()));
-    // }
-
     if(!localStorage.getItem(this.settingsKey)) {
       localStorage.setItem(this.settingsKey, JSON.stringify(this.dummyData.getDefaultSettings()));
     }
@@ -39,7 +36,7 @@ export class LocalStorageService {
     this.deckIndex = decks.length > 0 ? Math.max(...decks.map((deck) => deck.id)) + 1 : 1;
   }
 
-  loadDemoData() {
+  loadDemoData(): void {
     this.guestDecks = JSON.parse(localStorage.getItem(this.storageKey) || '[]');
     this.guestSettings = JSON.parse(localStorage.getItem(this.settingsKey) || '{}');
 
@@ -47,7 +44,7 @@ export class LocalStorageService {
     localStorage.setItem(this.settingsKey, JSON.stringify(this.dummyData.getDemoSettings()));
   }
 
-  loadGuestData() {
+  loadGuestData(): void {
     if (this.guestDecks.length === 0) {
       localStorage.removeItem(this.storageKey);
     } else {
@@ -70,7 +67,7 @@ export class LocalStorageService {
     return this.deckIndex;
   }
 
-  private saveDecks(decks: Deck[]) {
+  private saveDecks(decks: Deck[]): void {
     localStorage.setItem(this.storageKey, JSON.stringify(decks));
   }
 
@@ -85,7 +82,7 @@ export class LocalStorageService {
   return Math.max(...deck.flashcards.map((card) => card.id)) + 1;
 }
 
-  addFlashcard(deckID: number, card: Flashcard) {
+  addFlashcard(deckID: number, card: Flashcard): void {
     const decks = this.getDecks();
     const deck = decks.find((deck) => deck.id === deckID);
 
@@ -99,7 +96,7 @@ export class LocalStorageService {
     this.cardIndex++;
   }
 
-  deleteFlashcard(deckID: number, flashcardID: number) {
+  deleteFlashcard(deckID: number, flashcardID: number): void {
     const decks = this.getDecks();
     const deck = decks.find((deck) => deck.id === deckID);
 
@@ -112,7 +109,7 @@ export class LocalStorageService {
     this.saveDecks(decks);
   }
 
-  updateFlashcard(deckID: number, flashcardID: number, flashcard: Flashcard) {
+  updateFlashcard(deckID: number, flashcardID: number, flashcard: Flashcard): void {
     const decks = this.getDecks(); 
     const deck = decks.find((deck) => deck.id === deckID);
 
@@ -134,7 +131,7 @@ export class LocalStorageService {
     this.saveDecks(decks);
   }
 
-  addDeck(deck: Deck) {
+  addDeck(deck: Deck): void {
     const decks = this.getDecks();
 
     decks.push(deck);
@@ -142,7 +139,7 @@ export class LocalStorageService {
     this.deckIndex++;
   }
 
-  deleteDeck(deckID: number) {
+  deleteDeck(deckID: number): void {
     const decks = this.getDecks();
     const deck = decks.find((deck) => deck.id === deckID);
 
@@ -155,7 +152,7 @@ export class LocalStorageService {
     this.saveDecks(updatedDecks);
   }
 
-  updateDeck(deckID: number, deckName: string, deckDescription: string) {
+  updateDeck(deckID: number, deckName: string, deckDescription: string): void {
     const decks = this.getDecks();
     const deck = decks.find((deck) => deck.id === deckID);
 
@@ -169,7 +166,7 @@ export class LocalStorageService {
     this.saveDecks(decks);
   }
   
-  updateSettings<name extends keyof settings>(settingName: name, value: settings[name]) {
+  updateSettings<name extends keyof settings>(settingName: name, value: settings[name]): void {
     const currentSettings: settings = this.getSettings();
     currentSettings[settingName] = value;
     this.saveSettings(currentSettings);
@@ -180,7 +177,7 @@ export class LocalStorageService {
     return settingsData ? JSON.parse(settingsData) : this.dummyData.getDefaultSettings();
   }
 
-  private saveSettings(settings: settings) {
+  private saveSettings(settings: settings): void {
     localStorage.setItem(this.settingsKey, JSON.stringify(settings));
   }
 

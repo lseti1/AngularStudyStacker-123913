@@ -2,9 +2,9 @@ import { Injectable, signal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class SelectedCard {
-  selectedCardID = signal<number | null>(null);
+  public selectedCardID = signal<number | null>(null);
 
-  setSelectedCard(CardID: number | null) {
+  setSelectedCard(CardID: number | null): void {
     this.selectedCardID.set(CardID);
   }
 }
