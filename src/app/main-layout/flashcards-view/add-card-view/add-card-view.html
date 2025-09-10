@@ -1,10 +1,18 @@
 <div class="flex justify-center items-center flex-col absolute top-0 left-0 w-full h-full backdrop-blur-sm gap-4">
-    <div class="flex justify-center items-center flex-col bg-white w-1/2 h-[60%] rounded shadow-half border border-gray-300 p-8 gap-4 ">
-        <h1 class="text-3xl">Adding Flashcard</h1>
-        <div class="relative flex flex-col h-full w-full justify-center items-center p-2 text-2xl bg-gray-100 rounded shadow-half border border-gray-300">
-            <input class="flex bg-white/0 justify-center items-center text-center border-b border-gray-400 h-1/2 w-full" label="front" placeholder="Front" [(ngModel)]="frontText">
-            <input class="flex bg-white/0 justify-center items-center text-center border-t border-gray-400 h-1/2 w-full" label="Back" placeholder="Back" [(ngModel)]="backText">
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="relative w-full h-full flex flex-col justify-center items-center gap-4">
+        <div class="relative flex flex-col min-w-[50%] max-w-[50%] h-[60%] justify-start items-center p-8 text-2xl rounded shadow-half border border-gray-300 bg-white gap-6">
+            <div class="text-center">
+                <h1 class="text-3xl">Adding Flashcard</h1>
+                @if (frontText.length === 100 || backText.length === 100) {
+                    <p class="text-sm text-red-500">Maximum Length Reached</p>
+                }
+            </div>
+            <div class="relative flex flex-col h-full w-full justify-center items-center p-2 text-2xl bg-gray-100 rounded shadow-half border border-gray-300">
+                <input class="flex bg-white/0 justify-center items-center text-center border-b border-gray-400 h-1/2 w-full" id="frontText" name="frontText" type="text" placeholder="Front" [(ngModel)]="frontText" maxlength="100" required>
+                <input class="flex bg-white/0 justify-center items-center text-center border-t border-gray-400 h-1/2 w-full" id="backText" name="backText" type="text" placeholder="Back" [(ngModel)]="backText" maxlength="100" required>
+            </div>
         </div>
-    </div>
-    <button class="green-btn" type="submit" (click)="onSubmit()">Add Flashcard</button>
-</div>
+        <button class="green-btn" type="submit" [ngClass]="form.invalid ? 'opacity-30 pointer-events-none' : ''" [disabled]="form.invalid">Add Flashcard</button>
+    </form>
+    
+</div> 

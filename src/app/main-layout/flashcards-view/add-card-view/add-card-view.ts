@@ -2,12 +2,13 @@ import { Component, Input, signal } from '@angular/core';
 import { FlashcardsViewService } from '../../../services/flashcards-view-service';
 import { Flashcard } from '../../../services/dummy-data-service';
 import { LocalStorageService } from '../../../services/local-storage-service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { SelectedDeck } from '../../../services/selected-deck';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-card-view',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './add-card-view.html',
   styleUrl: './add-card-view.css'
 })
@@ -23,7 +24,7 @@ export class AddCardView {
     private selectedDeckService: SelectedDeck
   ) {}
 
-  onSubmit(): void {
+  onSubmit(formData: NgForm): void {
     if (!this.frontText || !this.backText) return; 
 
     const newCard: Flashcard = {
@@ -39,6 +40,7 @@ export class AddCardView {
       console.error('No deck selected.');
     }
 
+    formData.reset();
     this.frontText = '';
     this.backText = '';
 
