@@ -12,15 +12,16 @@ import { SelectedDeck } from '../../../services/selected-deck';
   styleUrl: './delete-card-view.css'
 })
 export class DeleteCardView {
-  constructor(
-    public flashcardsViewService: FlashcardsViewService, 
-    public localStorageService: LocalStorageService,
-    public selectedDeckService: SelectedDeck,
-    public selectedCardService: SelectedCard
-  ) {}
   @Input() flashcardData: Flashcard | null = null;
 
-  onSubmit() {
+  constructor(
+    private flashcardsViewService: FlashcardsViewService, 
+    private localStorageService: LocalStorageService,
+    private selectedDeckService: SelectedDeck,
+    private selectedCardService: SelectedCard
+  ) {}
+  
+  onSubmit(): void {
     const deckID = this.selectedDeckService.selectedDeckID();
     const flashcardID = this.selectedCardService.selectedCardID();
     if (deckID !== null && flashcardID !== null) {

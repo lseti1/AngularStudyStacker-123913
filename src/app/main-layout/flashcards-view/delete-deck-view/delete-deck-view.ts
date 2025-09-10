@@ -11,11 +11,14 @@ import { LocalStorageService } from '../../../services/local-storage-service';
   styleUrl: './delete-deck-view.css'
 })
 export class DeleteDeckView {
-  constructor(public selectedDeckService: SelectedDeck, public localStorageService: LocalStorageService) {}
   @Input() deckData: Deck | null = null;
 
-
-  onSubmit() {
+  constructor(
+    private selectedDeckService: SelectedDeck, 
+    private localStorageService: LocalStorageService
+  ) {}
+  
+  onSubmit(): void {
     const deckID = this.selectedDeckService.selectedDeckID();
     if (deckID !== null) {
       this.localStorageService.deleteDeck(deckID);
