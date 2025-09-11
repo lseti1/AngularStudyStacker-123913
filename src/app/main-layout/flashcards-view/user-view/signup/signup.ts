@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class Signup {
   public createButtonMessage: string = 'Create Account';
-  public message: string = 'Note: User creation is not implemented at this time. This page is for demonstrating page functionality & navigation only.';
+  public message: string = 'User creation is not implemented at this time. This page is for demonstrating page functionality & navigation only.';
 
   public enteredEmail: string = '';
   public enteredPassword: string = '';

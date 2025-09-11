@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { UiStatesUser } from '../../../../services/ui-states-user';
 import { DummyDataService } from '../../../../services/dummy-data-service';
 import { LocalStorageService } from '../../../../services/local-storage-service';
+import { TruncatePipe } from "../../../../pipes/truncate-pipe";
 
 @Component({
   selector: 'app-user',
-  imports: [FormsModule],
+  imports: [FormsModule, TruncatePipe],
   templateUrl: './user.html',
   styleUrl: './user.css'
 })

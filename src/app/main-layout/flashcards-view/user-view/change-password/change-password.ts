@@ -14,7 +14,7 @@ import { DummyDataService } from '../../../../services/dummy-data-service';
 export class ChangePassword {
   private loggedInUserPassword: string;
   public changeButtonMessage: string = 'Change Password';
-  public message: string = 'Note: Changing passwords is not implemented at this time. This page is for demonstrating page functionality & only works with the demo user only.';
+  public message: string = 'Changing passwords is not implemented at this time. This page is for demonstrating page functionality & only works with the demo user only.';
 
   public enteredOldPassword: string = '';
   public enteredNewPassword: string = '';

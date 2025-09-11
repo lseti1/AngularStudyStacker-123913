@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './delete-account.css'
 })
 export class DeleteAccount {
-  public message: string = 'Note: Deleting accounts is not implemented at this time. This page is for demonstrating page functionality & only works with the demo user only.';
+  public message: string = 'Deleting accounts is not implemented at this time. This page is for demonstrating page functionality & only works with the demo user only.';
   public deleteMessage: string = 'Delete Account';
 
   public enteredPassword: string = '';
