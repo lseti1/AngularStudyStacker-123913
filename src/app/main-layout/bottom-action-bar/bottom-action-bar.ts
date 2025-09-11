@@ -24,7 +24,7 @@ export class BottomActionBar {
   });
 
   public learningButtonText = computed(() => {
-    return this.flashcardsLearningService.isLearning() === true ? 'Finish learning' : 'Start Learning';
+    return this.flashcardsLearningService.isLearning() === true ? 'End Learning' : 'Start Learning';
   });
 
   constructor (
