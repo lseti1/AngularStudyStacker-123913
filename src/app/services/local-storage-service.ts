@@ -4,10 +4,10 @@ import { UiStatesUser } from './ui-states-user';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
-  private storageKey = 'flashcardAppData';
-  private settingsKey = 'flashcardAppSettings';
-  private guestDecks!: Deck[];
-  private guestSettings!: settings;
+  private guestStorageKey = 'guestAppData';
+  private guestSettingsKey = 'guestAppSettings';
+  private demoStorageKey = 'demoAppData';
+  private demoSettingsKey = 'demoAppSettings'
 
   private deckIndex: number = 0;
   private cardIndex: number = 0;
@@ -17,44 +17,26 @@ export class LocalStorageService {
     private uiUserStatesService: UiStatesUser
   ) { 
     this.initialiseData(); 
-
-    effect(() => {
-      if (this.uiUserStatesService.userLoggedIn()) {
-        this.loadDemoData();
-      } else {
-        this.loadGuestData();
-      }
-    })
   }
 
   private initialiseData() {
-    if(!localStorage.getItem(this.settingsKey)) {
-      localStorage.setItem(this.settingsKey, JSON.stringify(this.dummyData.getDefaultSettings()));
+    localStorage.setItem(this.guestSettingsKey, JSON.stringify(this.dummyData.getDefaultSettings()));
+    localStorage.setItem(this.demoSettingsKey, JSON.stringify(this.dummyData.getDemoSettings()));
+    if (!localStorage.getItem(this.demoStorageKey)) {
+      localStorage.setItem(this.demoStorageKey, JSON.stringify(this.dummyData.getDecks()));
     }
 
     const decks = this.getDecks();
     this.deckIndex = decks.length > 0 ? Math.max(...decks.map((deck) => deck.id)) + 1 : 1;
   }
 
-  loadDemoData(): void {
-    this.guestDecks = JSON.parse(localStorage.getItem(this.storageKey) || '[]');
-    this.guestSettings = JSON.parse(localStorage.getItem(this.settingsKey) || '{}');
-
-    localStorage.setItem(this.storageKey, JSON.stringify(this.dummyData.getDecks()));
-    localStorage.setItem(this.settingsKey, JSON.stringify(this.dummyData.getDemoSettings()));
-  }
-
-  loadGuestData(): void {
-    if (this.guestDecks.length === 0) {
-      localStorage.removeItem(this.storageKey);
-    } else {
-      localStorage.setItem(this.storageKey, JSON.stringify(this.guestDecks));
-    }
-    localStorage.setItem(this.settingsKey, JSON.stringify(this.guestSettings));
-  }
-
   getDecks(): Deck[] {
-    const deckData = localStorage.getItem(this.storageKey);
+    let deckData;
+    if (this.uiUserStatesService.userLoggedIn()) {
+      deckData = localStorage.getItem(this.demoStorageKey);
+    } else {
+      deckData = localStorage.getItem(this.guestStorageKey);
+    }
     return deckData ? JSON.parse(deckData) : [];
   }
 
@@ -68,7 +50,11 @@ export class LocalStorageService {
   }
 
   private saveDecks(decks: Deck[]): void {
-    localStorage.setItem(this.storageKey, JSON.stringify(decks));
+    if (this.uiUserStatesService.userLoggedIn()) {
+      localStorage.setItem(this.demoStorageKey, JSON.stringify(decks));
+    } else {
+      localStorage.setItem(this.guestStorageKey, JSON.stringify(decks));
+    }
   }
 
   getCardID(deckID: number): number {
@@ -173,16 +159,25 @@ export class LocalStorageService {
   }
 
   getSettings(): settings {
-    const settingsData = localStorage.getItem(this.settingsKey);
+    let settingsData;
+    if (this.uiUserStatesService.userLoggedIn()) {
+      settingsData = localStorage.getItem(this.demoSettingsKey);
+    } else {
+      settingsData = localStorage.getItem(this.guestSettingsKey);
+    }
+
     return settingsData ? JSON.parse(settingsData) : this.dummyData.getDefaultSettings();
   }
 
   private saveSettings(settings: settings): void {
-    localStorage.setItem(this.settingsKey, JSON.stringify(settings));
+    localStorage.setItem(this.guestSettingsKey, JSON.stringify(settings));
   }
 
   clearAppData(): void {
-    localStorage.removeItem(this.storageKey);
-    this.saveSettings(this.dummyData.getDefaultSettings());
+    if (this.uiUserStatesService.userLoggedIn()) { 
+      localStorage.removeItem(this.demoStorageKey);
+    } else {
+      localStorage.removeItem(this.guestStorageKey);
+    }
   }
 }
