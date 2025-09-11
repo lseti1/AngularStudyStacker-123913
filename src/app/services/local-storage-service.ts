@@ -1,6 +1,7 @@
-import { effect, Injectable } from '@angular/core';
+import { effect, Injectable, signal } from '@angular/core';
 import { Deck, DummyDataService, Flashcard, settings, user } from './dummy-data-service';
 import { UiStatesUser } from './ui-states-user';
+import { User } from '../main-layout/flashcards-view/user-view/user/user';
 
 type userType = 'guest' | 'demo';
 
@@ -14,6 +15,8 @@ export class LocalStorageService {
 
   private deckIndex: number = 0;
   private cardIndex: number = 0;
+
+  public currentUser = signal<userType>(this.getCurrentUser());
 
   constructor(
     private dummyData: DummyDataService,
@@ -198,9 +201,11 @@ export class LocalStorageService {
 
   setUserType(type: userType): void {
     localStorage.setItem(this.currentUserKey, type);
+    this.currentUser.set(type);
   }
 
-  getCurrentUser(): string | null {
-    return localStorage.getItem(this.currentUserKey);
+  getCurrentUser(): userType {
+    const savedUser = localStorage.getItem(this.currentUserKey);
+    return savedUser === 'demo' ? 'demo' : 'guest'; 
   }
 }

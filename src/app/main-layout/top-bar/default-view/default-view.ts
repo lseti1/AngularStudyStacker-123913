@@ -20,7 +20,7 @@ export class DefaultView {
   @Input() deckProficiency: number = 0;
   @Input() totalDecks: number = 0;
 
-  public userName = computed(() => this.localStorageService.getCurrentUser() === 'demo' ? 'Demo' : 'Guest') 
+  public userName = computed(() => this.localStorageService.currentUser() === 'demo' ? 'Demo' : 'Guest') 
   public faUser = faUser;
   public faGear = faGear;
   public currentDate: Date = new Date();
