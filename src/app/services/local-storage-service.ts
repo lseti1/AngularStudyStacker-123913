@@ -20,8 +20,12 @@ export class LocalStorageService {
   }
 
   private initialiseData() {
-    localStorage.setItem(this.guestSettingsKey, JSON.stringify(this.dummyData.getDefaultSettings()));
-    localStorage.setItem(this.demoSettingsKey, JSON.stringify(this.dummyData.getDemoSettings()));
+    if (!localStorage.getItem(this.guestSettingsKey)) {
+      localStorage.setItem(this.guestSettingsKey, JSON.stringify(this.dummyData.getDefaultSettings()));
+    }
+    if (!localStorage.getItem(this.demoSettingsKey)) {
+      localStorage.setItem(this.demoSettingsKey, JSON.stringify(this.dummyData.getDemoSettings()));
+    }
     if (!localStorage.getItem(this.demoStorageKey)) {
       localStorage.setItem(this.demoStorageKey, JSON.stringify(this.dummyData.getDecks()));
     }
@@ -170,7 +174,11 @@ export class LocalStorageService {
   }
 
   private saveSettings(settings: settings): void {
-    localStorage.setItem(this.guestSettingsKey, JSON.stringify(settings));
+    if (this.uiUserStatesService.userLoggedIn()) { 
+      localStorage.setItem(this.demoSettingsKey, JSON.stringify(settings));
+    } else {
+      localStorage.setItem(this.guestSettingsKey, JSON.stringify(settings));
+    }
   }
 
   clearAppData(): void {
