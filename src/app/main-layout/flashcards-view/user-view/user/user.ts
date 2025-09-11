@@ -3,6 +3,7 @@ import { UIStates } from '../../../../services/ui-states';
 import { FormsModule } from '@angular/forms';
 import { UiStatesUser } from '../../../../services/ui-states-user';
 import { DummyDataService } from '../../../../services/dummy-data-service';
+import { LocalStorageService } from '../../../../services/local-storage-service';
 
 @Component({
   selector: 'app-user',
@@ -18,7 +19,8 @@ export class User {
   constructor(
     private uiStatesService: UIStates, 
     private uiStatesUserService: UiStatesUser,
-    private dummyDataService: DummyDataService
+    private dummyDataService: DummyDataService,
+    private localStorageService: LocalStorageService
   ) {
     const demoCredentials = this.dummyDataService.getDemoUserCredentials();
 
@@ -28,6 +30,7 @@ export class User {
 
   onSignOut(): void {
     this.logoutButtonMessage = "Logging Out...";
+
     setTimeout(() => {
       this.uiStatesUserService.setUserLoggedIn(false);
       this.uiStatesUserService.toggleView('login');

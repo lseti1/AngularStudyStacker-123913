@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UiStatesUser } from '../../../../services/ui-states-user';
 import { CommonModule } from '@angular/common';
@@ -16,10 +16,15 @@ export class Signup {
   public enteredEmail: string = '';
   public enteredPassword: string = '';
   public enteredConfirmPassword: string = '';
+  public matchingPasswords = signal<boolean>(false);
 
   constructor(
     private uiStatesUser: UiStatesUser
   ) {}
+
+  checkMatchingPassword(value: string): void {
+    this.matchingPasswords.set(value === this.enteredPassword);
+  }
 
   onSubmit(formData: NgForm): void {
     this.message = "Demo credentials can be found by pressing the info icon on the login screen.";

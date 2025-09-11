@@ -15,6 +15,7 @@ export interface Deck {
 }
 
 export interface settings {
+  user: 'guest' | 'demo';
   language: string;
   cardsPerSession: number;
   autoFlip: boolean;
@@ -104,6 +105,7 @@ export class DummyDataService {
   };
 
   private defaultSettings: settings = {
+    user: 'guest',
     language: 'English',
     cardsPerSession: 10,
     autoFlip: false,
@@ -111,6 +113,7 @@ export class DummyDataService {
   };
 
   private demoSettings: settings = {
+    user: 'demo',
     language: 'English',
     cardsPerSession: 25,
     autoFlip: true,
