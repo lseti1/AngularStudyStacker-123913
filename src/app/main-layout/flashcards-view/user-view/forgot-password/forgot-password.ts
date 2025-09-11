@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ForgotPassword {
   public resetMessage: string = 'Send Reset Link';
-  public message: string = 'Note: Resetting passwords is not implemented at this time. This page is for demonstrating page functionality & navigation only.';
+  public message: string = 'Resetting passwords is not implemented at this time. This page is for demonstrating page functionality & navigation only.';
 
   public enteredEmail: string = '';
   

@@ -1,6 +1,9 @@
-import { effect, Injectable } from '@angular/core';
-import { Deck, DummyDataService, Flashcard, settings } from './dummy-data-service';
+import { effect, Injectable, signal } from '@angular/core';
+import { Deck, DummyDataService, Flashcard, settings, user } from './dummy-data-service';
 import { UiStatesUser } from './ui-states-user';
+import { User } from '../main-layout/flashcards-view/user-view/user/user';
+
+type userType = 'guest' | 'demo';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
@@ -8,18 +11,25 @@ export class LocalStorageService {
   private guestSettingsKey = 'guestAppSettings';
   private demoStorageKey = 'demoAppData';
   private demoSettingsKey = 'demoAppSettings'
+  private currentUserKey = 'currentUserType';
 
   private deckIndex: number = 0;
   private cardIndex: number = 0;
 
+  public currentUser = signal<userType>(this.getCurrentUser());
+
   constructor(
     private dummyData: DummyDataService,
-    private uiUserStatesService: UiStatesUser
+    private uiUserStatesService: UiStatesUser,
   ) { 
     this.initialiseData(); 
   }
 
   private initialiseData() {
+    if (!localStorage.getItem(this.currentUserKey)) {
+      localStorage.setItem(this.currentUserKey, 'guest');
+    }
+
     if (!localStorage.getItem(this.guestSettingsKey)) {
       localStorage.setItem(this.guestSettingsKey, JSON.stringify(this.dummyData.getDefaultSettings()));
     }
@@ -36,7 +46,7 @@ export class LocalStorageService {
 
   getDecks(): Deck[] {
     let deckData;
-    if (this.uiUserStatesService.userLoggedIn()) {
+    if (localStorage.getItem(this.currentUserKey) === 'demo') {
       deckData = localStorage.getItem(this.demoStorageKey);
     } else {
       deckData = localStorage.getItem(this.guestStorageKey);
@@ -54,7 +64,7 @@ export class LocalStorageService {
   }
 
   private saveDecks(decks: Deck[]): void {
-    if (this.uiUserStatesService.userLoggedIn()) {
+    if (localStorage.getItem(this.currentUserKey) === 'demo') {
       localStorage.setItem(this.demoStorageKey, JSON.stringify(decks));
     } else {
       localStorage.setItem(this.guestStorageKey, JSON.stringify(decks));
@@ -164,7 +174,7 @@ export class LocalStorageService {
 
   getSettings(): settings {
     let settingsData;
-    if (this.uiUserStatesService.userLoggedIn()) {
+    if (localStorage.getItem(this.currentUserKey) === 'demo') {
       settingsData = localStorage.getItem(this.demoSettingsKey);
     } else {
       settingsData = localStorage.getItem(this.guestSettingsKey);
@@ -174,7 +184,7 @@ export class LocalStorageService {
   }
 
   private saveSettings(settings: settings): void {
-    if (this.uiUserStatesService.userLoggedIn()) { 
+    if (localStorage.getItem(this.currentUserKey) === 'demo') { 
       localStorage.setItem(this.demoSettingsKey, JSON.stringify(settings));
     } else {
       localStorage.setItem(this.guestSettingsKey, JSON.stringify(settings));
@@ -182,10 +192,20 @@ export class LocalStorageService {
   }
 
   clearAppData(): void {
-    if (this.uiUserStatesService.userLoggedIn()) { 
+    if (localStorage.getItem(this.currentUserKey) === 'demo') { 
       localStorage.removeItem(this.demoStorageKey);
     } else {
       localStorage.removeItem(this.guestStorageKey);
     }
+  }
+
+  setUserType(type: userType): void {
+    localStorage.setItem(this.currentUserKey, type);
+    this.currentUser.set(type);
+  }
+
+  getCurrentUser(): userType {
+    const savedUser = localStorage.getItem(this.currentUserKey);
+    return savedUser === 'demo' ? 'demo' : 'guest'; 
   }
 }

@@ -3,4 +3,7 @@
     <div>
         <router-outlet />
     </div>
+    @if (isWelcomeMessage) {
+        <app-welcome-message (isWelcomeMessageVisible)="setIsWelcomeMessage($event)"/>
+    }
 </div>

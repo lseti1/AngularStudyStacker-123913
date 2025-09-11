@@ -6,6 +6,7 @@ import { faGear, faUser } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
 import { TruncatePipe } from '../../../pipes/truncate-pipe';
 import { UiStatesUser } from '../../../services/ui-states-user';
+import { LocalStorageService } from '../../../services/local-storage-service';
 
 @Component({
   selector: 'app-default-view',
@@ -19,7 +20,7 @@ export class DefaultView {
   @Input() deckProficiency: number = 0;
   @Input() totalDecks: number = 0;
 
-  public userName = computed(() => this.uiStatesUserService.userLoggedIn() ? 'Demo' : 'Guest') 
+  public userName = computed(() => this.localStorageService.currentUser() === 'demo' ? 'Demo' : 'Guest') 
   public faUser = faUser;
   public faGear = faGear;
   public currentDate: Date = new Date();
@@ -28,6 +29,7 @@ export class DefaultView {
       private selectedDeckService: SelectedDeck,
       private uiStatesService: UIStates,
       private uiStatesUserService: UiStatesUser,
+      private localStorageService: LocalStorageService
     ) {}
 
   public get deckSelected(): Signal<boolean> {
@@ -35,7 +37,7 @@ export class DefaultView {
   }
 
   setUserView(): void {
-    if (this.uiStatesUserService.userLoggedIn()) {
+    if (this.localStorageService.getCurrentUser() === 'demo') {
       this.uiStatesService.toggleView('user');
       this.uiStatesUserService.toggleView('userAccount');
     } else {
