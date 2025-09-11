@@ -32,7 +32,7 @@ export class User {
     this.logoutButtonMessage = "Logging Out...";
 
     setTimeout(() => {
-      this.uiStatesUserService.setUserLoggedIn(false);
+      this.localStorageService.setUserType('guest');
       this.uiStatesUserService.toggleView('login');
       this.uiStatesService.toggleView(null);
     }, 3000)

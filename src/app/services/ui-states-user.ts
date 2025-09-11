@@ -6,11 +6,11 @@ export type selectedUserArea = 'signup' | 'login' | 'forgotPassword' | 'userAcco
 @Injectable({ providedIn: 'root' })
 export class UiStatesUser {
   private UserAreaView = signal<selectedUserArea>('login');
-  public userLoggedIn = signal<boolean>(false);
+  // public userLoggedIn = signal<boolean>(false);
 
   initialize(localStorageService: LocalStorageService): void {
     const savedUser = localStorageService.getSettings().user;
-    this.userLoggedIn.set(savedUser === 'demo');
+    // this.userLoggedIn.set(savedUser === 'demo');
   }
 
   get currentView(): Signal<selectedUserArea> {
@@ -21,7 +21,7 @@ export class UiStatesUser {
     this.UserAreaView.set(view);
   }
 
-  setUserLoggedIn(value: boolean): void {
-    this.userLoggedIn.set(value);
-  }
+  // setUserLoggedIn(value: boolean): void {
+  //   this.userLoggedIn.set(value);
+  // }
 }

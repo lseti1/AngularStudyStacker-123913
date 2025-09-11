@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faInfo } from '@fortawesome/free-solid-svg-icons';
 import { InfoScreen } from "./info-screen/info-screen";
+import { LocalStorageService } from '../../../../services/local-storage-service';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,8 @@ export class Login {
   constructor(
     private uiStatesService: UIStates, 
     private uiStatesUserService: UiStatesUser,
-    private dummyDataService: DummyDataService
+    private dummyDataService: DummyDataService,
+    private localStorageService: LocalStorageService
   ) {
     const demoCredentials = this.dummyDataService.getDemoUserCredentials();
 
@@ -49,7 +51,7 @@ export class Login {
 
       setTimeout(() => {
         formData.reset();
-        this.uiStatesUserService.setUserLoggedIn(true);
+        this.localStorageService.setUserType('demo');
         this.uiStatesService.toggleView(null);
         this.uiStatesUserService.toggleView('userAccount');
       }, 3000)
