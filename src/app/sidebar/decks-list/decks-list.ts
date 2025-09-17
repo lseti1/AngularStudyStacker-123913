@@ -3,11 +3,10 @@ import { SelectedDeck } from '../../services/selected-deck';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { Deck } from '../../services/dummy-data-service';
-import { TruncatePipe } from "../../pipes/truncate-pipe";
 
 @Component({
   selector: 'app-decks-list',
-  imports: [FontAwesomeModule, TruncatePipe],
+  imports: [FontAwesomeModule],
   templateUrl: './decks-list.html',
   styleUrl: './decks-list.css'
 })
