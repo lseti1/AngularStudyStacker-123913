@@ -1,13 +1,13 @@
 <div class="flex justify-center items-center flex-col absolute top-0 left-0 w-full h-full backdrop-blur-sm gap-4">
-    <div class="flex justify-center items-center flex-col bg-white w-1/2 h-[60%] shadow rounded shadow-half border border-gray-300 p-8 gap-4 ">
+    <div class="flex justify-center items-center flex-col bg-white w-1/2 min-w-[45%] max-w-[45%] min-h-[55%] max-h-[55%] shadow rounded shadow-half border border-gray-300 p-8 gap-4 ">
         <h1 class="text-3xl">Editing Flashcard</h1>
         <div class="flex flex-col h-full w-full justify-center items-center p-2 text-2xl bg-gray-100 rounded shadow-half border border-gray-300 select-none">
             <div class="relative h-1/2 bg-white/0 w-full flex flex-col justify-center items-center border-b border-gray-400 ">
-                <input class="flex bg-white border text-center w-full h-full" label="front" [value]="flashcardData?.front" [(ngModel)]="frontText">
+                <input class="flex bg-white border text-center w-full h-full" label="front" [value]="flashcardData?.front" [(ngModel)]="frontText" maxlength="100">
                 <p class="absolute bottom-2 text-sm text-gray-400">Front</p>
             </div>
             <div class="relative h-1/2 bg-white/0 w-full flex flex-col justify-center items-center border-t border-gray-400 ">
-                <input class="flex bg-white border text-center w-full h-full" label="Back" [value]="flashcardData?.back" [(ngModel)]="backText">
+                <input class="flex bg-white border text-center w-full h-full" label="Back" [value]="flashcardData?.back" [(ngModel)]="backText" maxlength="100">
                 <p class="absolute bottom-2 text-sm text-gray-400">Back</p>
             </div>
         </div>
