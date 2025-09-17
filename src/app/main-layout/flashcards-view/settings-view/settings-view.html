@@ -1,10 +1,14 @@
 <div class="flex justify-center items-center flex-col absolute top-0 left-0 w-full h-full backdrop-blur-sm gap-4">
-    <div class="relative flex flex-col min-w-[40%] max-w-[40%] justify-start items-center p-8 text-2xl shadow-full rounded bg-white gap-4">
+    <div class="
+        p-2 text-base relative flex flex-col min-w-[40%] max-w-[40%] justify-start items-center border border-gray-300 rounded bg-white gap-4 duration-300
+        lg:p-4 lg:text-lg  
+        xl:p-8 xl:text-xl
+    ">
         <h1 class="text-3xl">Settings</h1>
         <div class="w-full flex flex-col gap-4 bg-gray-100 p-4 rounded">
             <div class="flex flex-row justify-between justify-center items-center w-full gap-2 select-none pointer-events-none text-gray-300">
                 <label for="Language" class="text-right">Language</label>
-                <select class="bg-white/0 tracking-tighter text-center text-xl cursor-pointer">
+                <select class=" bg-white/0 tracking-tighter text-center cursor-pointer">
                     <option>English</option>
                     <option>Indonesian</option>
                     <option>Japanese</option>
@@ -13,7 +17,7 @@
             </div>
             <div class="flex flex-row justify-between justify-center items-center w-full gap-2">
                 <label for="CardsPerSessions" class="text-right">Cards Per Sessions</label>
-                <select [(ngModel)]="cardsPerSession" id="CardsPerSessions" class="bg-white/0 tracking-tighter text-center text-xl cursor-pointer">
+                <select [(ngModel)]="cardsPerSession" id="CardsPerSessions" class="bg-white/0 tracking-tighter text-center cursor-pointer">
                     <option [ngValue]="10">10</option>
                     <option [ngValue]="25">25</option>
                     <option [ngValue]="50">50</option>
@@ -24,13 +28,21 @@
                 <label for="Autoflip" class="text-right">Autoflip</label>
                 <label class="inline-flex items-center cursor-pointer relative select-none">
                     <input type="checkbox" class="hidden peer" [(ngModel)]="autoFlip">
-                    <span class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full duration-300 peer-checked:translate-x-6"></span>
-                    <div class="w-12 h-6 bg-gray-300 rounded-full peer-checked:bg-green-600"></div>
+                    <span class="
+                        w-4 h-3 absolute top-1 left-1 bg-white rounded-full duration-300 peer-checked:translate-x-6
+                        lg:h-3
+                        xl:h-4
+                    "></span>
+                    <div class="
+                        w-12 h-5 bg-gray-300 rounded-full peer-checked:bg-green-600
+                        lg:h-5
+                        xl:h-6
+                    "></div>
                 </label>
             </div>
             <div [ngClass]="{ 'select-none pointer-events-none text-gray-300' : !autoFlip}" class="flex flex-row justify-between justify-center items-center w-full gap-2 ">
                 <label for="AutoFlipTimer" class="text-right">Autoflip Timer (s)</label>
-                <input [(ngModel)]="autoFlipTimer" type="number" min="1" max="10" class="w-20 text-center text-xl bg-gray-100">
+                <input [(ngModel)]="autoFlipTimer" type="number" min="1" max="10" class="w-20 text-center bg-gray-100">
             </div>
             <div class="flex flex-row justify-between justify-center items-center w-full gap-2 ">
                 <div>   
@@ -38,7 +50,6 @@
                     <p class="text-xs tracking-tight"><b>Note:</b> Clearing data only affects current user</p>
                 </div>
                 <button class="text-red-600 tracking-tighter hover:text-red-400 duration-300" (click)="onClearData()">{{ message() }}</button>
-                
             </div>
         </div>
         <button class="green-btn col-span-2" type="submit" (click)="onSubmit()">Save Settings</button>

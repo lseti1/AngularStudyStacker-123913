@@ -1,10 +1,22 @@
 <div class="flex justify-between items-center bg-gray-100 w-full h-full border-y border-gray-200 p-4 gap-4">
     <div class="flex flex-row items-center justify-center gap-4">
-        <h1 class="text-4xl font-light" title="{{ deckTitle }}">{{ deckTitle | truncate:25 }}</h1>
+        <h1 title="{{ deckTitle }}" class="
+            text-xl font-light duration-300
+            lg:text-2xl 
+            xl:text-3xl
+        ">{{ deckTitle | truncate:25 }}</h1>
     </div>
     <div class="flex flex-col items-start">
-        <p>Time: {{ timer | date: 'mm:ss' }}</p>
-        <p>Cards: {{ learntCount }} / {{ cardsPerSession }}</p>
+        <p class="
+            text-xs duration-300
+            lg:text-sm
+            xl:text-base
+        ">Time: {{ timer | date: 'mm:ss' }}</p>
+        <p class="
+            text-xs duration-300
+            lg:text-sm
+            xl:text-base
+        ">Cards: {{ learntCount }} / {{ cardsPerSession }}</p>
     </div>
 </div>
 
