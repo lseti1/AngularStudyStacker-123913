@@ -1,10 +1,14 @@
 <div class="flex justify-center items-center flex-col absolute top-0 left-0 w-full h-full backdrop-blur-sm gap-4">
     <div class="
-        p-2 text-base relative flex flex-col min-w-[40%] max-w-[40%] justify-start items-center border border-gray-300 rounded bg-white gap-4 duration-300
-        lg:p-4 lg:text-lg  
-        xl:p-8 xl:text-xl
+        p-2 text-base min-w-[66%] max-w-[66%] relative flex flex-col  justify-start items-center border border-gray-300 rounded bg-white gap-4 duration-300
+        lg:p-4 lg:text-lg lg:min-w-[50%] lg:max-w-[50%]
+        xl:p-8 xl:text-xl xl:min-w-[40%] xl:max-w-[40%]
     ">
-        <h1 class="text-3xl">Settings</h1>
+        <h1 class="
+            text-xl duration-300
+            lg:text-2xl
+            xl:text-3xl
+        ">Settings</h1>
         <div class="w-full flex flex-col gap-4 bg-gray-100 p-4 rounded">
             <div class="flex flex-row justify-between justify-center items-center w-full gap-2 select-none pointer-events-none text-gray-300">
                 <label for="Language" class="text-right">Language</label>
@@ -47,7 +51,7 @@
             <div class="flex flex-row justify-between justify-center items-center w-full gap-2 ">
                 <div>   
                     <label for="AutoFlipTimer" class="text-right">Local Storage</label>
-                    <p class="text-xs tracking-tight"><b>Note:</b> Clearing data only affects current user</p>
+                    <p class="text-xs"><b>Note:</b> Clearing data only affects current user</p>
                 </div>
                 <button class="text-red-600 tracking-tighter hover:text-red-400 duration-300" (click)="onClearData()">{{ message() }}</button>
             </div>
