@@ -1,14 +1,26 @@
 @if (decksData.length === 0) {
     <p class="flex w-full h-full justify-center items-start text-xl text-gray-400 text-center p-4"> No decks have been created.<br />Get started using 'Add Deck' below.</p> 
 } @else {
-    <div class="flex flex-col h-full w-full text-xl">
+    <div class="
+    flex flex-col text-sm h-full w-full duration-300
+    lg:text-base
+    xl:text-lg
+    ">
     @for (deck of decksData; track deck.id) {
-        <div (click)="onSelectDeckClick(deck.id)" class="w-full text-black px-4 py-2 flex justify-between bg-gray-100/40 hover:bg-gray-100 cursor-pointer duration-300 border-y">
+        <div (click)="onSelectDeckClick(deck.id)" class="w-full text-black p-2 flex justify-between bg-gray-100/40 hover:bg-gray-100 cursor-pointer duration-300 border-y">
             <div class="w-full overflow-x-hidden">
                 <p class="line-clamp-1 truncate" title="{{ deck.title }}">{{ deck.title }}</p>
-                <p class="text-sm text-gray-400 truncate">{{ deck.description }}</p>
+                <p class="
+                    text-xs text-gray-400 truncate
+                    lg:text-sm 
+                    xl:text-sm 
+                ">{{ deck.description }}</p>
             </div>
-            <fa-icon (click)="onEditDeckClick(deck.id, $event)" [icon]="faGear" class="flex justify-center items-center text-black/20 hover:text-black duration-300 cursor-pointer text-base"></fa-icon>
+            <fa-icon (click)="onEditDeckClick(deck.id, $event)" [icon]="faGear" class="
+                flex justify-center items-center text-black/20 hover:text-black duration-300 cursor-pointer text-xs
+                lg:text-sm
+                xl:text-base
+            "></fa-icon>
         </div>
     }
     </div>

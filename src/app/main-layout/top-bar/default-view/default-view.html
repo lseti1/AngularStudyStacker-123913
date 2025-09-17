@@ -1,26 +1,45 @@
 <div class="flex justify-between items-center bg-gray-100 w-full h-full border-y border-gray-200 px-4">
     @if (deckSelected()) {
-    <div class="flex flex-row items-center justify-center gap-4">
-        <h1 class="text-4xl font-light" title="{{ deckTitle }}">{{ deckTitle | truncate:25 }}</h1>
-        <div>
+    <div class="flex flex-row items-center justify-center gap-4 ">
+        <h1 title="{{ deckTitle }}" class="
+            text-xl font-light duration-300
+            lg:text-2xl 
+            xl:text-3xl 
+        ">{{ deckTitle | truncate:25 }}</h1>
+        <div class="
+            text-xs duration-300
+            lg:text-sm
+            xl:text-base
+        ">
             <p>Deck Size: {{ deckSize }}</p>
             <p>Proficiency: {{ deckProficiency }}%</p>
         </div>
     </div>
     } @else {
-    <div class="flex flex-row items-center justify-center gap-4">
-        <h1 class="text-4xl font-light">No Deck Selected</h1>
-        <div>
+    <div class="flex flex-row items-center justify-center gap-4 ">
+        <h1 class="
+            text-xl font-light duration-300
+            lg:text-2xl 
+            xl:text-3xl
+        ">No Deck Selected</h1>
+        <div class="
+            text-xs duration-300
+            lg:text-sm
+            xl:text-base
+        ">
             <p>Number of Decks: {{ totalDecks }} </p>
             <p>Last Log-in: {{ currentDate | date:'fullDate'}}</p>
         </div>
     </div>
     }
-    <div class="flex flex-row items-center justify-center text-2xl h-full">
+    <div class="flex flex-row items-center justify-center text-md h-full
+        lg:text-lg
+        xl:text-xl
+    ">
         <fa-icon (click)="toggleUIStatesView('settings')" [icon]="faGear" class="px-2 hover:text-black/50 duration-300 cursor-pointer"></fa-icon>
         <div (click)="setUserView()" class="relative flex flex-col justify-center items-center px-2 h-full hover:text-black/50 duration-300 cursor-pointer">
             <fa-icon [icon]="faUser"></fa-icon>
-            <p class="absolute text-center bottom-0 w-full text-sm"> {{ userName() }} </p>
+            <p class=" absolute text-center bottom-0 w-full text-xs"> {{ userName() }} </p>
         </div>
     </div>
 </div>

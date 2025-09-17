@@ -1,14 +1,30 @@
 <div class="flex justify-center items-center flex-col absolute top-0 left-0 w-full h-full backdrop-blur-sm gap-4">
-    <form (ngSubmit)="onSubmit()" class="relative flex flex-col min-w-[35%] max-w-[35%] justify-start items-center p-8 text-2xl rounded shadow-half border border-gray-300 bg-white gap-4">
-        <h1 class="text-3xl" title="{{ deckData?.title }}">Editing Deck</h1>
+    <form (ngSubmit)="onSubmit()" class="
+        relative flex flex-col min-w-[35%] max-w-[35%] justify-start items-center p-2 text-lg rounded border border-gray-300 bg-white gap-2 duration-300
+        lg:p-4 lg:text-xl
+        xl:p-8 xl:text-2xl
+    ">
+        <h1 title="{{ deckData?.title }}" class="
+            text-xl duration-300 font-semibold
+            lg:text-2xl
+            xl:text-3xl
+        " >Editing Deck</h1>
         <div class="w-full flex flex-col gap-4 p-4 rounded">
             <div class="flex flex-col w-full gap-2">
                 <label for="name" class="select-none">Deck Name</label>
-                <input [(ngModel)]="deckName" id="name" name="name" type="text" [value]="deckData?.title" class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl">
+                <input [(ngModel)]="deckName" id="name" name="name" type="text" [value]="deckData?.title" class="
+                    text-base bg-gray-100 tracking-tighter p-2 border border-gray-300 duration-300
+                    lg:text-lg
+                    xl:text-xl
+                ">
             </div>
             <div class="flex flex-col w-full gap-2">
                 <label for="description" class="select-none">Deck Description</label>
-                <textarea [(ngModel)]="deckDescription" id="description" name="description" type="text" [value]="deckData?.description" class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl" ></textarea>
+                <textarea [(ngModel)]="deckDescription" id="description" name="description" type="text" [value]="deckData?.description" class="
+                    text-base bg-gray-100 tracking-tighter p-2 border border-gray-300 resize-none duration-300
+                    lg:text-lg
+                    xl:text-xl
+                "></textarea>
             </div>
         </div>
         <div class="flex flex-row gap-4">
