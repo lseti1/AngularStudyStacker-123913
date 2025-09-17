@@ -1,14 +1,32 @@
 <div class="flex justify-center items-center flex-col absolute top-0 left-0 w-full h-full backdrop-blur-sm gap-4">
-    <div class="flex justify-center items-center flex-col bg-white w-1/2 min-w-[45%] max-w-[45%] min-h-[55%] max-h-[55%] shadow rounded border border-gray-300 p-8 gap-4 ">
-        <h1 class="text-3xl">Editing Flashcard</h1>
-        <div class="flex flex-col h-full w-full justify-center items-center p-2 text-2xl bg-gray-100 rounded border border-gray-300 select-none">
+    <div class="
+        flex justify-center items-center flex-col bg-white w-1/2 min-w-[45%] max-w-[45%] min-h-[55%] max-h-[55%] shadow rounded border border-gray-300 p-3 gap-4 duration-300
+        lg:p-5
+        xl:p-8
+    ">
+        <h1 class="
+            text-xl duration-300
+            lg:text-2xl
+            xl:text-3xl
+        ">Editing Flashcard</h1>
+        <div class="
+            flex flex-col h-full w-full justify-center items-center p-2 text-lg bg-gray-100 rounded border border-gray-300 select-none duration-300
+            lg:text-xl  
+            xl:text-2xl
+        ">
             <div class="relative h-1/2 bg-white/0 w-full flex flex-col justify-center items-center border-b border-gray-400 ">
                 <input class="flex bg-white border text-center w-full h-full" label="front" [value]="flashcardData?.front" [(ngModel)]="frontText" maxlength="100">
-                <p class="absolute bottom-2 text-sm text-gray-400">Front</p>
+                <p class="
+                    absolute bottom-2 text-sm text-gray-400 duration-300
+                    xl:text-sm    
+                ">Front</p>
             </div>
             <div class="relative h-1/2 bg-white/0 w-full flex flex-col justify-center items-center border-t border-gray-400 ">
                 <input class="flex bg-white border text-center w-full h-full" label="Back" [value]="flashcardData?.back" [(ngModel)]="backText" maxlength="100">
-                <p class="absolute bottom-2 text-sm text-gray-400">Back</p>
+                <p class="
+                    absolute bottom-2 text-xs text-gray-400 duration-300
+                    xl:text-sm
+                ">Back</p>
             </div>
         </div>
     </div>
