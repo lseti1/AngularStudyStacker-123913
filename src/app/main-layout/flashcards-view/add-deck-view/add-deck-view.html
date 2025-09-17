@@ -1,24 +1,49 @@
 <div class="flex justify-center items-center flex-col absolute top-0 left-0 w-full h-full backdrop-blur-sm gap-4">
-    <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="relative flex flex-col min-w-[35%] max-w-[35%] justify-start items-center p-8 text-2xl rounded border border-gray-300 bg-white gap-4">
-        <h1 class="text-3xl">Adding Deck</h1>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="
+        relative flex flex-col min-w-[35%] max-w-[35%] justify-start items-center p-2 text-lg rounded border border-gray-300 bg-white gap-2 duration-300
+        lg:p-4 lg:text-xl
+        xl:p-8 xl:text-2xl
+    ">
+        <h1 class="
+            text-xl duration-300 font-semibold
+            lg:text-2xl
+            xl:text-3xl
+        ">Adding Deck</h1>
         <div class="w-full flex flex-col gap-4 p-4 rounded">
             <div class="flex flex-col w-full gap-2">
                 <label for="name" class="select-none">Deck Name</label>
-                <input [(ngModel)]="deckName" maxlength="30" id="name" name="name" type="text" placeholder="Enter Deck Name" class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl" maxlength="30" required>
+                <input [(ngModel)]="deckName" maxlength="30" id="name" name="name" type="text" placeholder="Enter Deck Name"  maxlength="30" required class="
+                    text-base bg-gray-100 tracking-tighter p-2 border border-gray-300 
+                    lg:text-lg
+                    xl:text-xl
+                ">
                 @if (deckName.length === 30) {
-                    <p class="text-sm text-red-500">Maximum Length Reached</p>
+                    <p class="
+                        text-xs text-red-500
+                        xl:text-sm
+                    ">Maximum Length Reached</p>
                 }
             </div>
             <div class="flex flex-col w-full gap-2">
                 <label for="description" class="select-none">Deck Description</label>
-                <textarea [(ngModel)]="deckDescription" maxlength="100" id="description" name="description" type="text" placeholder="Enter Deck Description" class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl" maxlength="100" required></textarea>
+                <textarea [(ngModel)]="deckDescription" maxlength="100" id="description" name="description" type="text" placeholder="Enter Deck Description" maxlength="100" required class="
+                    text-base bg-gray-100 tracking-tighter p-2 border border-gray-300
+                    lg:text-lg
+                    xl:text-xl
+                "></textarea>
                 @if (deckDescription.length === 100) {
-                    <p class="text-sm text-red-500">Maximum Length Reached</p>
+                    <p class="
+                        text-xs text-red-500
+                        xl:text-sm
+                    ">Maximum Length Reached</p>
                 }
             </div>
         </div>
         @if (showErrorMessage()) {
-            <p class="text-sm text-red-500">{{ errorMessage }}</p>
+            <p class="
+                text-xs text-red-500
+                xl:text-sm
+            ">{{ errorMessage }}</p>
         }
         <button class="green-btn col-span-2" type="submit" [ngClass]="form.invalid ? 'opacity-30 pointer-events-none' : ''" [disabled]="form.invalid">Add Deck</button>
     </form>
