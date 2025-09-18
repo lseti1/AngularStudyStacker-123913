@@ -1,6 +1,9 @@
 @if (deckSelected()) {
     @if (flashcardsData.length === 0) {
-    <p class="flex w-full h-full justify-center items-center text-2xl text-gray-400 text-center">No flashcards in this deck.<br />Get started using 'Add Card' below.</p>
+    <p class="text-lg flex w-full h-full justify-center items-center text-gray-400 text-center duration-300
+        lg:text-xl
+        xl:text-2xl
+    ">No flashcards in this deck.<br />Get started using 'Add Card' below.</p>
     } @else {
         <div class="grid grid-cols-4 auto-rows-min items-start p-4 gap-4 h-full w-full overflow-auto">
         @for (flashcard of flashcardsData; track flashcard.id) {
@@ -21,7 +24,11 @@
         </div>
     }
 } @else if (!deckSelected() && totalDecks !== 0) {
-    <p class="flex w-full h-full justify-center items-center text-2xl text-gray-400 text-center">To begin viewing flashcards, select a deck from the sidebar.</p>
+    <p class="
+        text-lg flex w-full h-full justify-center items-center text-gray-400 text-center duration-300
+        lg:text-xl
+        xl:text-2xl
+    ">To begin viewing flashcards, select a deck from the sidebar.</p>
 }
 
 @if (deckSelected()) {
