@@ -1,12 +1,32 @@
 <div class="flex justify-center items-center flex-col absolute top-0 left-0 w-full h-full backdrop-blur-sm gap-4">
-    <form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate class="relative flex flex-col min-w-[40%] max-w-[40%] justify-start items-center p-8 text-2xl shadow-full rounded bg-white gap-4">
-        <fa-icon (click)="toggleInfoScreen()" [icon]="faInfo" class="absolute top-2 right-2 text-base bg-gray-100/50 border rounded-full p-1 hover:bg-gray-100 duration-300 cursor-pointer"></fa-icon>
-        <h1 class="text-3xl">Log In</h1>
-        <div class="w-full flex flex-col gap-4 px-4 rounded">
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate class="
+        min-w-[60%] relative flex flex-col justify-start items-center p-8 text-2xl border border-gray-300 rounded bg-white gap-2 duration-300
+        lg:min-w-[50%] lg:gap-3
+        xl:min-w-[40%] xl:gap-4
+    ">
+        <fa-icon (click)="toggleInfoScreen()" [icon]="faInfo" class="
+            text-xs absolute top-2 right-2 bg-gray-100/50 border rounded-full p-1 hover:bg-gray-100 duration-300 cursor-pointer
+            lg:text-sm
+            xl:text-base
+        "></fa-icon>
+        <h1 class="
+            text-xl duration-300
+            lg:text-2xl
+            xl:text-3xl
+        ">Log In</h1>
+        <div class="
+            text-lg w-full flex flex-col gap-4 px-4 rounded
+            lg:text-xl
+            xl:text-2xl
+        ">
             <div class="flex flex-col justify-between w-full gap-2">
                 <label for="email" class="select-none">Email</label>
                 <div class="flex flex-col w-full gap-1">
-                    <input class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl" type="email" id="email" name="email" placeholder="Enter Email" #email="ngModel" [(ngModel)]="enteredEmail" required email />
+                    <input type="email" id="email" name="email" placeholder="Enter Email" #email="ngModel" [(ngModel)]="enteredEmail" required email class="
+                        text-base bg-gray-100 tracking-tighter p-2 border border-gray-300
+                        lg:text-lg
+                        xl:text-xl
+                    "/>
                     @if (email.dirty && email.errors?.['email']) {
                     <p class="text-sm text-red-500">Email address is invalid. Please check that that it is formatted
                         correctly.</p>
@@ -17,15 +37,27 @@
             </div>
             <div class="flex flex-col justify-between w-full gap-2">
                 <label for="password" class="select-none">Password</label>
-                <input class="bg-gray-100 tracking-tighter p-2 border border-gray-300 text-xl" type="password" id="password" name="password" placeholder="Enter Password" #password="ngModel" [(ngModel)]="enteredPassword" required />
+                <input type="password" id="password" name="password" placeholder="Enter Password" #password="ngModel" [(ngModel)]="enteredPassword" required class="
+                    text-base bg-gray-100 tracking-tighter p-2 border border-gray-300
+                    lg:text-lg
+                    xl:text-xl
+                "/>
             </div>
         </div>
         <div class="flex w-full justify-end px-4">
-            <button class=" tracking-tighter text-base underline text-blue-400" type="button" (click)="onForgotPassword()">Forgot Password?</button>
+            <button class="
+                text-xs tracking-tighter underline text-blue-400
+                lg:text-sm
+                xl:text-base
+            " type="button" (click)="onForgotPassword()">Forgot Password?</button>
         </div>
         <button class="green-btn" type="submit" [ngClass]="form.valid ? '' : 'opacity-30 pointer-events-none'" [disabled]="form.invalid">{{ loginButtonMessage }}</button>
         <div class="w-full border-t-2 pt-4 px-4 flex flex-col justify-center gap-4">
-            <p class="text-center text-base select-none">Don't have an account?</p>
+            <p class="
+                text-xs text-center select-none duration-300
+                lg:text-sm
+                xl:text-base
+            ">Don't have an account?</p>
         </div>
         <button (click)="onSignUp()" class="blue-btn select-none" type="button">Sign Up Here</button>
     </form>
