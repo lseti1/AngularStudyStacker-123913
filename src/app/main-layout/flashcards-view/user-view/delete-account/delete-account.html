@@ -1,11 +1,27 @@
 <div class="flex justify-center items-center flex-col absolute top-0 left-0 w-full h-full backdrop-blur-sm gap-4 select-none">
-    <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="relative flex flex-col min-w-[40%] max-w-[40%] justify-start items-center p-8 text-xl shadow-full rounded bg-white gap-4">
-        <h1 class="text-3xl">Deleting Account</h1>
-        <div class="w-full flex flex-col gap-4 bg-gray-100 p-4 rounded">
-            <p>Deletion is permanent and <b class="text-red-600 ">cannot be reversed</b>. It will erase all data associated with your account including decks, cards and any other saved data. To proceed, type your password below:</p>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="
+        text-lg min-w-[50%] max-w-[50%] gap-2 relative flex flex-col justify-start items-center p-4 border border-gray-300 rounded bg-white duration-300
+        lg:text-xl lg:min-w-[45%] lg:max-w-[45%] lg:gap-3 lg:p-6
+        xl:text-2xl xl:min-w-[40%] xl:max-w-[40%] xl:gap-4 xl:p-8
+    ">
+        <h1 class="
+            text-xl duration-300
+            lg:text-2xl
+            xl:text-3xl
+        ">Deleting Account</h1>
+        <div class="
+            text-base w-full flex flex-col gap-2 bg-gray-100 p-4 rounded
+            lg:text-lg lg:gap-3
+            xl:text-xl xl:gap-4
+        ">
+            <p class="">Deletion is permanent and <b class="text-red-600 ">cannot be reversed</b>. It will erase all data associated with your account including decks, cards and any other saved data. To proceed, type your password below:</p>
             <input id="password" name="password" type="text" class="tracking-tighter p-2 border border-gray-300" #password="ngModel" (ngModelChange)="checkPassword($event)" [(ngModel)]="enteredPassword" placeholder="Enter Password To Delete Your Account" required>
         </div>
-        <p class="text-base text-center"><b>Note: </b>{{ message }}</p>
+        <p class="
+            text-xs text-center
+            lg:text-sm
+            xl:text-base
+        "><b>Note: </b>{{ message }}</p>
         <div class="flex flex-row gap-4">
             <button class="black-btn" type="button" (click)="onCancel()">Cancel</button>
             <button class="red-btn" type="submit" [ngClass]="validPassword() ? '' : 'opacity-30 pointer-events-none'" [disabled]="form.invalid || !validPassword()" >{{ deleteMessage }}</button>
