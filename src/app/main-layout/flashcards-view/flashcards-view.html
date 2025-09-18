@@ -8,7 +8,11 @@
         <div class="grid grid-cols-4 auto-rows-min items-start p-4 gap-4 h-full w-full overflow-auto">
         @for (flashcard of flashcardsData; track flashcard.id) {
             <div (click)="onViewCardClick(flashcard.id)"
-                class="relative flex flex-col h-64 justify-center items-center bg-gray-100 rounded border border-gray-300 p-2 text-2xl hover:bg-gray-200 cursor-pointer select-none duration-300 text-center">
+                class="
+                    text-lg relative flex flex-col h-32 justify-center items-center bg-gray-100 rounded border border-gray-300 p-2 hover:bg-gray-200 cursor-pointer select-none duration-300 text-center
+                    lg:text-xl lg:h-48
+                    xl:text-2xl xl:h-64
+                    ">
                 <p class="flex justify-center items-center border-b border-gray-400 h-1/2 w-full">{{ flashcard.front }}</p>
                 <p class="flex justify-center items-center border-t border-gray-400 h-1/2 w-full">{{ flashcard.back }}</p>
                 @if (isEditingAllFlashcards()) {

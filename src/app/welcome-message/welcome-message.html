@@ -1,8 +1,20 @@
 <div class="fixed inset-0 flex justify-center items-center bg-black/20">
-    <div class="relative flex flex-col gap-4 w-[45%] h-[50%] bg-white justify-center items-center shadow-full rounded text-center p-8 text-xl">
+    <div class="
+        text-sm w-[55%] relative flex flex-col gap-4  bg-white justify-center items-center border border-gray-300 rounded text-center p-8 duration-300
+        lg:text-base lg:w-[50%] 
+        xl:text-base xl:w-[40%]
+    ">
         <div>
-            <h1 class="text-4xl font-semibold">Welcome to Study Stacker</h1>
-            <p class="text-lg">Create your own flashcard decks and learn at your own pace.</p>
+            <h1 class="
+                text-lg font-semibold duration-300
+                lg:text-xl
+                xl:text-2xl
+            ">Welcome to Study Stacker</h1>
+            <p class="
+                text-xs duration-300
+                lg:text-sm
+                xl:text-base
+            ">Create your own flashcard decks and learn at your own pace.</p>
         </div>
         <div>
             <p class="font-semibold">Features include:</p>
@@ -14,7 +26,10 @@
             </ul>
         </div>
 
-        <div class="bg-gray-100 p-4 rounded border border-gray-300 text-left text-sm">
+        <div class="
+            text-xs bg-gray-100 p-4 rounded border border-gray-300 text-left duration-300
+            xl:text-sm
+        ">
             <p class="text-center"><strong>Note:</strong> This is a demo application. Data is saved in your browser's local storage and can be cleared anytime via the settings. 
                 Not all features may work as intended, and this is not a full-fledged learning platform. Best Viewed in Full Screen on a PC.</p>
         </div>
@@ -22,7 +37,7 @@
         <button (click)="onClose()" class="blue-btn">Start</button>
 
         <a class="absolute top-2 right-2" href="https://github.com/lseti1/AngularStudyStacker-123913" target="_blank" rel="noopener noreferrer">
-            <fa-icon [icon]="faGithub" class="text-4xl"></fa-icon>
+            <fa-icon [icon]="faGithub" class="text-3xl"></fa-icon>
         </a>
     </div>
 </div>
