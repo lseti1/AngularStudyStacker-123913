@@ -10,7 +10,7 @@
     xl:text-lg
     ">
     @for (deck of decksData; track deck.id) {
-        <div (click)="onSelectDeckClick(deck.id)" class="w-full p-2 px-4 flex justify-between hover:bg-gray-700 hover:text-white cursor-pointer duration-300">
+        <div (click)="onSelectDeckClick(deck.id)" class="w-full p-2 px-4 flex justify-between hover:hover:bg-gray-800 cursor-pointer duration-300">
             <div class="w-full overflow-x-hidden">
                 <p class="line-clamp-1 truncate" title="{{ deck.title }}">{{ deck.title }}</p>
                 <p class="
@@ -20,7 +20,7 @@
                 ">{{ deck.description }}</p>
             </div>
             <fa-icon (click)="onEditDeckClick(deck.id, $event)" [icon]="faGear" class="
-                flex justify-center items-center hover:text-black duration-300 cursor-pointer text-xs
+                flex justify-center items-center hover:text-gray-400 duration-300 cursor-pointer text-xs
                 lg:text-sm
                 xl:text-base
             "></fa-icon>
