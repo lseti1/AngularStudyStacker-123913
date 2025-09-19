@@ -18,27 +18,25 @@
 
   .base-btn {
     @apply
-      text-sm p-2 min-w-[6rem] rounded-full duration-300 text-white select-none
+      text-sm p-2 min-w-[6rem] rounded duration-300 text-white select-none
       lg:text-base lg:p-2 lg:min-w-[8rem]
       xl:text-lg xl:p-3 xl:min-w-[10rem]
     ;
   }
 
   .black-btn {
-    @apply 
-      bg-black hover:bg-gray-700 base-btn
-    ;
+    @apply bg-black hover:bg-gray-700 base-btn;
   }
 
   .blue-btn {
-    @apply bg-blue-600 hover:bg-blue-700 base-btn;
+    @apply bg-blue-400 hover:bg-blue-500 base-btn;
   }
 
   .green-btn {
-    @apply bg-green-600 hover:bg-green-700 base-btn;
+    @apply bg-green-500 hover:bg-green-600 base-btn;
   } 
 
   .red-btn {
-    @apply bg-red-700 hover:bg-red-800 base-btn;
+    @apply bg-red-500 hover:bg-red-600 base-btn;
   }
 }
