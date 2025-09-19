@@ -1,4 +1,4 @@
-<div class="flex justify-end items-center w-full h-full border-t p-4 text-white text-xl gap-4">
+<div class="flex justify-end items-center w-full h-full bg-gray-100/50 border-t p-4 text-white text-xl gap-4">
     @if (deckSelected()) {
         @if (currentFlashcardView() === 'flashcards' && currentDeckView() === null && !(currentUIView() === 'user' || currentUIView() === 'settings')) {
             @if (!isLearning()) {
